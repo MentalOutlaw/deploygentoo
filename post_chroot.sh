@@ -3,7 +3,7 @@
 source /etc/profile
 export PS1="(chroot) ${PS1}"
 cpus=$(grep -c ^processor /proc/cpuinfo)
-printf "there are %s cpus" $cpus
+printf "there are %s cpus" $cpusker
 sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/etc/portage/make.conf
 
 cd deploygentoo-master
@@ -11,15 +11,16 @@ scriptdir=$(pwd)
 cd ..
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;34m'
-printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)"
+printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
 read disk
-printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n"
+printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
 read username
 username="${username,,}"
 printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n"
 read kernelanswer
-printf ${LIGHTBLUE}"Enter the Hostname you want to use\n"
+kernelanswer="${kernelanswer,,}"
+printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
 read hostname
 
 
