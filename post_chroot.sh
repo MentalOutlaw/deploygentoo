@@ -18,7 +18,7 @@ printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
 read username
 username="${username,,}"
-printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n"
+printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
 read kernelanswer
 kernelanswer="${kernelanswer,,}"
 printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
@@ -56,7 +56,7 @@ emerge sys-apps/pciutils
 emerge lzop
 emerge app-arch/lz4
 printf "Do you want to configure your own kernel?\n"
-if [ $kernelanswer = "No" ]; then
+if [ $kernelanswer = "no" ]; then
 	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
 	make oldconfig
