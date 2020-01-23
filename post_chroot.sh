@@ -6,7 +6,7 @@ cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus" $cpus
 sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/etc/portage/make.conf
 
-cd gentootestscript-master
+cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
 LIGHTGREEN='\033[1;32m'
@@ -17,8 +17,6 @@ printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
 read username
 username="${username,,}"
-printf ${LIGHTBLUE}"Do you want to migrate openssl to libressl?\n"
-read sslmigrateanswer
 printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n"
 read kernelanswer
 printf ${LIGHTBLUE}"Enter the Hostname you want to use\n"
@@ -33,30 +31,6 @@ mount $part1
 printf "mounted boot\n"
 emerge-webrsync
 printf "webrsync complete\n"
-
-if [ $sslmigrateanswer = "yes" ]; then
-	printf "beginning openssl to libressl migration\n"
-	emerge -uvNDq world
-	emerge gentoolkit
-	equery d openssl
-	equery d libressl
-	printf "openssl and libressl dependencies considered\n"
-	echo 'USE="${USE} libressl"' >> /etc/portage/make.conf
-	printf "added libressl use flag to /portage/make.conf\n"
-	echo 'CURL_SSL="libressl"' >> /etc/portage/make.conf
-	mkdir -p /etc/portage/profile
-	printf "-libressl\n" >> /etc/portage/profile/use.stable.mask
-	echo "dev-libs/openssl" >> /etc/portage/package.mask
-	echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
-	emerge -f libressl
-	emerge -C openssl
-	echo "removed openssl"
-	emerge -1q libressl
-	echo "installed libressl"
-	emerge -1q openssh wget python:2.7 python:3.4 iputils
-else
-	printf "using default openssl\n"
-fi
 
 printf "preparing to do big emerge\n"
 
