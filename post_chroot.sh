@@ -55,14 +55,14 @@ emerge lzop
 emerge app-arch/lz4
 printf "Do you want to configure your own kernel?\n"
 if [ $kernelanswer = "No" ]; then
-	cp /gentootestscript-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
+	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
 	make oldconfig
 	make && make modules_install
 	make install
 	printf "Kernel installed\n"
 elif [ $kernelanswer = "edit" ]; then
-	cp /gentootestscript-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
+	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
 	make menuconfig
 	make && make modules_install
@@ -106,8 +106,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 useradd -m -G users,wheel,audio -s /bin/bash $username
 cd ..
 printf "cleaning up\n"
-mv gentootestscript-master.zip /home/$username
-rm -rf /gentootestscript-master
+mv deploygentoo-master.zip /home/$username
+rm -rf /deploygentoo-master
 stage3=$(ls stage3*)
 rm -rf $stage3
 printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
