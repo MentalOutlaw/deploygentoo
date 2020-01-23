@@ -1,0 +1,6 @@
+# required by media-gfx/gimp-2.10.8-r1::gentoo
+# required by media-gfx/gimp (argument)
+>=media-libs/gegl-0.4.16 cairo
+# required by media-gfx/gimp-2.10.8-r1::gentoo
+# required by media-gfx/gimp (argument)
+>=app-text/poppler-0.79.0-r1 cairo

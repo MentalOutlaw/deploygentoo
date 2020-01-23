@@ -1,0 +1,33 @@
+x11-base/xorg-server -suid
+x11-base/xorg-server -suid
+# required by net-misc/networkmanager-1.18.2::gentoo[wifi]
+# required by net-misc/networkmanager (argument)
+>=net-wireless/wpa_supplicant-2.9-r1 dbus
+# required by media-gfx/sxiv-25::gentoo
+# required by media-gfx/sxiv (argument)
+>=media-libs/imlib2-1.5.1-r1 jpeg png
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+>=dev-ruby/activerecord-4.2.11.1 postgres
+# required by net-print/cups-filters-1.25.11::gentoo[postscript]
+# required by net-print/cups-2.2.12::gentoo
+# required by net-im/signal-desktop-bin-1.28.0::gentoo
+# required by net-im/signal-desktop-bin (argument)
+>=app-text/ghostscript-gpl-9.50 cups
+# required by www-client/chromium-78.0.3904.108::gentoo
+# required by www-client/chromium (argument)
+>=dev-libs/libxml2-2.9.9-r1 icu
+# required by www-client/chromium-78.0.3904.108::gentoo
+# required by www-client/chromium (argument)
+>=media-libs/harfbuzz-2.6.4 icu
+# required by www-client/chromium-78.0.3904.108::gentoo
+# required by www-client/chromium (argument)
+>=sys-libs/zlib-1.2.11-r2 minizip
+# required by www-client/chromium-78.0.3904.108::gentoo
+# required by www-client/chromium (argument)
+>=net-libs/nodejs-12.13.0 inspector
+# required by app-office/libreoffice-6.2.8.2::gentoo
+# required by app-office/libreoffice (argument)
+>=dev-libs/xmlsec-1.2.28 nss

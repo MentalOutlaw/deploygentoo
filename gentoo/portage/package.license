@@ -1,0 +1,6 @@
+# required by app-arch/unrar (argument)
+=app-arch/unrar-5.7.5 unRAR
+# required by app-arch/unrar (argument)
+=app-arch/unrar-5.7.5 unRAR
+# required by net-dns/dnswalk (argument)
+>=net-dns/dnswalk-2.0.2 freedist

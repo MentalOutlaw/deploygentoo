@@ -1,0 +1,6 @@
+this is a gentoo deployment script created by mental outlaw
+before running the script, make sure you have downloaded your stage3, and that you have
+moved this scripts folder into the same directory as it
+DO NOT open the STAGE3 on your own, the script will do it for you :D
+this script is started by running the file called setup_gentoo.sh, it should be run from inside the folder it came in.
+there is some manual input needed from the user (you'll have to give a username, password, aswell as tell the script what disk you want gentoo installed to and choose your kernel options (you can use my kernel config or make your own))

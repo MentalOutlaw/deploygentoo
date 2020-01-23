@@ -1,0 +1,348 @@
+# required by app-editors/neovim (argument)
+=app-editors/neovim-0.4.2 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo[tui]
+# required by app-editors/neovim (argument)
+=dev-libs/unibilium-2.0.0 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+=dev-libs/libvterm-0.1.1 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+=dev-libs/msgpack-3.2.0 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+=dev-lua/luv-1.32.0.0 ~amd64
+# required by tcptrack (argument)
+=net-analyzer/tcptrack-1.4.2 ~amd64
+# required by app-crypt/hashcat-5.1.0::gentoo
+# required by hashcat (argument)
+=app-arch/lzma-9.20-r1 ~amd64
+# required by masscan (argument)
+=net-analyzer/masscan-1.0.5 ~amd64
+# required by hashcat (argument)
+=app-crypt/hashcat-5.1.0 ~amd64
+# required by openvpn-blacklist (argument)
+=app-crypt/openvpn-blacklist-0.5 ~amd64
+# required by app-editors/neovim (argument)
+=app-editors/neovim-0.4.2 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo[tui]
+# required by app-editors/neovim (argument)
+=dev-libs/unibilium-2.0.0 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+=dev-libs/libvterm-0.1.1 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+=dev-libs/msgpack-3.2.0 ~amd64
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+=dev-lua/luv-1.32.0.0 ~amd64
+# required by tcptrack (argument)
+=net-analyzer/tcptrack-1.4.2 ~amd64
+# required by app-crypt/hashcat-5.1.0::gentoo
+# required by hashcat (argument)
+=app-arch/lzma-9.20-r1 ~amd64
+# required by masscan (argument)
+=net-analyzer/masscan-1.0.5 ~amd64
+# required by hashcat (argument)
+=app-crypt/hashcat-5.1.0 ~amd64
+# required by openvpn-blacklist (argument)
+=app-crypt/openvpn-blacklist-0.5 ~amd64
+#required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/metasploit-model-2.0.4 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/windows_error-0.1.2 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-mime-0.1.5 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24,java]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rjb-1.6.1 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-powershell-0.1.77 ~amd64
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/postgres_ext-3.0.1 ~amd64
+# required by dev-ruby/faraday-0.15.4::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/sawyer-0.8.2::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/octokit-4.14.0::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/multipart-post-2.1.1 ~amd64
+# required by dev-ruby/rex-bin_tools-0.1.6::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/metasm-1.0.4 ~amd64
+# required by dev-ruby/packetfu-1.1.13::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/network_interface-0.0.2 ~amd64
+# required by dev-ruby/rex-powershell-0.1.77::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-random_identifier-0.1.4 ~amd64
+# required by dev-ruby/rex-ole-0.1.6::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-text-0.2.24 ~amd64
+# required by dev-ruby/railties-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/activesupport-4.2.11.1 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-struct2-0.1.2 ~amd64
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/metasploit-concern-2.0.5 ~amd64
+# required by dev-ruby/activerecord-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/postgres_ext-3.0.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/activemodel-4.2.11.1 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-nop-0.1.1 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/filesize-0.2.0 ~amd64
+# required by dev-ruby/postgres_ext-3.0.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/pg_array_parser-0.0.9-r2 ~amd64
+# required by dev-ruby/railties-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/actionpack-4.2.11.1 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/openssl-ccm-1.2.1 ~amd64
+# required by dev-ruby/rex-socket-0.1.20::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/rex-sslscan-0.1.5::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-core-0.1.13 ~amd64
+# required by dev-ruby/rex-encoder-0.1.4::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/rex-exploitation-0.1.21::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-arch-0.1.13 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/packetfu-1.1.13 ~amd64
+# required by dev-ruby/sawyer-0.8.2::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/octokit-4.14.0::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/faraday-0.15.4 ~amd64
+# required by dev-ruby/rex-exploitation-0.1.21::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/jsobfu-0.4.2 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-java-0.1.5 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/xdr-2.0.0 ~amd64
+# required by dev-ruby/metasploit-model-2.0.4::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/railties-4.2.11.1 ~amd64
+# required by dev-ruby/pdf-reader-2.4.0::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/ttfunk-1.5.1 ~amd64
+# required by dev-ruby/rails-dom-testing-1.0.8-r1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/actionview-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/actionpack-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/railties-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rails-deprecated_sanitizer-1.0.3-r2 ~amd64
+# required by dev-ruby/pdf-reader-2.4.0::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/ruby-rc4-0.1.5-r2 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/dnsruby-1.61.3 ~amd64
+# required by dev-ruby/rex-sslscan-0.1.5::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-socket-0.1.20 ~amd64
+# required by dev-ruby/actionpack-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/railties-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/actionview-4.2.11.1 ~amd64
+# required by dev-ruby/pdf-reader-2.4.0::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/hashery-2.1.2 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/ruby-macho-2.2.0 ~amd64
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/recog-2.3.6 ~amd64
+# required by dev-ruby/rex-exploitation-0.1.21::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-encoder-0.1.4 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/sshkey-2.0.0 ~amd64
+# required by dev-ruby/pdf-reader-2.4.0::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/ascii85-1.0.3 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/ruby_smb-1.1.0 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/metasploit_data_models-2.0.16 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-registry-0.1.3 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo
+# required by net-analyzer/metasploit (argument)
+=app-eselect/eselect-metasploit-0.17 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rb-readline-0.5.5 ~amd64
+# required by dev-ruby/ruby_smb-1.1.0::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/bindata-2.4.4 ~amd64
+# required by dev-ruby/jsobfu-0.4.2::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/rex-exploitation-0.1.21::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rkelly-remix-0.0.7 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/pdf-reader-2.4.0 ~amd64
+# required by dev-ruby/activerecord-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/postgres_ext-3.0.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/arel-6.0.4 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-ole-0.1.6 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/metasploit-credential-2.0.14 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/patch_finder-1.0.2 ~amd64
+# required by dev-ruby/octokit-4.14.0::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/sawyer-0.8.2 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-zip-0.1.3 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/metasploit-payloads-1.3.53 ~amd64
+# required by net-analyzer/metasploit (argument)
+=net-analyzer/metasploit-4.17.21-r6 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-rop_builder-0.1.3 ~amd64
+# required by dev-ruby/postgres_ext-3.0.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/activerecord-4.2.11.1 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/bit-struct-0.16 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-exploitation-0.1.21 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-bin_tools-0.1.6 ~amd64
+# required by dev-ruby/pdf-reader-2.4.0::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/afm-0.2.2 ~amd64
+# required by dev-ruby/packetfu-1.1.13::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/pcaprub-0.13.0 ~amd64
+# required by dev-ruby/actionview-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/actionpack-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/railties-4.2.11.1::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rails-dom-testing-1.0.8-r1 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rex-sslscan-0.1.5 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/metasploit_payloads-mettle-0.4.2 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/mqtt-0.5.0 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/octokit-4.14.0 ~amd64
+# required by dev-ruby/metasploit_data_models-2.0.16::gentoo[ruby_targets_ruby24]
+# required by dev-ruby/metasploit-credential-2.0.14::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/arel-helpers-2.10.0 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/faker-1.9.6-r1 ~amd64
+# required by dev-ruby/ruby_smb-1.1.0::gentoo[ruby_targets_ruby25]
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/rubyntlm-0.6.2 ~amd64
+# required by net-analyzer/metasploit-4.17.21-r6::gentoo[ruby_targets_ruby24]
+# required by net-analyzer/metasploit (argument)
+=dev-ruby/msgpack-1.3.1 ~amd64
+# required by net-im/signal-desktop-bin (argument)
+=net-im/signal-desktop-bin-1.28.0 ~amd64
+# security tools that don't have a stable build for gentoo
+net-analyzer/arp-scan ~amd64
+net-dns/dnshijacker ~amd64
+net-dns/dnscap ~amd64
+net-analyzer/fragroute ~amd64
+net-analyzer/dnsenum ~amd64
+dev-perl/Net-Whois-IP ~amd64

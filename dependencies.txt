@@ -1,0 +1,23 @@
+app-editors/neovim
+
+#this lets us have full screen
+app-emulation/virtualbox-guest-additions
+media-sound/alsa-utils
+
+#x
+#all this stuff is necessary to get startx working?
+app-admin/sudo
+x11-libs/libX11
+x11-base/xorg-server
+x11-libs/libXrandr
+x11-libs/libXinerama
+x11-libs/libXft
+x11-apps/xrdb
+x11-apps/xrandr
+x11-drivers/xf86-video-vboxvideo
+x11-misc/unclutter
+x11-misc/xclip
+x11-misc/pcmanfm
+
+#fonts
+media-fonts/fontawesome
