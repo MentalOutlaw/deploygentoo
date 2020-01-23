@@ -9,7 +9,7 @@ printf "found %s\n" $stage3
 tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
 
 mkdir /mnt/gentoo/etc/portage/backup
-unzip /mnt/gentoo/gentootestscript-master/gentoo/portage.zip
+unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
 mv /mnt/gentoo/etc/portage/make.conf /mnt/gentoo/etc/portage/backup/
 printf "moved old make.conf to /backup/\n"
 #copies our pre-made make.conf over
@@ -37,7 +37,7 @@ printf "copied gentoo repository to repos.conf\n"
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 printf "copied over DNS info\n"
 
-cp /mnt/gentoo/gentootestscript-master/post_chroot.sh /mnt/gentoo/
+cp /mnt/gentoo/deploygentoo-master/post_chroot.sh /mnt/gentoo/
 printf "copied post_chroot.sh to /mnt/gentoo\n"
 chmod +x /mnt/gentoo/post_chroot.sh
 
