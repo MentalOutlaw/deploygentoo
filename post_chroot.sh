@@ -26,10 +26,10 @@ read hostname
 
 
 #mount /dev/sda1 /boot
-part1 = "/dev/%s1" $disk
-part2 = "/dev/%s2" $disk
-dev_sd = "/dev/%s" $disk
-mount $part1
+part_1=("/dev/${disk}1")
+part_2=("/dev/${disk}2")
+dev_sd=("/dev/$disk")
+mount $part_1
 printf "mounted boot\n"
 emerge-webrsync
 printf "webrsync complete\n"
@@ -83,9 +83,9 @@ sed -i -e "s/localhost/$hostname/g" /etc/conf.d/hostname
 emerge --noreplace net-misc/netifrc
 printf "config_enp0s3=\"dhcp\"\n" >> /etc/conf.d/net
 #printf "/dev/sda1\t\t/boot\t\text4\t\tdefaults,noatime\t0 2\n" >> /etc/fstab
-printf "%s\t\t/boot\t\text4\t\tdefaults,noatime\t0 2\n" $part1 >> /etc/fstab
+printf "%s\t\t/boot\t\text4\t\tdefaults,noatime\t0 2\n" $part_1 >> /etc/fstab
 #printf "/dev/sda2\t\t/\t\text4\t\tnoatime\t0 1\n" >> /etc/fstab
-printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $part2 >> /etc/fstab
+printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $part_2 >> /etc/fstab
 cd /etc/init.d
 ln -s net.lo net.enp0s3
 rc-update add net.enp0s3 default
