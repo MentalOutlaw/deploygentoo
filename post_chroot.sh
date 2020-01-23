@@ -103,7 +103,7 @@ emerge --verbose sys-boot/grub:2
 #grub-install /dev/sda
 grub-install $dev_sd
 grub-mkconfig -o /boot/grub/grub.cfg
-useradd -m -G users,wheel,audio -s /bin/bash $username
+exec useradd -m -G users,wheel,audio -s /bin/bash $username
 cd ..
 printf "cleaning up\n"
 mv deploygentoo-master.zip /home/$username
