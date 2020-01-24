@@ -47,14 +47,14 @@ mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
-rm -rf /portage
-printf "clened up files\n"
-printf "mounted all the things\n"
-printf "you should now chroot into the new environment\n"
+#rm -rf /portage
+#printf "clened up files\n"
+#printf "mounted all the things\n"
+#printf "you should now chroot into the new environment\n"
 chroot /mnt/gentoo ./post_chroot.sh
-printf ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
-printf ${LIGHTGREEN}"source /etc/profile"
-printf ${LIGHTGREEN}"export PS1=\"(chroot) \${PS1}\""
+#printf ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
+#printf ${LIGHTGREEN}"source /etc/profile"
+#printf ${LIGHTGREEN}"export PS1=\"(chroot) \${PS1}\""
 
 #below this point we have to create a seperate script to run in the chroot portion
 #chroot /mnt/gentoo /bin/bash << "EOT"
