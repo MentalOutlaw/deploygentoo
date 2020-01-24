@@ -62,7 +62,7 @@ printf "Do you want to configure your own kernel?\n"
 if [ $kernelanswer = "no" ]; then
 	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
-	make oldconfig
+	make olddefconfig
 	make && make modules_install
 	make install
 	printf "Kernel installed\n"
