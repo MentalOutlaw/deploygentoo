@@ -49,11 +49,11 @@ eselect locale set 4
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 
 #Installs the kernel
-#emerge sys-kernel/gentoo-sources
-#emerge sys-kernel/ck-sources-5.4.7
 printf "preparing to emerge kernel sources\n"
-sleep5
-emerge sys-kernel/ck-sources
+emerge sys-kernel/gentoo-sources
+#emerge sys-kernel/ck-sources-5.4.7
+#sleep5
+#emerge sys-kernel/ck-sources
 cd /usr/src/linux
 emerge sys-apps/pciutils
 emerge lzop
