@@ -3,10 +3,6 @@
 #env-update
 #source /etc/profile
 #export PS1="(chroot) ${PS1}"
-cpus=$(grep -c ^processor /proc/cpuinfo)
-printf "there are %s cpus\n" $cpus
-sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf
-
 cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..

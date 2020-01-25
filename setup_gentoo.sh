@@ -48,6 +48,11 @@ mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
+cpus=$(grep -c ^processor /proc/cpuinfo)
+printf "there are %s cpus\n" $cpus
+sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf
+
+
 cd /mnt/gentoo
 
 chroot /mnt/gentoo ./post_chroot.sh
