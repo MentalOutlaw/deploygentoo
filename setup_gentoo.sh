@@ -11,6 +11,9 @@ tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
 
 mkdir /mnt/gentoo/etc/portage/backup
 unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
+cpus=$(grep -c ^processor /proc/cpuinfo)
+printf "there are %s cpus\n" $cpus
+sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf
 mv /mnt/gentoo/etc/portage/make.conf /mnt/gentoo/etc/portage/backup/
 printf "moved old make.conf to /backup/\n"
 #copies our pre-made make.conf over
@@ -47,11 +50,6 @@ mount --rbind /sys /mnt/gentoo/sys
 mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
-
-cpus=$(grep -c ^processor /proc/cpuinfo)
-printf "there are %s cpus\n" $cpus
-sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf
-
 
 cd /mnt/gentoo
 
