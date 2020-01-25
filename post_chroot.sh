@@ -1,5 +1,6 @@
 #TODO
 #Replace all the echo with printf
+env-update
 source /etc/profile
 export PS1="(chroot) ${PS1}"
 cpus=$(grep -c ^processor /proc/cpuinfo)
