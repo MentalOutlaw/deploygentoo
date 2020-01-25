@@ -4,6 +4,7 @@
 LIGHTGREEN='\033[1;32m'
 
 cd /mnt/gentoo/
+wget http://mirrors.rit.edu/gentoo/releases/amd64/autobuilds/current-stage3-amd64-hardened/stage3-amd64-hardened-20200122T214502Z.tar.xz
 stage3=$(ls stage3*)
 printf "found %s\n" $stage3
 tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
@@ -51,7 +52,7 @@ mount --make-rslave /mnt/gentoo/dev
 #printf "clened up files\n"
 #printf "mounted all the things\n"
 #printf "you should now chroot into the new environment\n"
-chroot /mnt/gentoo /bin/bash /post_chroot.sh
+chroot /mnt/gentoo /bin/bash #/post_chroot.sh
 #printf ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
 #printf ${LIGHTGREEN}"source /etc/profile"
 #printf ${LIGHTGREEN}"export PS1=\"(chroot) \${PS1}\""
