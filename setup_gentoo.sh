@@ -51,7 +51,7 @@ mount --make-rslave /mnt/gentoo/dev
 #printf "clened up files\n"
 #printf "mounted all the things\n"
 #printf "you should now chroot into the new environment\n"
-chroot /mnt/gentoo ./post_chroot.sh
+chroot /mnt/gentoo /bin/bash /post_chroot.sh
 #printf ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
 #printf ${LIGHTGREEN}"source /etc/profile"
 #printf ${LIGHTGREEN}"export PS1=\"(chroot) \${PS1}\""
