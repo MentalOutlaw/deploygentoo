@@ -48,4 +48,6 @@ mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
-chroot /mnt/gentoo post_chroot.sh
+cd /mnt/gentoo
+
+chroot /mnt/gentoo ./post_chroot.sh
