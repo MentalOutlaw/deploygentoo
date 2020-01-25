@@ -95,6 +95,7 @@ rc-update add net.enp0s3 default
 printf "dhcp enabled\n"
 emerge app-admin/sysklogd
 emerge app-admin/sudo
+printf "just emerged sudo\n"
 rm -rf /etc/sudoers
 cd $scriptdir
 cp sudoers /etc/
@@ -108,7 +109,9 @@ emerge --verbose sys-boot/grub:2
 #grub-install /dev/sda
 grub-install $dev_sd
 grub-mkconfig -o /boot/grub/grub.cfg
-exec useradd -m -G users,wheel,audio -s /bin/bash $username
+printf "updated grub\n"
+useradd -m -G users,wheel,audio -s /bin/bash $username
+printf "just tried to add our user\n"
 cd ..
 printf "cleaning up\n"
 mv deploygentoo-master.zip /home/$username
@@ -125,4 +128,4 @@ printf ${LIGHTGREEN}"umount -l /mnt/gentoo/dev{/shm,/pts,}\n"
 printf ${LIGHTGREEN}"umount -R /mnt/gentoo\n"
 printf ${LIGHTGREEN}"reboot\n"
 rm -rf /post_chroot.sh
-exit
+#exit
