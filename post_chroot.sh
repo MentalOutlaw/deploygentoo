@@ -1,8 +1,8 @@
 #TODO
 #Replace all the echo with printf
 #env-update
-source /etc/profile
-export PS1="(chroot) ${PS1}"
+#source /etc/profile
+#export PS1="(chroot) ${PS1}"
 cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus\n" $cpus
 sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf
@@ -47,7 +47,7 @@ printf "en_US.UTF-8 UTF-8\n" >> /etc/locale.gen
 locale-gen
 printf "script complete\n"
 eselect locale set 4
-env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+env-update && source /etc/profile
 
 #Installs the kernel
 printf "preparing to emerge kernel sources\n"
