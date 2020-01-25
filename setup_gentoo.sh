@@ -10,7 +10,9 @@ printf "found %s\n" $stage3
 tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
 
 mkdir /mnt/gentoo/etc/portage/backup
+cd /mnt/gentoo/deploygentoo-master/gentoo/
 unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
+cd /mnt/gentoo/
 cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus\n" $cpus
 sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf
