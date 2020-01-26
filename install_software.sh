@@ -53,70 +53,72 @@ printf "Installing software listed in software.txt...\n"
 emerge --autounmask-write $SOFTWARE
 
 #installs software from pentoo overlay
-cd $script_home
-check_dir_exists /usr/local/portage/net-analyzer/responder
-if $exists; then
-	printf "/usr/local/portage/net-analyzer/responder already exists\n"
-else
-	mkdir -p /usr/local/portage/net-analyzer/responder
-fi
-check_dir_exists /usr/local/portage/dev-db/sqlmap
-if $exists; then
-	printf "/usr/local/portage/cross-x86_64-w64-mingw32 exists\n"
-else
-	mkdir -p /usr/local/portage/dev-db/sqlmap
-fi
-check_dir_exists /usr/local/portage/dev-python/impacket
-if $exists; then
-	printf "/usr/local/portage/dev-python/impacket already exists\n"
-else
-	mkdir -p /usr/local/portage/dev-python/impacket
-fi
-check_dir_exists /usr/local/portage/dev-python/ldapdomaindump
-if $exists; then
-	printf "/usr/local/portage/dev-python/ldapdomaindump exists\n"
-else
-	mkdir -p /usr/local/portage/dev-python/ldapdomaindump
-fi
-check_dir_exists /usr/local/portage/dev-python/pycryptodomex
-if $exists; then
-	printf "/usr/local/portage/dev-python/pycryptodomex already exists\n"
-else
-	mkdir -p /usr/local/portage/dev-python/pycryptodomex
-fi
-check_dir_exists /usr/local/portage/net-analyzer/smbmap
-if $exists; then
-	printf "/usr/local/portage/net-analyzer/smbmap\n"
-else
-	mkdir -p /usr/local/portage/net-analyzer/smbmap
-fi
+#this part doesn't work for some reason, maybe because of the new kernel?
+#TODO fix it!!!
+#cd $script_home
+#check_dir_exists /usr/local/portage/net-analyzer/responder
+#if $exists; then
+#	printf "/usr/local/portage/net-analyzer/responder already exists\n"
+#else
+#	mkdir -p /usr/local/portage/net-analyzer/responder
+#fi
+#check_dir_exists /usr/local/portage/dev-db/sqlmap
+#if $exists; then
+#	printf "/usr/local/portage/cross-x86_64-w64-mingw32 exists\n"
+#else
+#	mkdir -p /usr/local/portage/dev-db/sqlmap
+#fi
+#check_dir_exists /usr/local/portage/dev-python/impacket
+#if $exists; then
+#	printf "/usr/local/portage/dev-python/impacket already exists\n"
+#else
+#	mkdir -p /usr/local/portage/dev-python/impacket
+#fi
+#check_dir_exists /usr/local/portage/dev-python/ldapdomaindump
+#if $exists; then
+#	printf "/usr/local/portage/dev-python/ldapdomaindump exists\n"
+#else
+#	mkdir -p /usr/local/portage/dev-python/ldapdomaindump
+#fi
+#check_dir_exists /usr/local/portage/dev-python/pycryptodomex
+#if $exists; then
+#	printf "/usr/local/portage/dev-python/pycryptodomex already exists\n"
+#else
+#	mkdir -p /usr/local/portage/dev-python/pycryptodomex
+#fi
+#check_dir_exists /usr/local/portage/net-analyzer/smbmap
+#if $exists; then
+#	printf "/usr/local/portage/net-analyzer/smbmap\n"
+#else
+#	mkdir -p /usr/local/portage/net-analyzer/smbmap
+#fi
 #mkdir -p /usr/local/portage/cross-x86_64-w64-mingw32
 #mkdir -p /usr/local/portage/dev-python/impacket
 #mkdir -p /usr/local/portage/dev-python/ldapdomaindump
 #mkdir -p /usr/local/portage/dev-python/pycryptodomex
 #mkdir -p /usr/local/portage/net-analyzer/smbmap
 
-mv ebuilds/responder-2.3.4.0-r1.ebuild /usr/local/portage/net-analyzer/responder/
-mv ebuilds/ldapdomaindump-0.9.1.ebuild /usr/local/portage/dev-python/ldapdomaindump
-mv ebuilds/impacket-0.9.20.ebuild /usr/local/portage/dev-python/impacket
-mv ebuilds/pycryptodomex-3.9.4.ebuild /usr/local/portage/dev-python/pycryptodomex
-mv ebuilds/smbmap-1.1.0-r1.ebuild /usr/local/portage/net-analyzer/smbmap
-
-cd /usr/local/portage/net-analyzer/responder
-ebuild responder-2.3.4.0-r1.ebuild manifest
-emerge --autounmask-write net-analyzer/responder
-cd /usr/local/portage/dev-python/ldapdomaindump
-ebuild ldapdomaindump-0.9.1.ebuild manifest
-emerge --autounmask-write dev-python/ldapdomaindump
-cd /usr/local/portage/dev-python/pycryptodomex
-ebuild pycryptodomex-3.9.4.ebuild manifest
-emerge --autounmask-write dev-python/pycryptodomex
-cd /usr/local/portage/dev-python/impacket
-ebuild impacket-0.9.20.ebuild manifest
-emerge --autounmask-write dev-python/impacket
-cd /usr/local/portage/net-analyzer/smbmap
-ebuild smbmap-1.1.0-r1.ebuild manifest
-emerge --autounmask-write net-analyzer/smbmap
+#mv ebuilds/responder-2.3.4.0-r1.ebuild /usr/local/portage/net-analyzer/responder/
+#mv ebuilds/ldapdomaindump-0.9.1.ebuild /usr/local/portage/dev-python/ldapdomaindump
+#mv ebuilds/impacket-0.9.20.ebuild /usr/local/portage/dev-python/impacket
+#mv ebuilds/pycryptodomex-3.9.4.ebuild /usr/local/portage/dev-python/pycryptodomex
+#mv ebuilds/smbmap-1.1.0-r1.ebuild /usr/local/portage/net-analyzer/smbmap
+#
+#cd /usr/local/portage/net-analyzer/responder
+#ebuild responder-2.3.4.0-r1.ebuild manifest
+#emerge --autounmask-write net-analyzer/responder
+#cd /usr/local/portage/dev-python/ldapdomaindump
+#ebuild ldapdomaindump-0.9.1.ebuild manifest
+#emerge --autounmask-write dev-python/ldapdomaindump
+#cd /usr/local/portage/dev-python/pycryptodomex
+#ebuild pycryptodomex-3.9.4.ebuild manifest
+#emerge --autounmask-write dev-python/pycryptodomex
+#cd /usr/local/portage/dev-python/impacket
+#ebuild impacket-0.9.20.ebuild manifest
+#emerge --autounmask-write dev-python/impacket
+#cd /usr/local/portage/net-analyzer/smbmap
+#ebuild smbmap-1.1.0-r1.ebuild manifest
+#emerge --autounmask-write net-analyzer/smbmap
 cd $script_home
 cd ..
 check_dir_exists Tools
