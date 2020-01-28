@@ -1,4 +1,7 @@
 #!/bin/bash
+#TODO
+#there are some situations in which the deploygentoo-master folder will be named deploygentoo
+#make this script work with that folder name aswell
 
 check_file_exists () {
 	file=$1

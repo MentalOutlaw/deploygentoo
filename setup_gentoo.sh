@@ -55,4 +55,4 @@ mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo
 
-#chroot /mnt/gentoo ./post_chroot.sh
+chroot /mnt/gentoo ./post_chroot.sh
