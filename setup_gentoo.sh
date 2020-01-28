@@ -2,6 +2,21 @@
 #this puts some things in place like your make.conf, aswell as package.use
 
 LIGHTGREEN='\033[1;32m'
+#this block of code was added from post_chroot.sh, START
+LIGHTBLUE='\033[1;34m'
+printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
+read disk
+disk="${disk,,}"
+printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
+#There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
+read username
+username="${username,,}"
+printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
+read kernelanswer
+kernelanswer="${kernelanswer,,}"
+printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
+read hostname
+#this block of code was added from post_chroot.sh, END
 
 cd /mnt/gentoo/
 #wget http://mirrors.rit.edu/gentoo/releases/amd64/autobuilds/current-stage3-amd64-hardened/stage3-amd64-hardened-20200122T214502Z.tar.xz
@@ -54,7 +69,7 @@ mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo
-
+#TODO this part of the script doesn't accept user input, you must have all read commands before you change root
 chroot /mnt/gentoo /bin/bash << "EOT"
 
 #TODO
@@ -65,21 +80,6 @@ chroot /mnt/gentoo /bin/bash << "EOT"
 cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
-LIGHTGREEN='\033[1;32m'
-LIGHTBLUE='\033[1;34m'
-printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
-read disk
-disk="${disk,,}"
-printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
-#There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
-read username
-username="${username,,}"
-printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
-read kernelanswer
-kernelanswer="${kernelanswer,,}"
-printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
-read hostname
-
 
 #mount /dev/sda1 /boot
 part_1=("/dev/${disk}1")
