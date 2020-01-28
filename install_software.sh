@@ -124,26 +124,26 @@ emerge --autounmask-write $SOFTWARE
 #emerge --autounmask-write net-analyzer/smbmap
 cd $script_home
 cd ..
-check_dir_exists Tools
-if $exists; then
-	printf "Tools directory already exists\n"
-else
-	mkdir Tools
-fi
-cd Tools
-git clone https://github.com/magnumripper/JohnTheRipper.git
-cd src
-./configure && make -s clean && make -sj3
-cd ..
-mv run/ ../john
-cd ..
-rm -rf JohnTheRipper
-git clone https://github.com/sqlmapproject/sqlmap.git
+#check_dir_exists Tools
+#if $exists; then
+#	printf "Tools directory already exists\n"
+#else
+#	mkdir Tools
+#fi
+#cd Tools
+#git clone https://github.com/magnumripper/JohnTheRipper.git
+#cd src
+#./configure && make -s clean && make -sj3
+#cd ..
+#mv run/ ../john
+#cd ..
+#rm -rf JohnTheRipper
+#git clone https://github.com/sqlmapproject/sqlmap.git
 #TODO figure out what's necessary to get this to work
 #emerge sys-devel/crossdev
 #crossdev --target x86_64-w64-mingw32
 
 printf "software installed\n"
-chmod + x install_wordlist.sh
-sh install_wordlist.sh
-printf "enumeration word list installed in /usr/share/wordlist\n"
+#chmod + x install_wordlist.sh
+#sh install_wordlist.sh
+#printf "enumeration word list installed in /usr/share/wordlist\n"
