@@ -30,37 +30,38 @@ stage3=$(ls stage3*)
 tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
 printf "unpacked stage 3\n"
 
-rm -rf /mnt/gentoo/etc/portage
+#rm -rf /mnt/gentoo/etc/portage
 cd /mnt/gentoo/deploygentoo-master/gentoo/
 unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
-cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage /mnt/gentoo/etc/
+cp * /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/ /mnt/gentoo/etc/portage/package.use/
 cd /mnt/gentoo/
 cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus\n" $cpus
 sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /etc/portage/make.conf
 printf "moved portage files into place\n"
-#mv /mnt/gentoo/etc/portage/make.conf /mnt/gentoo/etc/portage/backup/
-#printf "moved old make.conf to /backup/\n"
+mkdir /mnt/gentoo/etc/portage/backup/
+mv /mnt/gentoo/etc/portage/make.conf /mnt/gentoo/etc/portage/backup/
+printf "moved old make.conf to /backup/\n"
 ##copies our pre-made make.conf over
-#cp /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf /mnt/gentoo/etc/portage/
-#printf "copied new make.conf to /etc/portage/\n"
+cp /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf /mnt/gentoo/etc/portage/
+printf "copied new make.conf to /etc/portage/\n"
 #
 ##copies specific package.use stuff over
 #cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
 #printf "copied over package.use files to /etc/portage/package.use/\n"
 #
 ##copies specific package stuff over (this might not be necessary)
-#cp /mnt/gentoo/deploygentoo-master/gentoo/portage/linux_drivers /mnt/gentoo/etc/portage/
-#cp /mnt/gentoo/deploygentoo-master/gentoo/portage/nvidia_package.license /mnt/gentoo/etc/portage/
-#cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.license /mnt/gentoo/etc/portage
-#cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.accept_keywords /mnt/gentoo/etc/portage/
+cp /mnt/gentoo/deploygentoo-master/gentoo/portage/linux_drivers /mnt/gentoo/etc/portage/
+cp /mnt/gentoo/deploygentoo-master/gentoo/portage/nvidia_package.license /mnt/gentoo/etc/portage/
+cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.license /mnt/gentoo/etc/portage
+cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.accept_keywords /mnt/gentoo/etc/portage/
 #printf "copied over specific package stuff\n"
 #
 ##gentoo ebuild repository
-#mkdir --parents /mnt/gentoo/etc/portage/repos.conf
-#cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
+mkdir --parents /mnt/gentoo/etc/portage/repos.conf
+cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 #
-#printf "copied gentoo repository to repos.conf\n"
+printf "copied gentoo repository to repos.conf\n"
 #
 ##copy DNS info
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc
