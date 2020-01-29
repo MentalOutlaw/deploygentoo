@@ -33,7 +33,8 @@ printf "unpacked stage 3\n"
 #rm -rf /mnt/gentoo/etc/portage
 cd /mnt/gentoo/deploygentoo-master/gentoo/
 unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
-cp * /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/ /mnt/gentoo/etc/portage/package.use/
+#cp * /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/ /mnt/gentoo/etc/portage/package.use/
+cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
 cd /mnt/gentoo/
 cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus\n" $cpus
@@ -47,7 +48,6 @@ cp /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf /mnt/gentoo/etc/port
 printf "copied new make.conf to /etc/portage/\n"
 #
 ##copies specific package.use stuff over
-#cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
 #printf "copied over package.use files to /etc/portage/package.use/\n"
 #
 ##copies specific package stuff over (this might not be necessary)
