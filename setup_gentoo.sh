@@ -17,7 +17,7 @@
 #printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
 #read hostname
 
-GENTOO_TYPE=latest-install-amd64-minimal
+GENTOO_TYPE=latest-stage3-amd64-hardened
 STAGE3_PATH_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$GENTOO_TYPE.txt
 STAGE3_PATH=$(curl -s $STAGE3_PATH_URL | grep -v "^#" | cut -d" " -f1)
 STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
@@ -75,6 +75,7 @@ mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo
+printf "chroot /mnt/gentoo /bin/bash\n"
 printf "now run post_chroot.sh\n"
 #TODO this part of the script doesn't accept user input, you must have all read commands before you change root
 #chroot /mnt/gentoo /bin/bash << "EOT"
