@@ -21,19 +21,19 @@ GENTOO_TYPE=latest-stage3-amd64-hardened
 STAGE3_PATH_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$GENTOO_TYPE.txt
 STAGE3_PATH=$(curl -s $STAGE3_PATH_URL | grep -v "^#" | cut -d" " -f1)
 STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
+cd /mnt/gentoo/
 wget $STAGE3_URL
 #this block of code was added from post_chroot.sh, END
 
-cd /mnt/gentoo/
 #wget http://mirrors.rit.edu/gentoo/releases/amd64/autobuilds/current-stage3-amd64-hardened/stage3-amd64-hardened-20200122T214502Z.tar.xz
 stage3=$(ls stage3*)
-printf "found %s\n" $stage3
 tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
+printf "unpacked stage 3\n"
 
-rm -rf /etc/portage
+rm -rf /mnt/gentoo/etc/portage
 cd /mnt/gentoo/deploygentoo-master/gentoo/
 unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
-cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage /etc
+cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage /mnt/gentoo/etc/
 cd /mnt/gentoo/
 cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus\n" $cpus
@@ -63,7 +63,7 @@ printf "moved portage files into place\n"
 #printf "copied gentoo repository to repos.conf\n"
 #
 ##copy DNS info
-cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc
 printf "copied over DNS info\n"
 
 cp /mnt/gentoo/deploygentoo-master/post_chroot.sh /mnt/gentoo/
