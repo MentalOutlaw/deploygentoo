@@ -58,6 +58,7 @@ app-misc/binwalk
 
 
 #regular tools
+media-sound/alsa-utils
 app-admin/keepassxc
 app-editors/vim
 net-im/signal-desktop-bin
