@@ -35,10 +35,17 @@ printf "Installing dependencies listed in dependencies.txt...\n"
 DEPLIST="`sed -e 's/#.*$//' -e '/^$/d' dependencies.txt | tr '\n' ' '`"
 SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
 
+#Installs and configures layman
+emerge app-portage/layman
+sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
+layman -a libressl
+layman -S
+
 emerge --autounmask-write $DEPLIST
 USE="X" emerge app-editors/vim
 USE="perl xft" emerge x11-terms/rxvt-unicode
 USE="cli libmpv" emerge media-video/mpv
+
 printf "installed dependencies\n"
 sleep 5
 #defines the directory this script runs in so we can easily return to it
@@ -53,6 +60,7 @@ cd apps/
 chmod +x rice-gentoo.sh
 sh rice-gentoo.sh
 printf "Installing software listed in software.txt...\n"
+printf "completed installing dependencies\n"
 emerge --autounmask-write $SOFTWARE
 
 #installs software from pentoo overlay

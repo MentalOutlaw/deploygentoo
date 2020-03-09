@@ -1,8 +1,6 @@
 app-editors/neovim
 
-#this lets us have full screen
-#guest addions doesn't emerge with new kernel?
-#app-emulation/virtualbox-guest-additions
+app-emulation/virtualbox-guest-additions
 media-sound/alsa-utils
 
 #x
