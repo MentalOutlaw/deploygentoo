@@ -1,60 +1,60 @@
-##general admin stuff
-#sys-apps/lshw
-#x11-misc/pcmanfm
-#app-arch/unzip
-#app-arch/zip
-#app-arch/unrar
-#dev-vcs/git
-#app-misc/neofetch
-#sys-process/htop
-#media-gfx/feh
-#media-gfx/scrot
-#media-gfx/sxiv
-#sys-fs/ntfs3g
-#net-misc/networkmanager
-#net-misc/wget
-#net-misc/curl
-#net-misc/whois
-#net-vpn/openvpn
-#dev-lang/go
-#dev-lang/ruby
-#dev-python/pip
-#dev-libs/boost
-#net-ftp/ftp
-#net-misc/netkit-telnetd
-#app-portage/eix
-#net-nds/openldap
-#
-#
-##security tools
-#net-analyzer/tcpdump
-#net-analyzer/nmap
-#net-analyzer/macchanger
-#net-analyzer/tcptrack
-#net-analyzer/wireshark
-#net-analyzer/netcat
-#net-analyzer/scapy
-#net-analyzer/hydra
-#net-analyzer/yersinia
-#net-analyzer/masscan
-#net-analyzer/arp-scan
-#net-analyzer/hping
-##net-proxy/mitmproxy
-#net-vpn/httptunnel
-##net-dns/dnshijacker  #All ebuilds have been masked
-#net-dns/dnswalk
-##net-dns/dnscap #All ebuilds have been masked
-##net-analyzer/fragroute #All ebuilds have been masked
-#net-analyzer/firewalk
-##net-analyzer/dnsenum #All ebuilds have been masked
-#www-client/httrack
-#app-crypt/hashcat
-#app-crypt/mhash
-#app-crypt/openvpn-blacklist
-#net-wireless/aircrack-ng
-#net-misc/socat
-#media-libs/exiftool
-#app-misc/binwalk
+#general admin stuff
+sys-apps/lshw
+x11-misc/pcmanfm
+app-arch/unzip
+app-arch/zip
+app-arch/unrar
+dev-vcs/git
+app-misc/neofetch
+sys-process/htop
+media-gfx/feh
+media-gfx/scrot
+media-gfx/sxiv
+sys-fs/ntfs3g
+net-misc/networkmanager
+net-misc/wget
+net-misc/curl
+net-misc/whois
+net-vpn/openvpn
+dev-lang/go
+dev-lang/ruby
+dev-python/pip
+dev-libs/boost
+net-ftp/ftp
+net-misc/netkit-telnetd
+app-portage/eix
+net-nds/openldap
+
+
+#security tools
+net-analyzer/tcpdump
+net-analyzer/nmap
+net-analyzer/macchanger
+net-analyzer/tcptrack
+net-analyzer/wireshark
+net-analyzer/netcat
+net-analyzer/scapy
+net-analyzer/hydra
+net-analyzer/yersinia
+net-analyzer/masscan
+net-analyzer/arp-scan
+net-analyzer/hping
+#net-proxy/mitmproxy
+net-vpn/httptunnel
+#net-dns/dnshijacker  #All ebuilds have been masked
+net-dns/dnswalk
+#net-dns/dnscap #All ebuilds have been masked
+#net-analyzer/fragroute #All ebuilds have been masked
+net-analyzer/firewalk
+#net-analyzer/dnsenum #All ebuilds have been masked
+www-client/httrack
+app-crypt/hashcat
+app-crypt/mhash
+app-crypt/openvpn-blacklist
+net-wireless/aircrack-ng
+net-misc/socat
+media-libs/exiftool
+app-misc/binwalk
 
 
 #regular tools
