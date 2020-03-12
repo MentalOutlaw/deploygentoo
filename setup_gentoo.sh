@@ -16,8 +16,18 @@
 #kernelanswer="${kernelanswer,,}"
 #printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
 #read hostname
+printf "enter a number for the stage 3 you want to use\n"
+printf "0 = regular hardened\n1 = hardened musl\n>"
+read stage3select
+case $stage3select in
+  0)
+    GENTOO_TYPE=latest-stage3-amd64-hardened
+    ;;
+  1)
+    GENTOO_TYPE=latest-stage3-amd64-musl-hardened
+    ;;
+esac
 
-GENTOO_TYPE=latest-stage3-amd64-hardened
 STAGE3_PATH_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$GENTOO_TYPE.txt
 STAGE3_PATH=$(curl -s $STAGE3_PATH_URL | grep -v "^#" | cut -d" " -f1)
 STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
