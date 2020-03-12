@@ -21,8 +21,8 @@ esac
 STAGE3_PATH_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$GENTOO_TYPE.txt
 STAGE3_PATH=$(curl -s $STAGE3_PATH_URL | grep -v "^#" | cut -d" " -f1)
 STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
-touch /mnt/gentoo/stage3.txt
-echo $GENTOO_TYPE >> /mnt/gentoo/stage3.txt
+touch /mnt/gentoo/gentootype.txt
+echo $GENTOO_TYPE >> /mnt/gentoo/gentootype.txt
 cd /mnt/gentoo/
 wget $STAGE3_URL
 #this block of code was added from post_chroot.sh, END

@@ -31,7 +31,7 @@ mount $part_1
 printf "mounted boot\n"
 emerge-webrsync
 printf "webrsync complete\n"
-filename=stage3.txt
+filename=gentootype.txt
 line=$(head -n 1 $filename)
 #Checks what type of stage was used, and installs necessary overlays
 case $line in
