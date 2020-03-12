@@ -156,6 +156,7 @@ if [ $sslanswer = "yes" ]; then
 	emerge -q @preserved-rebuild
 else
 	printf "nothing to do here\n"
+fi
 
 printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
 printf "you should now have a working Gentoo installation, dont forget to set your root and user passwords!\n"
