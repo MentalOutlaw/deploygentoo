@@ -32,6 +32,8 @@ printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
 #emerge-webrsync
 #printf "webrsync complete\n"
+emerge --sync --quiet
+printf "sync complete\n"
 sleep 10
 filename=gentootype.txt
 line=$(head -n 1 $filename)
