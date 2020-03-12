@@ -38,7 +38,7 @@ printf "big emerge complete\n"
 printf "America/New_York\n" > /etc/timezone
 emerge --config sys-libs/timezone-data
 printf "timezone data emerged\n"
-en_US.UTF-8 UTF-8
+#en_US.UTF-8 UTF-8
 printf "en_US.UTF-8 UTF-8\n" >> /etc/locale.gen
 locale-gen
 printf "script complete\n"
