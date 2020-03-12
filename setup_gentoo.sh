@@ -80,6 +80,9 @@ mount --make-rslave /mnt/gentoo/dev
 cd /mnt/gentoo
 printf "chroot /mnt/gentoo /bin/bash\n"
 printf "now run post_chroot.sh\n"
+echo -e ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
+echo -e ${LIGHTGREEN}"source /etc/profile"
+echo -e ${LIGHTGREEN}"export PS1=\"(chroot) \${PS1}\""
 #TODO this part of the script doesn't accept user input, you must have all read commands before you change root
 #chroot /mnt/gentoo /bin/bash << "EOT"
 #
