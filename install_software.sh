@@ -38,6 +38,7 @@ SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
 #Installs and configures layman
 emerge app-portage/layman
 sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
+echo >> "source /var/lib/layman/make.conf" /etc/portage/make.conf
 layman -a libressl
 layman -S
 
