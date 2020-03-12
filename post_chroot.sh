@@ -20,8 +20,9 @@ read kernelanswer
 kernelanswer="${kernelanswer,,}"
 printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
 read hostname
-
-
+printf ${LIGHTBLUE}"Do you want to replace LibreSSL with OpenSSL in your system?(yes or no)\n>"
+read sslanswer
+sslanswer="${sslanswer,,}"
 #mount /dev/sda1 /boot
 part_1=("/dev/${disk}1")
 part_2=("/dev/${disk}2")
@@ -30,11 +31,26 @@ mount $part_1
 printf "mounted boot\n"
 emerge-webrsync
 printf "webrsync complete\n"
+filename=stage3.txt
+line=$(head -n 1 $filename)
+#Checks what type of stage was used, and installs necessary overlays
+case $line in
+  latest-stage3-amd64-hardened)
+    #TODO put stuff specific to gcc hardened here
+    emerge --verbose --update --deep --newuse @world
+    printf "big emerge complete\n"
+    ;;
+  latest-stage3-amd64-musl-hardened)
+    echo "dev-vcs/git -gpg" >> /etc/portage/package.use
+    emerge app-portage/layman dev-vcs/git
+    layman -a musl
+    emerge -uvNDq @world
+    ;;
+esac
+
 
 printf "preparing to do big emerge\n"
 
-emerge --verbose --update --deep --newuse @world
-printf "big emerge complete\n"
 printf "America/New_York\n" > /etc/timezone
 emerge --config sys-libs/timezone-data
 printf "timezone data emerged\n"
@@ -115,6 +131,20 @@ mv deploygentoo-master.zip /home/$username
 rm -rf /deploygentoo-master
 stage3=$(ls stage3*)
 rm -rf $stage3
+if [ $sslanswer = "yes" ]; then
+	emerge gentoolkit
+	mkdir -p /etc/portage/profile
+	echo "-libressl" >> /etc/portage/profile/use.stable.mask
+	echo "dev-libs/openssl" >> /etc/portage/package.mask
+	echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
+	emerge -f libressl
+	emerge -C openssl
+	emerge -1q libressl
+	emerge -1q openssh wget python:2.7 python:3.6 iputils
+	emerge -q @preserved-rebuild
+else
+	printf "nothing to do here\n"
+
 printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
 printf "you should now have a working Gentoo installation, dont forget to set your root and user passwords!\n"
 printf ${LIGHTGREEN}"passwd\n"

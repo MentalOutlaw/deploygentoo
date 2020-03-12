@@ -2,23 +2,13 @@
 #this puts some things in place like your make.conf, aswell as package.use
 
 #LIGHTGREEN='\033[1;32m'
-##this block of code was added from post_chroot.sh, START
 #LIGHTBLUE='\033[1;34m'
-#printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
-#read disk
-#disk="${disk,,}"
-#printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
-##There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
-#read username
-#username="${username,,}"
-#printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
-#read kernelanswer
-#kernelanswer="${kernelanswer,,}"
-#printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
-#read hostname
 printf "enter a number for the stage 3 you want to use\n"
 printf "0 = regular hardened\n1 = hardened musl\n>"
 read stage3select
+printf "enter a number for the SSL Library you want to use\n"
+printf "0 = OpenSSL default\n1 = LibreSSL (recommended)\n>"
+read ssl_choice
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened
@@ -31,6 +21,8 @@ esac
 STAGE3_PATH_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$GENTOO_TYPE.txt
 STAGE3_PATH=$(curl -s $STAGE3_PATH_URL | grep -v "^#" | cut -d" " -f1)
 STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
+touch /mnt/gentoo/stage3.txt
+echo $GENTOO_TYPE >> /mnt/gentoo/stage3.txt
 cd /mnt/gentoo/
 wget $STAGE3_URL
 #this block of code was added from post_chroot.sh, END
@@ -45,6 +37,16 @@ cd /mnt/gentoo/deploygentoo-master/gentoo/
 unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
 #cp * /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/ /mnt/gentoo/etc/portage/package.use/
 cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
+#TODO test if this works when setting up gentoo in chroot
+#case $ssl_choice in
+#  0)
+#    #Nothing to do here for default SSL
+#    ;;
+#  1)
+#    echo "dev-vcs/git -gpg" >> /etc/portage/package.use
+#    emerge app-portage/layman dev-vcs/git
+#    ;;
+#esac
 cd /mnt/gentoo/
 cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus\n" $cpus
