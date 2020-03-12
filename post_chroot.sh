@@ -29,8 +29,9 @@ part_2=("/dev/${disk}2")
 dev_sd=("/dev/$disk")
 mount $part_1
 printf "mounted boot\n"
-emerge-webrsync
-printf "webrsync complete\n"
+#TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
+#emerge-webrsync
+#printf "webrsync complete\n"
 sleep 10
 filename=gentootype.txt
 line=$(head -n 1 $filename)
@@ -42,12 +43,14 @@ case $line in
     printf "big emerge complete\n"
     ;;
   latest-stage3-amd64-musl-hardened)
+    eselect profile set --force 31
     echo "dev-vcs/git -gpg" >> /etc/portage/package.use
     emerge app-portage/layman dev-vcs/git
     layman -a musl
     emerge -uvNDq @world
     ;;
   latest-stage3-amd64-musl-vanilla)
+    eselect profile set --force 30
     echo "dev-vcs/git -gpg" >> /etc/portage/package.use
     emerge app-portage/layman dev-vcs/git
     layman -a musl
