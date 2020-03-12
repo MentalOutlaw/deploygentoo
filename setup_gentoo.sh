@@ -16,6 +16,9 @@ case $stage3select in
   1)
     GENTOO_TYPE=latest-stage3-amd64-musl-hardened
     ;;
+  2)
+    GENTOO_TYPE=latest-stage3-amd64-musl-vanilla
+    ;;
 esac
 
 STAGE3_PATH_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$GENTOO_TYPE.txt

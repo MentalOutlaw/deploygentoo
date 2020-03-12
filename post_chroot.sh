@@ -46,6 +46,12 @@ case $line in
     layman -a musl
     emerge -uvNDq @world
     ;;
+  latest-stage3-amd64-musl-vanilla)
+    echo "dev-vcs/git -gpg" >> /etc/portage/package.use
+    emerge app-portage/layman dev-vcs/git
+    layman -a musl
+    emerge -uvNDq @world
+    ;;
 esac
 
 
