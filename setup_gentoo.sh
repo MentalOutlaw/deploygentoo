@@ -4,7 +4,7 @@
 #LIGHTGREEN='\033[1;32m'
 #LIGHTBLUE='\033[1;34m'
 printf "enter a number for the stage 3 you want to use\n"
-printf "0 = regular hardened\n1 = hardened musl\n>"
+printf "0 = regular hardened\n1 = hardened musl\n2 = vanilla musl\n>"
 read stage3select
 printf "enter a number for the SSL Library you want to use\n"
 printf "0 = OpenSSL default\n1 = LibreSSL (recommended)\n>"
