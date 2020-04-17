@@ -62,4 +62,8 @@ X -configure
 sed -ie "85i\ \t\tModes\t  \"1920x1080\"" /root/xorg.conf.new
 cp /root/xorg.conf.new /etc/X11/xorg.conf
 printf "completed installing dependencies\n"
+X -configure
+sed -ie "79i\ \t\tModes\t  \"1920x1080\"" /root/xorg.conf.new
+rm -rf /etc/X11/xorg.conf
+mv /root/xorg.conf.new /etc/X11/xorg.conf
 printf "your GUI should be set up now, use startx to launch it\n"
