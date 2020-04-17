@@ -1,5 +1,5 @@
+#misc
 app-editors/neovim
-
 app-emulation/virtualbox-guest-additions
 media-sound/alsa-utils
 
