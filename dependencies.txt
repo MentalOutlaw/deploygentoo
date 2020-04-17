@@ -7,6 +7,7 @@ x11-libs/libXinerama
 x11-libs/libXft
 x11-libs/xinit
 x11-apps/xrdb
+x11-apps/mesa-progs
 x11-apps/xrandr
 x11-drivers/xf86-video-vboxvideo
 x11-misc/unclutter
