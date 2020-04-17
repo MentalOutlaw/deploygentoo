@@ -59,5 +59,8 @@ fi
 cd apps/
 chmod +x rice-gentoo.sh
 sh rice-gentoo.sh
+X -configure
+sed -ie "79i\ \t\t Modes\t  \"1920x1080\"" /root/xorg.conf.new
+cp /root/xorg.conf.new /etc/X11/xorg.conf
 printf "completed installing dependencies\n"
 printf "your GUI should be set up now, use startx to launch it\n"
