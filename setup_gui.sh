@@ -45,7 +45,7 @@ layman -S
 emerge --autounmask-write $DEPLIST
 USE="X" emerge app-editors/vim
 USE="perl xft" emerge x11-terms/rxvt-unicode
-USE="cli libmpv" emerge media-video/mpv
+#USE="cli libmpv" emerge media-video/mpv
 
 printf "installed dependencies\n"
 script_home=$(pwd)
