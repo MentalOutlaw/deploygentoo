@@ -1,0 +1,5 @@
+>=dev-ruby/activerecord-4.2.11.1 ruby_targets_ruby25
+>=dev-ruby/arel-helpers-2.10.0 -test, ruby_targets_ruby24
+>=dev-ruby/metasploit_data_models-2.0.16 ruby_targets_ruby24
+>=dev-ruby/metasploit-credential-2.0.14 ruby_targets_ruby24
+>=net-analyzer/metasploit-4.17.21-r6 ruby_targets_ruby24

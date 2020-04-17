@@ -1,0 +1,11 @@
+# package.use# required by net-wireless/aircrack-ng-1.5.2::gentoo[airdrop-ng]
+# required by net-wireless/aircrack-ng (argument)
+>=net-wireless/lorcon-0.0_p20150109 python
+# required by x11-misc/xdg-utils-1.1.3-r1::gentoo
+# required by net-analyzer/wireshark-3.0.4::gentoo[qt5]
+# required by wireshark (argument)
+>=app-text/xmlto-0.0.28-r1 text
+# required by virtual/opencl-2::gentoo
+# required by app-crypt/hashcat-5.1.0::gentoo
+# required by hashcat (argument)
+>=media-libs/mesa-19.1.7 opencl

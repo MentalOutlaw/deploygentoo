@@ -1,0 +1,19 @@
+# package.use# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+>=dev-qt/qtsingleapplication-2.6.1_p20171024 X
+# required by dev-qt/qtgui-5.12.5::gentoo[xcb]
+# required by dev-qt/qtsingleapplication-2.6.1_p20171024::gentoo[X]
+# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+>=x11-libs/libxcb-1.13.1 xkb
+# required by dev-qt/qtgui-5.12.5::gentoo[xcb]
+# required by dev-qt/qtsingleapplication-2.6.1_p20171024::gentoo[X]
+# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+>=x11-libs/libxkbcommon-0.8.4 X
+# required by dev-qt/qtcore-5.12.5-r1::gentoo
+# required by dev-qt/qtnetwork-5.12.5::gentoo
+# required by dev-qt/qtsingleapplication-2.6.1_p20171024::gentoo
+# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+>=dev-libs/libpcre2-10.33-r1 pcre16

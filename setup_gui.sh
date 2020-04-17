@@ -33,7 +33,6 @@ printf "This script is designed for gentoo linux and it will not work in any oth
 printf "Installing dependencies listed in dependencies.txt...\n"
 
 DEPLIST="`sed -e 's/#.*$//' -e '/^$/d' dependencies.txt | tr '\n' ' '`"
-SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
 
 #Installs and configures layman
 #emerge app-portage/layman

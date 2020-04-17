@@ -1,0 +1,15 @@
+# package.use# required by www-client/firefox-68.2.0::gentoo
+# required by www-client/firefox (argument)
+>=media-libs/libpng-1.6.37 apng
+# required by www-client/firefox-68.2.0::gentoo[system-libvpx]
+# required by www-client/firefox (argument)
+>=media-libs/libvpx-1.7.0 postproc
+# required by www-client/firefox-68.2.0::gentoo[system-sqlite]
+# required by www-client/firefox (argument)
+>=dev-db/sqlite-3.29.0 secure-delete
+# required by www-client/firefox-68.2.0::gentoo
+# required by www-client/firefox (argument)
+>=dev-lang/python-2.7.16:2.7 sqlite
+# required by www-client/firefox-68.2.0::gentoo
+# required by www-client/firefox (argument)
+>=dev-lang/python-3.6.9 sqlite

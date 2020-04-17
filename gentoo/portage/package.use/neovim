@@ -1,0 +1,9 @@
+# package.use# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+>=dev-lua/lpeg-1.0.1 luajit
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+>=dev-lua/luv-1.32.0.0 luajit
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+>=dev-lua/mpack-1.0.4 luajit

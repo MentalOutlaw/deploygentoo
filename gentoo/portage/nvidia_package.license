@@ -1,0 +1,2 @@
+# required by x11-drivers/nvidia-drivers (argument)
+=x11-drivers/nvidia-drivers-435.21 NVIDIA-r2

@@ -1,0 +1,3 @@
+# package.use# required by app-emulation/virtualbox-5.2.32::gentoo[-headless]
+# required by app-emulation/virtualbox (argument)
+>=media-libs/libsdl-1.2.15-r9 X
