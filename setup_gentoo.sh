@@ -115,7 +115,7 @@ mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo
-chroot /mnt/gentoo post_chroot.sh
+chroot /mnt/gentoo /post_chroot.sh
 #printf "chroot /mnt/gentoo /bin/bash\n"
 #printf "now run post_chroot.sh\n"
 #echo -e ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
