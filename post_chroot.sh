@@ -1,29 +1,31 @@
-#TODO
-#Replace all the echo with printf
-#env-update
-#source /etc/profile
-#export PS1="(chroot) ${PS1}"
+source /etc/profile
 cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;34m'
-printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
-read disk
-disk="${disk,,}"
-printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
-#There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
-read username
-username="${username,,}"
-printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
-read kernelanswer
-kernelanswer="${kernelanswer,,}"
-printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
-read hostname
-printf ${LIGHTBLUE}"Do you want to replace LibreSSL with OpenSSL in your system?(yes or no)\n>"
-read sslanswer
-sslanswer="${sslanswer,,}"
+#printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
+#read disk
+#disk="${disk,,}"
+#printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
+##There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
+#read username
+#username="${username,,}"
+#printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
+#read kernelanswer
+#kernelanswer="${kernelanswer,,}"
+#printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
+#read hostname
+#printf ${LIGHTBLUE}"Do you want to replace LibreSSL with OpenSSL in your system?(yes or no)\n>"
+#read sslanswer
+#sslanswer="${sslanswer,,}"
 #mount /dev/sda1 /boot
+install_vars=/mnt/gentoo/install_vars
+disk=$(sed '1q;d' install_vars)
+username=$(sed '2q;d' install_vars)
+kernelanswer=$(sed '3q;d' install_vars)
+hostname=$(sed '4q;d' install_vars)
+sslanswer=$(sed '5q;d' install_vars)
 part_1=("/dev/${disk}1")
 part_2=("/dev/${disk}2")
 dev_sd=("/dev/$disk")

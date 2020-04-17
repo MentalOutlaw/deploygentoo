@@ -1,14 +1,35 @@
 #backs up the default make.conf
 #this puts some things in place like your make.conf, aswell as package.use
 
-#LIGHTGREEN='\033[1;32m'
-#LIGHTBLUE='\033[1;34m'
+LIGHTGREEN='\033[1;32m'
+LIGHTBLUE='\033[1;34m'
 printf "enter a number for the stage 3 you want to use\n"
 printf "0 = regular hardened\n1 = hardened musl\n2 = vanilla musl\n>"
 read stage3select
 printf "enter a number for the SSL Library you want to use\n"
 printf "0 = OpenSSL default\n1 = LibreSSL (recommended)\n>"
 read ssl_choice
+printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
+read disk
+disk="${disk,,}"
+printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
+#There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
+read username
+username="${username,,}"
+printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
+read kernelanswer
+kernelanswer="${kernelanswer,,}"
+printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
+read hostname
+printf ${LIGHTBLUE}"Do you want to replace LibreSSL with OpenSSL in your system?(yes or no)\n>"
+read sslanswer
+sslanswer="${sslanswer,,}"
+install_vars=/mnt/gentoo/deploygentoo-master/install_vars
+echo "$disk" >> "$install_vars"
+echo "$username" >> "$install_vars"
+echo "$kernelanswer" >> "$install_vars"
+echo "$hostname" >> "$install_vars"
+echo "$sslanswer" >> "$install_vars"
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened
@@ -41,15 +62,15 @@ unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
 #cp * /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/ /mnt/gentoo/etc/portage/package.use/
 cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
 #TODO test if this works when setting up gentoo in chroot
-#case $ssl_choice in
-#  0)
-#    #Nothing to do here for default SSL
-#    ;;
-#  1)
-#    echo "dev-vcs/git -gpg" >> /etc/portage/package.use
-#    emerge app-portage/layman dev-vcs/git
-#    ;;
-#esac
+case $ssl_choice in
+  0)
+    #Nothing to do here for default SSL
+    ;;
+  1)
+    echo "dev-vcs/git -gpg" >> /etc/portage/package.use
+    emerge app-portage/layman dev-vcs/git
+    ;;
+esac
 cd /mnt/gentoo/
 cpus=$(grep -c ^processor /proc/cpuinfo)
 printf "there are %s cpus\n" $cpus
@@ -83,6 +104,7 @@ cp --dereference /etc/resolv.conf /mnt/gentoo/etc
 printf "copied over DNS info\n"
 
 cp /mnt/gentoo/deploygentoo-master/post_chroot.sh /mnt/gentoo/
+cp /mnt/gentoo/deploygentoo-master/install_vars /mnt/gentoo/
 printf "copied post_chroot.sh to /mnt/gentoo\n"
 chmod +x /mnt/gentoo/post_chroot.sh
 
@@ -93,11 +115,12 @@ mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo
-printf "chroot /mnt/gentoo /bin/bash\n"
-printf "now run post_chroot.sh\n"
-echo -e ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
-echo -e ${LIGHTGREEN}"source /etc/profile"
-echo -e ${LIGHTGREEN}"export PS1=\"(chroot) \${PS1}\""
+chroot /mnt/gentoo post_chroot.sh
+#printf "chroot /mnt/gentoo /bin/bash\n"
+#printf "now run post_chroot.sh\n"
+#echo -e ${LIGHTGREEN}"chroot /mnt/gentoo /bin/bash"
+#echo -e ${LIGHTGREEN}"source /etc/profile"
+#echo -e ${LIGHTGREEN}"export PS1=\"(chroot) \${PS1}\""
 #TODO this part of the script doesn't accept user input, you must have all read commands before you change root
 #chroot /mnt/gentoo /bin/bash << "EOT"
 #
