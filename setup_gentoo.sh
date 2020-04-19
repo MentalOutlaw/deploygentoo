@@ -24,7 +24,7 @@ read kernelanswer
 kernelanswer="${kernelanswer,,}"
 printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
 read hostname
-printf ${LIGHTBLUE}"Do you want to replace LibreSSL with OpenSSL in your system?(yes or no)\n>"
+printf ${LIGHTBLUE}"Do you want to replace OpenSSL with LibreSSL in your system?(yes or no)\n>"
 read sslanswer
 sslanswer="${sslanswer,,}"
 printf ${LIGHTGREEN}"Beginning installation, this will take several minutes\n"
@@ -53,6 +53,20 @@ touch /mnt/gentoo/gentootype.txt
 echo $GENTOO_TYPE >> /mnt/gentoo/gentootype.txt
 cd /mnt/gentoo/
 wget --tries=20 $STAGE3_URL
+check_file_exists () {
+	file=$1
+	if [ -e $file ]; then
+		exists=true
+	else
+		printf "%s doesn't exist\n" $file
+		wget --tries=20 $STAGE3_URL
+		exists=false
+		$2
+	fi
+}
+
+check_file_exists /mnt/gentoo/stage3*
+check_file_exists /mnt/gentoo/stage3*
 stage3=$(ls /mnt/gentoo/stage3*)
 tar xpvf /mnt/gentoo/$stage3 --xattrs-include='*.*' --numeric-owner
 printf "unpacked stage 3\n"
