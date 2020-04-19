@@ -358,3 +358,13 @@ dev-python/h11 ~amd64
 dev-libs/libressl ~amd64
 #Required by qtnetwork
 =dev-qt/qtnetwork-5.13.2 ~amd64
+net-libs/nodejs ~amd64
+=net-libs/nodejs-13.9.0::libressl ~amd64
+=dev-qt/qtnetwork-5.14.2::libressl ~amd64
+=dev-qt/qtcore-5.14.2::gentoo ~amd64
+#Required by libuv all this is needed for net-libs/nodejs which firefox depends on
+dev-libs/libuv ~amd64
+net-libs/nghttp2 ~amd64
+dev-libs/icu ~amd64
+#Required by OBS
+=media-video/obs-studio-24.0.5 ~amd64

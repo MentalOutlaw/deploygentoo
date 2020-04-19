@@ -42,20 +42,20 @@ echo >> "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" /etc/portag
 layman -a libressl
 layman -S
 
-emerge --autounmask-write $DEPLIST
+emerge $DEPLIST
 USE="X" emerge app-editors/vim
 USE="perl xft" emerge x11-terms/rxvt-unicode
 #USE="cli libmpv" emerge media-video/mpv
 
 printf "installed dependencies\n"
 script_home=$(pwd)
-check_dir_exists /apps
-if $exists; then
-	printf "apps directory already exists"
-else
-	unzip rice.zip
-fi
-cd apps/
+#check_dir_exists /apps
+#if $exists; then
+#	printf "apps directory already exists"
+#else
+#	unzip rice.zip
+#fi
+cd rice/
 chmod +x rice-gentoo.sh
 sh rice-gentoo.sh
 X -configure

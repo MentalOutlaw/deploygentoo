@@ -165,9 +165,9 @@ printf "you should now have a working Gentoo installation, dont forget to set yo
 printf ${LIGHTGREEN}"passwd\n"
 printf ${LIGHTGREEN}"passwd %s\n" $username
 printf ${LIGHTGREEN}"exit\n"
-printf ${LIGHTGREEN}"cd\n"
-printf ${LIGHTGREEN}"umount -l /mnt/gentoo/dev{/shm,/pts,}\n"
-printf ${LIGHTGREEN}"umount -R /mnt/gentoo\n"
+#printf ${LIGHTGREEN}"cd\n"
+#printf ${LIGHTGREEN}"umount -l /mnt/gentoo/dev{/shm,/pts,}\n"
+#printf ${LIGHTGREEN}"umount -R /mnt/gentoo\n"
 printf ${LIGHTGREEN}"reboot\n"
 rm -rf /post_chroot.sh
 #exit

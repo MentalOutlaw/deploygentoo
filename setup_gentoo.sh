@@ -52,15 +52,13 @@ STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
 touch /mnt/gentoo/gentootype.txt
 echo $GENTOO_TYPE >> /mnt/gentoo/gentootype.txt
 cd /mnt/gentoo/
-wget $STAGE3_URL
-stage3=$(ls stage3*)
-tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
+wget --tries=20 $STAGE3_URL
+stage3=$(ls /mnt/gentoo/stage3*)
+tar xpvf /mnt/gentoo/$stage3 --xattrs-include='*.*' --numeric-owner
 printf "unpacked stage 3\n"
 
 #rm -rf /mnt/gentoo/etc/portage
 cd /mnt/gentoo/deploygentoo-master/gentoo/
-unzip /mnt/gentoo/deploygentoo-master/gentoo/portage.zip
-#cp * /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/ /mnt/gentoo/etc/portage/package.use/
 cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
 #TODO test if this works when setting up gentoo in chroot
 case $ssl_choice in
@@ -88,6 +86,8 @@ cp /mnt/gentoo/deploygentoo-master/gentoo/portage/linux_drivers /mnt/gentoo/etc/
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/nvidia_package.license /mnt/gentoo/etc/portage/
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.license /mnt/gentoo/etc/portage
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.accept_keywords /mnt/gentoo/etc/portage/
+cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage/profile /mnt/gentoo/etc/portage/
+cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage/savedconfig /mnt/gentoo/etc/portage/
 
 mkdir --parents /mnt/gentoo/etc/portage/repos.conf
 cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
@@ -110,4 +110,4 @@ mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo
-chroot /mnt/gentoo /post_chroot.sh
+chroot /mnt/gentoo /mnt/gentoo/post_chroot.sh
