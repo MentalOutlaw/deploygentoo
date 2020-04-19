@@ -142,7 +142,7 @@ printf "just tried to add our user\n"
 cd ..
 printf "cleaning up\n"
 mv deploygentoo-master.zip /home/$username
-rm -rf /deploygentoo-master
+#rm -rf /deploygentoo-master
 stage3=$(ls stage3*)
 rm -rf $stage3
 if [ $sslanswer = "yes" ]; then
