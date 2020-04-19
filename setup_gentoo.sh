@@ -123,5 +123,5 @@ mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
-cd /mnt/gentoo
+cd /mnt/gentoo/
 chroot /mnt/gentoo post_chroot.sh
