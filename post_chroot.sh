@@ -87,7 +87,7 @@ emerge lzop
 emerge app-arch/lz4
 printf "Do you want to configure your own kernel?\n"
 if [ $kernelanswer = "no" ]; then
-	cp /mnt/gentoo/deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
+	cp deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
 	make olddefconfig
 	make && make modules_install
