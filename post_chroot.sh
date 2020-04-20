@@ -81,11 +81,11 @@ emerge sys-kernel/gentoo-sources
 #emerge sys-kernel/ck-sources-5.4.7
 #sleep5
 #emerge sys-kernel/ck-sources
+ls -l /usr/src/linux
 cd /usr/src/linux
 emerge sys-apps/pciutils
 emerge lzop
 emerge app-arch/lz4
-printf "Do you want to configure your own kernel?\n"
 if [ $kernelanswer = "no" ]; then
 	cp deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
@@ -119,10 +119,10 @@ printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $part_2 >> /etc/fstab
 cd /etc/init.d
 ln -s net.lo net.enp0s3
 rc-update add net.enp0s3 default
-printf "dhcp enabled\n"
+#printf "dhcp enabled\n"
 emerge app-admin/sysklogd
 emerge app-admin/sudo
-printf "just emerged sudo\n"
+#printf "just emerged sudo\n"
 rm -rf /etc/sudoers
 cd $scriptdir
 cp sudoers /etc/
@@ -136,11 +136,11 @@ emerge --verbose sys-boot/grub:2
 #grub-install /dev/sda
 grub-install $dev_sd
 grub-mkconfig -o /boot/grub/grub.cfg
-printf "updated grub\n"
+#printf "updated grub\n"
 useradd -m -G users,wheel,audio -s /bin/bash $username
-printf "just tried to add our user\n"
+#printf "just tried to add our user\n"
 cd ..
-printf "cleaning up\n"
+#printf "cleaning up\n"
 mv deploygentoo-master.zip /home/$username
 #rm -rf /deploygentoo-master
 stage3=$(ls stage3*)
@@ -160,8 +160,8 @@ else
 	printf "nothing to do here\n"
 fi
 
-printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
-printf "you should now have a working Gentoo installation, dont forget to set your root and user passwords!\n"
+#printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
+#printf "you should now have a working Gentoo installation, dont forget to set your root and user passwords!\n"
 printf ${LIGHTGREEN}"passwd\n"
 printf ${LIGHTGREEN}"passwd %s\n" $username
 printf ${LIGHTGREEN}"exit\n"
