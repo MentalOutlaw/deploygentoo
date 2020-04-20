@@ -78,6 +78,7 @@ env-update && source /etc/profile
 #Installs the kernel
 printf "preparing to emerge kernel sources\n"
 emerge sys-kernel/gentoo-sources
+sleep 10
 #emerge sys-kernel/ck-sources-5.4.7
 #sleep5
 #emerge sys-kernel/ck-sources
