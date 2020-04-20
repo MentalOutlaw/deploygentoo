@@ -67,6 +67,10 @@ check_file_exists () {
 
 check_file_exists /mnt/gentoo/stage3*
 check_file_exists /mnt/gentoo/stage3*
+check_file_exists /mnt/gentoo/stage3*
+check_file_exists /mnt/gentoo/stage3*
+check_file_exists /mnt/gentoo/stage3*
+check_file_exists /mnt/gentoo/stage3*
 stage3=$(ls /mnt/gentoo/stage3*)
 tar xpvf $stage3 --xattrs-include='*.*' --numeric-owner
 printf "unpacked stage 3\n"
