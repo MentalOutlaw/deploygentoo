@@ -78,6 +78,7 @@ cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/e
 case $ssl_choice in
   0)
     #Nothing to do here for default SSL
+    emerge app-portage/layman
     ;;
   1)
     echo "dev-vcs/git -gpg" >> /etc/portage/package.use
