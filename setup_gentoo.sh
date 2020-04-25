@@ -52,7 +52,11 @@ STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
 touch /mnt/gentoo/gentootype.txt
 echo $GENTOO_TYPE >> /mnt/gentoo/gentootype.txt
 cd /mnt/gentoo/
-wget --tries=20 $STAGE3_URL
+while [ 1 ]; do
+	wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout -t 9190 $STAGE3_URL
+	if [ $? = 0 ]; then break; fi;
+	sleep 1s;
+done;
 check_file_exists () {
 	file=$1
 	if [ -e $file ]; then
