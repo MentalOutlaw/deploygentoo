@@ -53,7 +53,7 @@ touch /mnt/gentoo/gentootype.txt
 echo $GENTOO_TYPE >> /mnt/gentoo/gentootype.txt
 cd /mnt/gentoo/
 while [ 1 ]; do
-	wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout -t 9190 $STAGE3_URL
+	wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 $STAGE3_URL
 	if [ $? = 0 ]; then break; fi;
 	sleep 1s;
 done;
