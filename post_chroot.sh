@@ -71,7 +71,7 @@ printf "timezone data emerged\n"
 #en_US.UTF-8 UTF-8
 printf "en_US.UTF-8 UTF-8\n" >> /etc/locale.gen
 locale-gen
-mv layman /var/lib/
+mv deploygentoo-master/layman /var/lib/
 cd /var/lib/layman
 git clone https://github.com/gentoo/libressl
 printf "script complete\n"
