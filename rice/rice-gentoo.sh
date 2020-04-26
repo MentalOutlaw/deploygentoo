@@ -75,7 +75,7 @@ cp -f dots/.bashrc $userhome
 cp -f dots/.vimrc $userhome
 cp -f dots/.xinitrc $userhome
 cp -f dots/.Xresources $userhome
-cp -f dots/init.vim $HOME
+cp -f dots/init.vim $userhome
 
 cd $HOME/.config
 git clone https://github.com/MentalOutlaw/st
