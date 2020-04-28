@@ -1,4 +1,4 @@
-#all this stuff is necessary to get startx working?
+#X Server configuration
 app-admin/sudo
 x11-libs/libX11
 x11-base/xorg-server
