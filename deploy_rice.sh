@@ -49,6 +49,10 @@ USE="perl xft" emerge x11-terms/rxvt-unicode
 
 printf "installed dependencies\n"
 script_home=$(pwd)
+cd /usr/lib64/urxvt/perl
+git clone https://github.com/majutsushi/urxvt-font-size
+mv urxvt-font-size/font-size .
+cd $script_home
 #check_dir_exists /apps
 #if $exists; then
 #	printf "apps directory already exists"
