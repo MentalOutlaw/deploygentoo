@@ -36,6 +36,12 @@ SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
 
 printf "Installing software listed in software.txt...\n"
 printf "completed installing dependencies\n"
+cd /etc/layman
+git clone https://github.com/gentoo/libressl
+cd libressl/net-libs/nodejs
+ebuild nodejs-13.9.0.ebuild manifest
+#USE="bundled-ssl" emerge net-libs/nodejs
+
 emerge --autounmask-write $SOFTWARE
 
 #installs software from pentoo overlay

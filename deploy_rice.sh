@@ -37,8 +37,8 @@ DEPLIST="`sed -e 's/#.*$//' -e '/^$/d' dependencies.txt | tr '\n' ' '`"
 #Installs and configures layman
 emerge app-portage/layman
 sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
-echo >> "source /var/lib/layman/make.conf" /etc/portage/make.conf
-echo >> "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" /etc/portage/make.conf
+echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
+echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
 layman -a libressl
 layman -S
 
