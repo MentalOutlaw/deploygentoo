@@ -4,3 +4,5 @@ app-arch/unrar unRAR
 #=app-arch/unrar-5.7.5 unRAR
 # required by net-dns/dnswalk (argument)
 >=net-dns/dnswalk-2.0.2 freedist
+# required by games-util/steam-launcher (argument)
+>=games-util/steam-launcher-1.0.0.62 ValveSteamLicense

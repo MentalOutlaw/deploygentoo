@@ -356,15 +356,29 @@ dev-python/urwid ~amd64
 dev-python/wsproto ~amd64
 dev-python/h11 ~amd64
 dev-libs/libressl ~amd64
-#Required by qtnetwork
-=dev-qt/qtnetwork-5.13.2 ~amd64
-net-libs/nodejs ~amd64
 =net-libs/nodejs-13.9.0::libressl ~amd64
-=dev-qt/qtnetwork-5.14.2::libressl ~amd64
-=dev-qt/qtcore-5.14.2::gentoo ~amd64
+#=dev-qt/qtnetwork-5.14.2::libressl ~amd64
+#=dev-qt/qtnetwork-5.14.2::libressl ~amd64
+=dev-qt/qtnetwork-5.14.1::libressl ~amd64
+#=dev-qt/qtcore-5.14.2::gentoo ~amd64
+=dev-qt/qtcore-5.14.1::gentoo ~amd64
+#required for the latest firefox
+www-client/firefox ~amd64
+media-libs/libv ~amd64
+media-libs/libvpx ~amd64
+media-libs/libwebp ~amd64
 #Required by libuv all this is needed for net-libs/nodejs which firefox depends on
 dev-libs/libuv ~amd64
 net-libs/nghttp2 ~amd64
 dev-libs/icu ~amd64
 #Required by OBS
-=media-video/obs-studio-24.0.5 ~amd64
+#=media-video/obs-studio-24.0.5 ~amd64
+media-video/obs-studio ~amd64
+dev-libs/libressl
+#Required by steam
+=games-util/steam-launcher-1.0.0.62::steam-overlay ~amd64
+#Required by steam-meta
+=games-util/steam-meta-0-r20160817::steam-overlay ~amd64
+=games-util/steam-games-meta-0-r20191109::steam-overlay ~amd64
+=games-util/steam-client-meta-0-r20200328::steam-overlay ~amd64
+games-util/steam-meta ~amd64
