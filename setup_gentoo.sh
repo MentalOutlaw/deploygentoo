@@ -19,7 +19,7 @@ while true
 do
 	if grep -Fxq "$rootpart" /root/disks
 	printf "up here\n"
-	printf "rootpart is %s\n" $rootpart
+	#printf "rootpart is %s\n" $rootpart
 	then
 		#continue running the script
 		printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
@@ -41,8 +41,8 @@ do
 done
 install_target=("/dev/${rootpart}")
 #copying files into place
-rm -rf /root/devices
-rm -rf /root/disks
+#rm -rf /root/devices
+#rm -rf /root/disks
 mount $install_target /mnt/gentoo
 mv deploygentoo-master /mnt/gentoo
 cd /mnt/gentoo/deploygentoo-master
