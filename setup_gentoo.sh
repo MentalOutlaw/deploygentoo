@@ -17,7 +17,7 @@ do
 	printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
 	read num
 	rootpart="$disk$num"
-	if grep -Fxq "$rootpart" /root/disks
+	if grep "$rootpart" /root/disks
 	then
 		#continue running the script
 		printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
