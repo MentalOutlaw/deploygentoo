@@ -3,6 +3,7 @@
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;94m'
 LIGHTRED='\033[1;91m'
+cd ..
 printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
 fdisk -l >> devices
 grep -e '^Device\|^\/dev' devices >> disks
@@ -40,7 +41,6 @@ install_target=("/dev/${rootpart}")
 rm -rf /root/devices
 rm -rf /root/disks
 mount $install_target /mnt/gentoo
-cd ..
 mv deploygentoo-master /mnt/gentoo
 cd /mnt/gentoo/deploygentoo-master
 
