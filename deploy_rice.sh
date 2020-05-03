@@ -40,6 +40,7 @@ sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
 echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
 echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
 layman -a libressl
+yes | layman -a steam-overlay
 layman -S
 
 emerge $DEPLIST

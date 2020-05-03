@@ -28,6 +28,7 @@ net-nds/openldap
 
 #security tools
 net-analyzer/tcpdump
+net-analyzer/traceroute
 net-analyzer/nmap
 net-analyzer/macchanger
 net-analyzer/tcptrack
@@ -39,14 +40,14 @@ net-analyzer/yersinia
 net-analyzer/masscan
 net-analyzer/arp-scan
 net-analyzer/hping
-#net-proxy/mitmproxy
+#net-proxy/mitmproxy Requires OpenSSL
 net-vpn/httptunnel
-#net-dns/dnshijacker  #All ebuilds have been masked
+net-dns/dnshijacker
 net-dns/dnswalk
-#net-dns/dnscap #All ebuilds have been masked
-#net-analyzer/fragroute #All ebuilds have been masked
+#net-dns/dnscap Requires OpenSSL
+net-analyzer/fragroute
 net-analyzer/firewalk
-#net-analyzer/dnsenum #All ebuilds have been masked
+net-analyzer/dnsenum
 www-client/httrack
 app-crypt/hashcat
 app-crypt/mhash
@@ -55,6 +56,7 @@ net-wireless/aircrack-ng
 net-misc/socat
 media-libs/exiftool
 app-misc/binwalk
+net-misc/whois
 
 #regular tools
 app-text/zathura

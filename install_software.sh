@@ -43,6 +43,7 @@ ebuild nodejs-13.9.0.ebuild manifest
 #USE="bundled-ssl" emerge net-libs/nodejs
 
 emerge --autounmask-write $SOFTWARE
+emerge games-util/steam-launcher games-util/steam-meta
 
 #installs software from pentoo overlay
 #this part doesn't work for some reason, maybe because of the new kernel?
