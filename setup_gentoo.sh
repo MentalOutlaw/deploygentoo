@@ -3,6 +3,7 @@
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;94m'
 LIGHTRED='\033[1;91m'
+WHITE='\033[1;97m'
 cd ..
 printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
 fdisk -l >> devices
@@ -23,10 +24,10 @@ do
 		break
 	else
 		#rootpartnotfound
-		printf ${LIGHTRED}"%s is not a valid installation target, review this list of your devices and make a valid selection" $rootpart
-		sleep 5
-		fdisk -l >> devices
-		grep -e '^Device\|^\/dev' devices >> disks
+		printf ${LIGHTRED}"%s is not a valid installation target, review this list of your devices and make a valid selection\n" $rootpart
+		printf ${WHITE}".\n"
+		sleep 7
+		clear
 		cat /root/disks
 		printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
 		read disk
