@@ -18,6 +18,8 @@ rootpart="$disk$num"
 while true
 do
 	if grep -Fxq "$rootpart" /root/disks
+	printf "up here\n"
+	printf "rootpart is %s\n" $rootpart
 	then
 		#continue running the script
 		printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
