@@ -183,7 +183,7 @@ printf "you should now have a working Gentoo installation, dont forget to set yo
 #	echo "Only root may add a user to the system"
 #	exit 2
 #fi
-chroot /mnt/gentoo
+cp -r /mnt/gentoo/deploygentoo-master /home/kenny/
 printf ${LIGHTGREEN}"chroot /mnt/gentoo\n ONLY IF PASSWD %s doesn't work!!\n" $username
 printf ${LIGHTGREEN}"passwd\n"
 printf ${LIGHTGREEN}"passwd %s\n" $username
