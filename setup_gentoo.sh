@@ -1,20 +1,55 @@
 #backs up the default make.conf
 #this puts some things in place like your make.conf, aswell as package.use
+LIGHTGREEN='\033[1;32m'
+LIGHTBLUE='\033[1;94m'
+LIGHTRED='\033[1;91m'
+printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
+fdisk -l >> devices
+grep -e '^Device\|^\/dev' devices >> disks
+cat /root/disks
+printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
+read disk
+disk="${disk,,}"
+printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
+read num
+rootpart="$disk$num"
+while true
+do
+	if grep -Fxq "$rootpart" /root/disks
+	then
+		#continue running the script
+		printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
+		break
+	else
+		#rootpartnotfound
+		printf ${LIGHTRED}"%s is not a valid installation target, review this list of your devices and make a valid selection" $rootpart
+		sleep 5
+		fdisk -l >> devices
+		grep -e '^Device\|^\/dev' devices >> disks
+		cat /root/disks
+		printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
+		read disk
+		disk="${disk,,}"
+		printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
+		read num
+		rootpart="$disk$num"
+	fi
+done
+install_target=("/dev/${rootpart}")
+#copying files into place
+rm -rf /root/devices
+rm -rf /root/disks
+mount $install_target /mnt/gentoo
 cd ..
 mv deploygentoo-master /mnt/gentoo
 cd /mnt/gentoo/deploygentoo-master
 
-LIGHTGREEN='\033[1;32m'
-LIGHTBLUE='\033[1;34m'
 printf "enter a number for the stage 3 you want to use\n"
 printf "0 = regular hardened\n1 = hardened musl\n2 = vanilla musl\n>"
 read stage3select
 printf "enter a number for the SSL Library you want to use\n"
 printf "0 = OpenSSL default\n1 = LibreSSL (recommended)\n>"
 read ssl_choice
-printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
-read disk
-disk="${disk,,}"
 printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
 read username
