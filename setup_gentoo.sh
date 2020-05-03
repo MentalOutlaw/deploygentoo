@@ -1,8 +1,8 @@
 #backs up the default make.conf
 #this puts some things in place like your make.conf, aswell as package.use
-#cd ..
-#mv deploygentoo-master /mnt/gentoo
-#cd /mnt/gentoo/deploygentoo-master
+cd ..
+mv deploygentoo-master /mnt/gentoo
+cd /mnt/gentoo/deploygentoo-master
 
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;34m'

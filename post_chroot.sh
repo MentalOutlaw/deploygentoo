@@ -164,8 +164,8 @@ else
 	printf "nothing to do here\n"
 fi
 
-#printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
-#printf "you should now have a working Gentoo installation, dont forget to set your root and user passwords!\n"
+printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
+printf "you should now have a working Gentoo installation, dont forget to set your root and user passwords!\n"
 #if [ $(id -u) -eq 0 ]; then
 #	read -s -p "Enter your users password : " password
 #    read -s -p "Enter your root password : " rootpassword
@@ -183,6 +183,8 @@ fi
 #	echo "Only root may add a user to the system"
 #	exit 2
 #fi
+chroot /mnt/gentoo
+printf ${LIGHTGREEN}"chroot /mnt/gentoo\n ONLY IF PASSWD %s doesn't work!!\n" $username
 printf ${LIGHTGREEN}"passwd\n"
 printf ${LIGHTGREEN}"passwd %s\n" $username
 printf ${LIGHTGREEN}"exit\n"
