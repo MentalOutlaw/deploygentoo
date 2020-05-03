@@ -8,18 +8,16 @@ cd ..
 printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
 fdisk -l >> devices
 grep -e '^Device\|^\/dev' devices >> disks
-cat /root/disks
-printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
-read disk
-disk="${disk,,}"
-printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
-read num
-rootpart="$disk$num"
 while true
 do
+	cat /root/disks
+	printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
+	read disk
+	disk="${disk,,}"
+	printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
+	read num
+	rootpart="$disk$num"
 	if grep -Fxq "$rootpart" /root/disks
-	#printf "up here\n"
-	printf "rootpart is $rootpart\n"
 	then
 		#continue running the script
 		printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
@@ -30,13 +28,6 @@ do
 		printf ${WHITE}".\n"
 		sleep 7
 		clear
-		cat /root/disks
-		printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
-		read disk
-		disk="${disk,,}"
-		printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
-		read num
-		rootpart="$disk$num"
 	fi
 done
 install_target=("/dev/${rootpart}")
