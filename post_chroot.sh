@@ -82,13 +82,10 @@ env-update && source /etc/profile
 printf "preparing to emerge kernel sources\n"
 emerge sys-kernel/gentoo-sources
 sleep 10
-#emerge sys-kernel/ck-sources-5.4.7
-#sleep5
-#emerge sys-kernel/ck-sources
 ls -l /usr/src/linux
 cd /usr/src/linux
 emerge sys-apps/pciutils
-emerge lzop
+emerge app-arch/lzop
 emerge app-arch/lz4
 if [ $kernelanswer = "no" ]; then
 	cp deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
