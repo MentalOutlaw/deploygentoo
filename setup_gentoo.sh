@@ -36,6 +36,7 @@ install_target=("/dev/${rootpart}")
 #rm -rf /root/disks
 mount $install_target /mnt/gentoo
 mv deploygentoo-master /mnt/gentoo
+mv deploygentoo-master.zip /mnt/gentoo/
 cd /mnt/gentoo/deploygentoo-master
 
 printf "enter a number for the stage 3 you want to use\n"
@@ -119,6 +120,7 @@ case $ssl_choice in
 esac
 cd /mnt/gentoo/
 cpus=$(grep -c ^processor /proc/cpuinfo)
+echo "$cpus" >> "$install_vars"
 printf "there are %s cpus\n" $cpus
 sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /etc/portage/make.conf
 printf "moved portage files into place\n"

@@ -26,10 +26,12 @@ username=$(sed '2q;d' install_vars)
 kernelanswer=$(sed '3q;d' install_vars)
 hostname=$(sed '4q;d' install_vars)
 sslanswer=$(sed '5q;d' install_vars)
+cpus=$(sed '6q;d' install_vars)
 part_1=("/dev/${disk}1")
 part_2=("/dev/${disk}2")
 dev_sd=("/dev/$disk")
 mount $part_1
+jobs = ("-j{$cpus}")
 printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
 #emerge-webrsync
@@ -91,20 +93,20 @@ if [ $kernelanswer = "no" ]; then
 	cp deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
 	make olddefconfig
-	make && make modules_install
+	make $jobs && make modules_install
 	make install
 	printf "Kernel installed\n"
 elif [ $kernelanswer = "edit" ]; then
 	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
 	make menuconfig
-	make && make modules_install
+	make $jobs && make modules_install
 	make install
 	printf "Kernel installed\n"
 else
 	printf "time to configure your own kernel\n"
 	make menuconfig
-	make && make modules_installl
+	make $jobs && make modules_installl
 	make install
 	printf "Kernel installed\n"
 fi
@@ -180,7 +182,7 @@ printf "you should now have a working Gentoo installation, dont forget to set yo
 #	echo "Only root may add a user to the system"
 #	exit 2
 #fi
-cp -r /mnt/gentoo/deploygentoo-master /home/kenny/
+mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
 printf ${LIGHTGREEN}"chroot /mnt/gentoo\n ONLY IF PASSWD %s doesn't work!!\n" $username
 printf ${LIGHTGREEN}"passwd\n"
 printf ${LIGHTGREEN}"passwd %s\n" $username
