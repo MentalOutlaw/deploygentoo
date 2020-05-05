@@ -73,7 +73,7 @@ printf "en_US.UTF-8 UTF-8\n" >> /etc/locale.gen
 locale-gen
 mv deploygentoo-master/layman /var/lib/
 cd /var/lib/layman
-git clone https://github.com/gentoo/libressl
+#git clone https://github.com/gentoo/libressl
 printf "script complete\n"
 eselect locale set 4
 env-update && source /etc/profile
