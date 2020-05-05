@@ -1,4 +1,6 @@
-x11-base/xorg-server -suid
+x11-base/xorg-server -suid -minimal
+x11-terms/rxvt-unicode perl xft
+app-editors/vim X
 # required by net-misc/networkmanager-1.18.2::gentoo[wifi]
 # required by net-misc/networkmanager (argument)
 >=net-wireless/wpa_supplicant-2.9-r1 dbus

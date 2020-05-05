@@ -13,11 +13,12 @@ x11-drivers/xf86-video-vboxvideo
 x11-misc/unclutter
 x11-misc/xclip
 x11-misc/pcmanfm
+x11-terms/rxvt-unicode
 
 #misc
 dev-vcs/git
 app-editors/neovim
-app-emulation/virtualbox-guest-additions
+app-editors/vim
 media-sound/alsa-utils
 
 #fonts

@@ -382,3 +382,6 @@ dev-libs/libressl
 =games-util/steam-games-meta-0-r20191109::steam-overlay ~amd64
 =games-util/steam-client-meta-0-r20200328::steam-overlay ~amd64
 games-util/steam-meta ~amd64
+dev-libs/libressl
+x11-base/xorg-server ~amd64
+app-emulation/virtualbox-guest-additions ~amd64
