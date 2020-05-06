@@ -84,11 +84,13 @@ read sslanswer
 sslanswer="${sslanswer,,}"
 printf ${LIGHTGREEN}"Beginning installation, this will take several minutes\n"
 install_vars=/mnt/gentoo/deploygentoo-master/install_vars
+cpus=$(grep -c ^processor /proc/cpuinfo)
 echo "$disk" >> "$install_vars"
 echo "$username" >> "$install_vars"
 echo "$kernelanswer" >> "$install_vars"
 echo "$hostname" >> "$install_vars"
 echo "$sslanswer" >> "$install_vars"
+echo "$cpus" >> "$install_vars"
 echo "$swappart" >> "$install_vars"
 case $stage3select in
   0)
@@ -140,13 +142,11 @@ case $ssl_choice in
     emerge app-portage/layman
     ;;
   1)
-    echo "dev-vcs/git -gpg" >> /etc/portage/package.use
+    echo "dev-vcs/git -gpg" >> /etc/portage/package.use/package.use
     emerge app-portage/layman dev-vcs/git
     ;;
 esac
 cd /mnt/gentoo/
-cpus=$(grep -c ^processor /proc/cpuinfo)
-echo "$cpus" >> "$install_vars"
 printf "there are %s cpus\n" $cpus
 sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /etc/portage/make.conf
 printf "moved portage files into place\n"
