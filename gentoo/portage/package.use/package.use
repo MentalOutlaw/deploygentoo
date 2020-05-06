@@ -1,3 +1,40 @@
+###This section was copied from other files start
+>=dev-ruby/activerecord-4.2.11.1 ruby_targets_ruby25
+>=dev-ruby/arel-helpers-2.10.0 -test, ruby_targets_ruby24
+>=dev-ruby/metasploit_data_models-2.0.16 ruby_targets_ruby24
+>=dev-ruby/metasploit-credential-2.0.14 ruby_targets_ruby24
+# package.use# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+>=dev-qt/qtsingleapplication-2.6.1_p20171024 X
+# required by dev-qt/qtgui-5.12.5::gentoo[xcb]
+# required by dev-qt/qtsingleapplication-2.6.1_p20171024::gentoo[X]
+# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+>=x11-libs/libxcb-1.13.1 xkb
+# required by dev-qt/qtgui-5.12.5::gentoo[xcb]
+# required by dev-qt/qtsingleapplication-2.6.1_p20171024::gentoo[X]
+# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+>=x11-libs/libxkbcommon-0.8.4 X
+# required by dev-qt/qtcore-5.12.5-r1::gentoo
+# required by dev-qt/qtnetwork-5.12.5::gentoo
+# required by dev-qt/qtsingleapplication-2.6.1_p20171024::gentoo
+# required by net-p2p/qbittorrent-4.1.7::gentoo
+# required by net-p2p/qbittorrent (argument)
+# package.use# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+>=dev-lua/lpeg-1.0.1 luajit
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+>=dev-lua/luv-1.32.0.0 luajit
+# required by app-editors/neovim-0.4.2::gentoo
+# required by app-editors/neovim (argument)
+# required by media-gfx/gimp-2.10.8-r1::gentoo
+# required by media-gfx/gimp (argument)
+>=media-libs/gegl-0.4.16 cairo
+# required by media-gfx/gimp-2.10.8-r1::gentoo
+# required by media-gfx/gimp (argument)
+###This section was copied from other files end
 x11-base/xorg-server -suid -minimal
 x11-terms/rxvt-unicode perl xft
 app-editors/vim X
