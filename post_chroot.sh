@@ -31,7 +31,7 @@ swappart=$(sed '7q;d' install_vars)
 part_1=("/dev/${disk}1")
 part_2=("/dev/${disk}2")
 dev_sd=("/dev/$disk")
-mount $part_1
+mount $part_1 /boot
 jobs = ("-j{$cpus}")
 printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid

@@ -29,7 +29,7 @@ while true; do
             swappart="no"
         else
             while true; do
-                printf "enter swap partition\n>"
+                printf "enter swap partition (ex, sda3 for /dev/sda3)\n>"
                 read swappart
                 swappart="${swappart,,}"
                 if grep "$swappart" /root/disks; then
