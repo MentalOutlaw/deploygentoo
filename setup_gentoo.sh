@@ -24,7 +24,7 @@ while true; do
             read swap_answer
         fi
         swap_answer="${swap_answer,,}"
-        if [ $swap_answer == "no" ]; then
+        if [ "$swap_answer" = "no" ]; then
             printf "not using swap"
             swappart="no"
         else
