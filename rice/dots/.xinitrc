@@ -1,5 +1,4 @@
 # Uncomment to load xresources file
-# xrdb -merge ~/.Xresources &
 
 slstatus &
 #dwmstatus 2>&1 >/dev/null &

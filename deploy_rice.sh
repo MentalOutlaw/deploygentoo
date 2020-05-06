@@ -3,6 +3,10 @@ cd rice/
 scriptdir=$(pwd)
 cd ..
 script_home=$(pwd)
+cd ..
+userhome=$(pwd)
+cd $script_home
+
 
 check_file_exists () {
 	file=$1
