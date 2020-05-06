@@ -7,26 +7,51 @@ WHITE='\033[1;97m'
 cd ..
 printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
 fdisk -l >> devices
-grep -e '^Device\|^\/dev' devices >> disks
-while true
-do
+while true; do
 	cat /root/disks
 	printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
 	read disk
+    partition_count="$(grep-o $disk devices | wc -l)"
+    grep -e '^Device\|^\/dev' devices >> disks
 	disk="${disk,,}"
 	printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
 	read num
 	rootpart="$disk$num"
-	if grep "$rootpart" /root/disks
-	then
+	if grep "$rootpart" /root/disks; then
 		#continue running the script
+        if [ $partition_count -gt 2 ]; then
+            printf "do you want to enable swap?\n>"
+            read swap_answer
+        fi
+        swap_answer="${swap_answer,,}"
+        if [ $swap_answer = "no" ]; then
+            printf "not using swap"
+            swappart="no"
+        else
+            while true; do
+                printf "enter swap partition\n>"
+                read swappart
+                swappart="${swappart,,}"
+                if grep "$swappart" /root/disks; then
+                    mkswap /dev/${swappart}
+                    swapon /dev/${swappart}
+                    break
+                else
+                    printf${LIGHTRED}"%s is not a valid swap partition, review this list of your devices and make a valid selection\n" $swappart
+                    printf ${WHITE}".\n"
+                    sleep 5
+                    clear
+                    cat /root/disks
+                fi
+            done
+        fi
 		printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
 		break
 	else
 		#rootpartnotfound
 		printf ${LIGHTRED}"%s is not a valid installation target, review this list of your devices and make a valid selection\n" $rootpart
 		printf ${WHITE}".\n"
-		sleep 7
+		sleep 5
 		clear
 	fi
 done
@@ -64,6 +89,7 @@ echo "$username" >> "$install_vars"
 echo "$kernelanswer" >> "$install_vars"
 echo "$hostname" >> "$install_vars"
 echo "$sslanswer" >> "$install_vars"
+echo "$swappart" >> "$install_vars"
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened

@@ -27,6 +27,7 @@ kernelanswer=$(sed '3q;d' install_vars)
 hostname=$(sed '4q;d' install_vars)
 sslanswer=$(sed '5q;d' install_vars)
 cpus=$(sed '6q;d' install_vars)
+swappart=$(sed '7q;d' install_vars)
 part_1=("/dev/${disk}1")
 part_2=("/dev/${disk}2")
 dev_sd=("/dev/$disk")
@@ -115,10 +116,12 @@ fi
 sed -i -e "s/localhost/$hostname/g" /etc/conf.d/hostname
 emerge --noreplace net-misc/netifrc
 printf "config_enp0s3=\"dhcp\"\n" >> /etc/conf.d/net
-#printf "/dev/sda1\t\t/boot\t\text4\t\tdefaults,noatime\t0 2\n" >> /etc/fstab
-printf "%s\t\t/boot\t\text4\t\tdefaults,noatime\t0 2\n" $part_1 >> /etc/fstab
-#printf "/dev/sda2\t\t/\t\text4\t\tnoatime\t0 1\n" >> /etc/fstab
+printf "%s\t\t/boot\text4\t\tdefaults\t0 2\n" $part_1 >> /etc/fstab
 printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $part_2 >> /etc/fstab
+SUB_STR='/dev/'
+if [[ "$swappart" == *"$SUB_STR"* ]]; then
+    printf "%s\t\tnone\t swap\t\tsw\t\t0 0\n" $swappart >> /etc/fstab
+fi
 cd /etc/init.d
 ln -s net.lo net.enp0s3
 rc-update add net.enp0s3 default
