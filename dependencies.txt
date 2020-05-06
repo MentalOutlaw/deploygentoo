@@ -17,7 +17,7 @@ x11-terms/rxvt-unicode
 
 #misc
 dev-vcs/git
-app-editors/neovim
+#app-editors/neovim
 app-editors/vim
 media-sound/alsa-utils
 

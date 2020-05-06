@@ -1,7 +1,8 @@
 #!/bin/bash
-#TODO
-#there are some situations in which the deploygentoo-master folder will be named deploygentoo
-#make this script work with that folder name aswell
+cd rice/
+scriptdir=$(pwd)
+cd ..
+script_home=$(pwd)
 
 check_file_exists () {
 	file=$1
@@ -46,34 +47,11 @@ layman -S
 emerge $DEPLIST
 
 printf "installed dependencies\n"
-script_home=$(pwd)
 cd /usr/lib64/urxvt/perl
 git clone https://github.com/majutsushi/urxvt-font-size
 mv urxvt-font-size/font-size .
-cd $script_home
-#check_dir_exists /apps
-#if $exists; then
-#	printf "apps directory already exists"
-#else
-#	unzip rice.zip
-#fi
-cd rice/
-#chmod +x rice-gentoo.sh
-#sh rice-gentoo.sh
-#this part was copied from rice-gentoo.sh
-set -e
-
-if [ "$EUID" -ne 0 ]
-  then echo "The script has to be run as root."
-  exit
-fi
-
 BIN_DIR=${BIN_DIR:-/usr/local/bin/}
 
-scriptdir=$(pwd)
-cd ..
-cd ..
-userhome=$(pwd)
 check_dir_exists $HOME/.config
 if $exists; then
 	printf "root users .config directory already exists"
@@ -147,10 +125,6 @@ echo "Install finished. Add software to .xinitrc to launch the DE with startx,
 or copy the provided .xinitrc file to your home directory (backup the old one!)"
 
 
-X -configure
-sed -ie "85i\ \t\tModes\t  \"1920x1080\"" /root/xorg.conf.new
-cp /root/xorg.conf.new /etc/X11/xorg.conf
-printf "completed installing dependencies\n"
 X -configure
 sed -ie "79i\ \t\tModes\t  \"1920x1080\"" /root/xorg.conf.new
 rm -rf /etc/X11/xorg.conf
