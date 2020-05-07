@@ -33,7 +33,7 @@ printf "This script is designed for gentoo linux and it will not work in any oth
 printf "Installing dependencies listed in dependencies.txt...\n"
 
 SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
-emaint -a sync
+#emaint -a sync
 
 cd /etc/layman
 layman -a steam-overlay

@@ -19,7 +19,7 @@ while true; do
         read auto_prov_ans
         if [ "$auto_prov_ans" = "y" ]; then
             wipefs -a $disk_chk
-            parted $disk_chk --script mklabel gpt
+            parted -a optimal $disk_chk --script mklabel gpt
             parted $disk_chk --script mkpart primary 1MiB 3MiB
             parted $disk_chk --script name 1 grub
             parted $disk_chk --script set 1 bios_grub on
@@ -34,7 +34,8 @@ while true; do
             part_2=("${disk_chk}2")
             part_3=("${disk_chk}3")
             part_4=("${disk_chk}4")
-            mkfs.ext4 $part_2
+            mkfs.fat -F 32 $part_2
+            #mkfs.ext4 $part_2
             mkfs.ext4 $part_4
             mkfswap $part_3
             swapon $part_3

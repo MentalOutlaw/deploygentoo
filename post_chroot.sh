@@ -124,7 +124,7 @@ UUID3=$(blkid -s UUID -o value $part_3)
 UUID3=("UUID=${UUID3}")
 UUID4=$(blkid -s UUID -o value $part_4)
 UUID4=("UUID=${UUID4}")
-printf "%s\t\t/boot\text4\t\tdefaults\t0 2\n" $UUID2 >> /etc/fstab
+printf "%s\t\t/boot/efi\tvfat\t\tdefaults\t0 2\n" $UUID2 >> /etc/fstab
 SUB_STR='/dev/'
 if [[ "$part_3" == *"$SUB_STR"* ]]; then
     printf "%s\t\tnone\t swap\t\tsw\t\t0 0\n" $UUID3 >> /etc/fstab
