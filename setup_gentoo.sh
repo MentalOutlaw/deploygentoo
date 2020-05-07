@@ -1,4 +1,4 @@
-##backs up the default make.conf
+#backs up the default make.conf
 #this puts some things in place like your make.conf, aswell as package.use
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;94m'
