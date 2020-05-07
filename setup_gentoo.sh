@@ -7,59 +7,102 @@ WHITE='\033[1;97m'
 cd ..
 printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
 fdisk -l >> devices
+grep -e '^Device\|^\/dev' devices >> disks
+cat /root/disks
 while true; do
 	printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
 	read disk
-    partition_count="$(grep-o $disk devices | wc -l)"
-    grep -e '^Device\|^\/dev' devices >> disks
-	cat /root/disks
 	disk="${disk,,}"
-	printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
-	read num
-	rootpart="$disk$num"
-	if grep "$rootpart" /root/disks; then
-		#continue running the script
-        if [ $partition_count -gt 2 ]; then
-            printf "do you want to enable swap?\n>"
-            read swap_answer
-        fi
-        swap_answer="${swap_answer,,}"
-        if [ "$swap_answer" = "no" ]; then
-            printf "not using swap"
-            swappart="no"
-        else
-            while true; do
-                printf "enter swap partition (ex, sda3 for /dev/sda3)\n>"
-                read swappart
-                swappart="${swappart,,}"
-                if grep "$swappart" /root/disks; then
-                    mkswap /dev/${swappart}
-                    swapon /dev/${swappart}
-                    break
-                else
-                    printf${LIGHTRED}"%s is not a valid swap partition, review this list of your devices and make a valid selection\n" $swappart
-                    printf ${WHITE}".\n"
-                    sleep 5
-                    clear
-                    cat /root/disks
+    partition_count="$(grep-o $disk devices | wc -l)"
+    disk_chk=("/dev/${disk}")
+    if grep "$disk_chk" /root/disks; then
+        printf "Would you like to auto provision %s? \n This will create a GPT partition scheme where\n%s1 = 2 MB bios_partition\n%s2 = 128 MB boot partition\n%s3 = 4 GB swap_partition\n%s4 x GB root partition (the rest of the hard disk)\n\nEnter y to continue with auto provision or n to exit the script \n>" $disk_chk $disk_chk $disk_chk $disk_chk $disk_chk
+        read auto_prov_ans
+        if [ "$auto_prov_ans" = "y" ]; then
+            parted --script /dev/sda \
+                mklabel gpt \
+                #bios partition
+                mkpart primary 1MiB 3MiB \
+                name 1 grub \
+                set 1 bios_grub on \
+                #boot partition
+                mkpart primary 3MiB 131MiB \
+                name 2 boot \
+                #Swap Partition
+                mkpart primary 131MiB 4227MiB \
+                name 3 swap \
+                #Root Partition
+                mkpart primary 4227Mib -1
+                name 4 rootfs
+                print
+            part_1=("${disk_chk}1")
+            part_2=("${disk_chk}2")
+            part_3=("${disk_chk}3")
+            part_4=("${disk_chk}4")
+            mkfs.ext4 $part_2
+            mkfs.ext4 $part_4
+            mkfswap $part_3
+            swapon $part_3
+            sleep 2
+            break
+        elif [ "$auto_prov_ans" = "n" ]; then
+            printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
+            read num
+            rootpart="$disk$num"
+            if grep "$rootpart" /root/disks; then
+                #continue running the script
+                if [ $partition_count -gt 2 ]; then
+                    printf "do you want to enable swap?\n>"
+                    read swap_answer
                 fi
-            done
+                swap_answer="${swap_answer,,}"
+                if [ "$swap_answer" = "no" ]; then
+                    printf "not using swap"
+                    part_3="no"
+                else
+                    while true; do
+                        printf "enter swap partition (ex, /dev/sda3)\n>"
+                        read part_3
+                        part_3="${part_3,,}"
+                        if grep "$part_3" /root/disks; then
+                            mkswap $part_3
+                            swapon $part_3
+                            break
+                        else
+                            printf${LIGHTRED}"%s is not a valid swap partition, review this list of your devices and make a valid selection\n" $part_3
+                            printf ${WHITE}".\n"
+                            sleep 5
+                            clear
+                            cat /root/disks
+                        fi
+                    done
+                fi
+                printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
+                break
+            else
+                #rootpartnotfound
+                printf ${LIGHTRED}"%s is not a valid installation target, review this list of your devices and make a valid selection\n" $rootpart
+                printf ${WHITE}".\n"
+                sleep 5
+                clear
+            fi
         fi
-		printf ${LIGHTGREEN}"%s is valid :D continuing with the script\n" $rootpart
-		break
-	else
-		#rootpartnotfound
-		printf ${LIGHTRED}"%s is not a valid installation target, review this list of your devices and make a valid selection\n" $rootpart
-		printf ${WHITE}".\n"
-		sleep 5
-		clear
-	fi
+    else
+        printf ${LIGHTRED}"%s is an invalid device, try again with a correct one\n" $disk_chk
+        printf ${WHITE}".\n"
+        sleep 5
+        clear
+        cat /root/disks
+        else
+            printf ${LIGHTRED}"%s is an invalid answer, do it correctly" $auto_prov_ans
+            printf ${WHITE}".\n"
+            sleep 2
+    fi
 done
-install_target=("/dev/${rootpart}")
 #copying files into place
 #rm -rf /root/devices
 #rm -rf /root/disks
-mount $install_target /mnt/gentoo
+mount $part_4 /mnt/gentoo
 mv deploygentoo-master /mnt/gentoo
 mv deploygentoo-master.zip /mnt/gentoo/
 cd /mnt/gentoo/deploygentoo-master
@@ -91,7 +134,10 @@ echo "$kernelanswer" >> "$install_vars"
 echo "$hostname" >> "$install_vars"
 echo "$sslanswer" >> "$install_vars"
 echo "$cpus" >> "$install_vars"
-echo "$swappart" >> "$install_vars"
+echo "$part_3" >> "$install_vars"
+echo "$part_1" >> "$install_vars"
+echo "$part_2" >> "$install_vars"
+echo "$part_4" >> "$install_vars"
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened

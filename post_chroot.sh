@@ -27,9 +27,10 @@ kernelanswer=$(sed '3q;d' install_vars)
 hostname=$(sed '4q;d' install_vars)
 sslanswer=$(sed '5q;d' install_vars)
 cpus=$(sed '6q;d' install_vars)
-swappart=$(sed '7q;d' install_vars)
-part_1=("/dev/${disk}1")
-part_2=("/dev/${disk}2")
+part_3=$(sed '7q;d' install_vars)
+part_1=$(sed '8q;d' install_vars)
+part_2=$(sed '9q;d' install_vars)
+part_4=$(sed '10q;d' install_vars)
 dev_sd=("/dev/$disk")
 mount $part_1 /boot
 jobs=("-j${cpus}")
@@ -117,12 +118,18 @@ fi
 sed -i -e "s/localhost/$hostname/g" /etc/conf.d/hostname
 emerge --noreplace net-misc/netifrc
 printf "config_enp0s3=\"dhcp\"\n" >> /etc/conf.d/net
-printf "%s\t\t/boot\text4\t\tdefaults\t0 2\n" $part_1 >> /etc/fstab
-printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $part_2 >> /etc/fstab
+UUID2=$(blkid -s UUID -o value $part_2)
+UUID2=("UUID=${UUID2}")
+UUID3=$(blkid -s UUID -o value $part_3)
+UUID3=("UUID=${UUID3}")
+UUID4=$(blkid -s UUID -o value $part_4)
+UUID4=("UUID=${UUID4}")
+printf "%s\t\t/boot\text4\t\tdefaults\t0 2\n" $UUID2 >> /etc/fstab
 SUB_STR='/dev/'
-if [[ "$swappart" == *"$SUB_STR"* ]]; then
-    printf "%s\t\tnone\t swap\t\tsw\t\t0 0\n" $swappart >> /etc/fstab
+if [[ "$part_3" == *"$SUB_STR"* ]]; then
+    printf "%s\t\tnone\t swap\t\tsw\t\t0 0\n" $UUID3 >> /etc/fstab
 fi
+printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $UUID4 >> /etc/fstab
 cd /etc/init.d
 ln -s net.lo net.enp0s3
 rc-update add net.enp0s3 default
