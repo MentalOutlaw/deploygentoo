@@ -194,13 +194,44 @@ printf "you should now have a working Gentoo installation, dont forget to set yo
 #	exit 2
 #fi
 mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
-printf ${LIGHTGREEN}"chroot /mnt/gentoo\n ONLY IF PASSWD %s doesn't work!!\n" $username
-printf ${LIGHTGREEN}"passwd\n"
-printf ${LIGHTGREEN}"passwd %s\n" $username
-printf ${LIGHTGREEN}"exit\n"
+while true; do
+    printf ${LIGHTGREEN}"enter the password for your root user\n>"
+    read $password
+    printf ${LIGHTGREEN}"re-enter the password for your root user\n>"
+    read $password_compare
+    if [ "$password" = "$password_compare" ]; then
+        echo "$password" | passwd root --stdin
+        break
+    else
+        printf ${LIGHTRED}"passwords do not match, re enter them\n"
+        printf ${WHITE}".\n"
+        sleep 5
+        clear
+    fi
+done
+while true; do
+    printf ${LIGHTGREEN}"enter the password for your user %s\n>" $username
+    read $password
+    printf ${LIGHTGREEN}"re-enter the password for %s\n>" $username
+    read $password_compare
+    if [ "$password" = "$password_compare" ]; then
+        echo "$password" | passwd "$username" --stdin
+        break
+    else
+        printf ${LIGHTRED}"passwords do not match, re enter them\n"
+        printf ${WHITE}".\n"
+        sleep 5
+        clear
+    fi
+done
+#printf ${LIGHTGREEN}"chroot /mnt/gentoo\n ONLY IF PASSWD %s doesn't work!!\n" $username
+#printf ${LIGHTGREEN}"passwd\n"
+#printf ${LIGHTGREEN}"passwd %s\n" $username
+#printf ${LIGHTGREEN}"exit\n"
 #printf ${LIGHTGREEN}"cd\n"
 #printf ${LIGHTGREEN}"umount -l /mnt/gentoo/dev{/shm,/pts,}\n"
 #printf ${LIGHTGREEN}"umount -R /mnt/gentoo\n"
+printf ${LIGHTGREEN}"You now have a completed gentoo installation system, reboot and remove the installation media to load it\n"
 printf ${LIGHTGREEN}"reboot\n"
 rm -rf /post_chroot.sh
 #exit

@@ -206,7 +206,6 @@ cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage/savedconfig /mnt/gentoo/etc
 
 mkdir --parents /mnt/gentoo/etc/portage/repos.conf
 cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
-#
 printf "copied gentoo repository to repos.conf\n"
 #
 ##copy DNS info
