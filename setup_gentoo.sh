@@ -19,6 +19,7 @@ while true; do
         printf "Would you like to auto provision %s? \n This will create a GPT partition scheme where\n%s1 = 2 MB bios_partition\n%s2 = 128 MB boot partition\n%s3 = 4 GB swap_partition\n%s4 x GB root partition (the rest of the hard disk)\n\nEnter y to continue with auto provision or n to exit the script \n>" $disk_chk $disk_chk $disk_chk $disk_chk $disk_chk
         read auto_prov_ans
         if [ "$auto_prov_ans" = "y" ]; then
+	    wipefs -a $disk_chk
             parted --script /dev/sda \
                 mklabel gpt \
                 #bios partition
