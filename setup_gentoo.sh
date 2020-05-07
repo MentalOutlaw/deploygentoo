@@ -37,7 +37,7 @@ while true; do
             mkfs.fat -F 32 $part_2
             #mkfs.ext4 $part_2
             mkfs.ext4 $part_4
-            mkfswap $part_3
+            mkswap $part_3
             swapon $part_3
             rm -rf devices
             sleep 2
