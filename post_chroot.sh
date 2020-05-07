@@ -5,7 +5,7 @@ cd ..
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;34m'
 ##printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
-#read disk
+##read disk
 #disk="${disk,,}"
 #printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
 ##There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
