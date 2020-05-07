@@ -87,6 +87,10 @@ while true; do
                 sleep 5
                 clear
             fi
+        else
+            printf ${LIGHTRED}"%s is an invalid answer, do it correctly" $auto_prov_ans
+            printf ${WHITE}".\n"
+            sleep 2
         fi
     else
         printf ${LIGHTRED}"%s is an invalid device, try again with a correct one\n" $disk_chk
@@ -94,10 +98,6 @@ while true; do
         sleep 5
         clear
         cat /root/disks
-        else
-            printf ${LIGHTRED}"%s is an invalid answer, do it correctly" $auto_prov_ans
-            printf ${WHITE}".\n"
-            sleep 2
     fi
 done
 #copying files into place
