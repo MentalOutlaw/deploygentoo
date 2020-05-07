@@ -7,15 +7,14 @@ WHITE='\033[1;97m'
 cd ..
 printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
 fdisk -l >> devices
-grep -e '^Device\|^\/dev' devices >> disks
-cat /root/disks
+cat /root/devices
 while true; do
 	printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
 	read disk
 	disk="${disk,,}"
     partition_count="$(grep -o $disk devices | wc -l)"
     disk_chk=("/dev/${disk}")
-    if grep "$disk_chk" /root/disks; then
+    if grep "$disk_chk" /root/devices; then
         printf "Would you like to auto provision %s? \n This will create a GPT partition scheme where\n%s1 = 2 MB bios_partition\n%s2 = 128 MB boot partition\n%s3 = 4 GB swap_partition\n%s4 x GB root partition (the rest of the hard disk)\n\nEnter y to continue with auto provision or n to exit the script \n>" $disk_chk $disk_chk $disk_chk $disk_chk $disk_chk
         read auto_prov_ans
         if [ "$auto_prov_ans" = "y" ]; then
@@ -45,14 +44,13 @@ while true; do
             mkfswap $part_3
             swapon $part_3
             rm -rf devices
-            grep -e '^Device\|^\/dev' devices >> disks
             sleep 2
             break
         elif [ "$auto_prov_ans" = "n" ]; then
             printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
             read num
             rootpart="$disk$num"
-            if grep "$rootpart" /root/disks; then
+            if grep "$rootpart" /root/devices; then
                 #continue running the script
                 if [ $partition_count -gt 2 ]; then
                     printf "do you want to enable swap?\n>"
@@ -67,7 +65,7 @@ while true; do
                         printf "enter swap partition (ex, /dev/sda3)\n>"
                         read part_3
                         part_3="${part_3,,}"
-                        if grep "$part_3" /root/disks; then
+                        if grep "$part_3" /root/devices; then
                             mkswap $part_3
                             swapon $part_3
                             break
@@ -76,7 +74,7 @@ while true; do
                             printf ${WHITE}".\n"
                             sleep 5
                             clear
-                            cat /root/disks
+                            cat /root/devices
                         fi
                     done
                 fi
@@ -99,12 +97,11 @@ while true; do
         printf ${WHITE}".\n"
         sleep 5
         clear
-        cat /root/disks
+        cat /root/devices
     fi
 done
 #copying files into place
 #rm -rf /root/devices
-#rm -rf /root/disks
 mount $part_4 /mnt/gentoo
 mv deploygentoo-master /mnt/gentoo
 mv deploygentoo-master.zip /mnt/gentoo/
