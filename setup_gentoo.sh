@@ -20,21 +20,21 @@ while true; do
         if [ "$auto_prov_ans" = "y" ]; then
 	    wipefs -a $disk_chk
             parted --script /dev/sda \
-                mklabel gpt \
-                #bios partition
-                mkpart primary 1MiB 3MiB \
-                name 1 grub \
-                set 1 bios_grub on \
-                #boot partition
-                mkpart primary 3MiB 131MiB \
-                name 2 boot \
-                #Swap Partition
-                mkpart primary 131MiB 4227MiB \
-                name 3 swap \
-                #Root Partition
-                mkpart primary 4227Mib -1
-                name 4 rootfs
-                print
+            mklabel gpt \
+            #bios partition
+            mkpart primary 1MiB 3MiB \
+            name 1 grub \
+            set 1 bios_grub on \
+            #boot partition
+            mkpart primary 3MiB 131MiB \
+            name 2 boot \
+            #Swap Partition
+            mkpart primary 131MiB 4227MiB \
+            name 3 swap \
+            #Root Partition
+            mkpart primary 4227Mib -1
+            name 4 rootfs
+            print
             part_1=("${disk_chk}1")
             part_2=("${disk_chk}2")
             part_3=("${disk_chk}3")
