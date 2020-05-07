@@ -32,9 +32,8 @@ while true; do
             mkpart primary 131MiB 4227MiB \
             name 3 swap \
             #Root Partition
-            mkpart primary 4227Mib -1
-            name 4 rootfs
-            print
+            mkpart primary 4227Mib -1 \
+            name 4 rootfs \
             part_1=("${disk_chk}1")
             part_2=("${disk_chk}2")
             part_3=("${disk_chk}3")
