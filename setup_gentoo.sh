@@ -18,22 +18,18 @@ while true; do
         printf "Would you like to auto provision %s? \n This will create a GPT partition scheme where\n%s1 = 2 MB bios_partition\n%s2 = 128 MB boot partition\n%s3 = 4 GB swap_partition\n%s4 x GB root partition (the rest of the hard disk)\n\nEnter y to continue with auto provision or n to exit the script \n>" $disk_chk $disk_chk $disk_chk $disk_chk $disk_chk
         read auto_prov_ans
         if [ "$auto_prov_ans" = "y" ]; then
-	    wipefs -a $disk_chk
-            parted --script /dev/sda \
-            mklabel gpt \
-            #bios partition
-            mkpart primary 1MiB 3MiB \
-            name 1 grub \
-            set 1 bios_grub on \
-            #boot partition
-            mkpart primary 3MiB 131MiB \
-            name 2 boot \
-            #Swap Partition
-            mkpart primary 131MiB 4227MiB \
-            name 3 swap \
-            #Root Partition
-            mkpart primary 4227Mib -1 \
-            name 4 rootfs \
+            wipefs -a $disk_chk
+            parted $disk_chk --script mklabel gpt
+            parted $disk_chk --script mkpart primary 1MiB 3MiB
+            parted $disk_chk --script name 1 grub
+            parted $disk_chk --script set 1 bios_grub on
+            parted $disk_chk --script mkpart primary 3MiB 131MiB
+            parted $disk_chk --script name 2 boot
+            parted $disk_chk --script mkpart primary 131MiB 4227MiB
+            parted $disk_chk --script name 3 swap
+            parted $disk_chk --script -- mkpart primary 4227MiB -1
+            parted $disk_chk --script name 4 rootfs
+            parted $disk_chk --script set 2 boot on
             part_1=("${disk_chk}1")
             part_2=("${disk_chk}2")
             part_3=("${disk_chk}3")
@@ -100,7 +96,6 @@ while true; do
     fi
 done
 #copying files into place
-#rm -rf /root/devices
 mount $part_4 /mnt/gentoo
 mv deploygentoo-master /mnt/gentoo
 mv deploygentoo-master.zip /mnt/gentoo/
