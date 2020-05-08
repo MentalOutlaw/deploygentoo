@@ -9,9 +9,9 @@ printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INS
 fdisk -l >> devices
 cat /root/devices
 while true; do
-	printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
-	read disk
-	disk="${disk,,}"
+    printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
+    read disk
+    disk="${disk,,}"
     partition_count="$(grep -o $disk devices | wc -l)"
     disk_chk=("/dev/${disk}")
     if grep "$disk_chk" /root/devices; then
