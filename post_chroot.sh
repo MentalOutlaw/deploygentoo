@@ -32,7 +32,7 @@ part_1=$(sed '8q;d' install_vars)
 part_2=$(sed '9q;d' install_vars)
 part_4=$(sed '10q;d' install_vars)
 dev_sd=("/dev/$disk")
-mount $part_1 /boot
+mount $part_2 /boot
 jobs=("-j${cpus}")
 printf "%s jobs equals \n" % $jobs
 printf "mounted boot\n"
