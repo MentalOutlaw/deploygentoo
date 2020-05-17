@@ -39,9 +39,11 @@ jobs=("-j${cpus}")
 printf "%s jobs equals \n" % $jobs
 printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
-#emerge-webrsync
 #printf "webrsync complete\n"
 emerge --sync --quiet
+emerge app-portage/mirrorselect
+printf "searching for fastest servers\n"
+mirrorselect -s5 -b10 -D
 printf "sync complete\n"
 sleep 10
 filename=gentootype.txt
