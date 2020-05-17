@@ -148,7 +148,9 @@ emerge net-misc/dhcpcd
 #installs grub
 emerge --verbose sys-boot/grub:2
 #grub-install /dev/sda
-grub-install $dev_sd
+#This is required for EFI BIOS
+#grub-install $dev_sd
+grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
 #printf "updated grub\n"
 useradd -m -G users,wheel,audio -s /bin/bash $username
