@@ -7,6 +7,13 @@ WHITE='\033[1;97m'
 cd ..
 printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
 fdisk -l >> devices
+ifconfig -s >> nw_devices
+cut -d ' ' -f1 nw_devices >> network_devices
+rm -rf nw_devices
+sed -e "s/lo//g" -i network_devices
+sed -e "s/Iface//g" -i network_devices
+sed '/^$/d' network_devices
+
 cat /root/devices
 while true; do
     printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
@@ -133,6 +140,7 @@ echo "$part_3" >> "$install_vars"
 echo "$part_1" >> "$install_vars"
 echo "$part_2" >> "$install_vars"
 echo "$part_4" >> "$install_vars"
+cat /root/network_devices >> "$install_vars"
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened

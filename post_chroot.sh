@@ -21,6 +21,7 @@ LIGHTBLUE='\033[1;34m'
 #sslanswer="${sslanswer,,}"
 #mount /dev/sda1 /boot
 install_vars=/mnt/gentoo/install_vars
+install_vars_count="$(wc -w /mnt/gentoo/install_vars)"
 disk=$(sed '1q;d' install_vars)
 username=$(sed '2q;d' install_vars)
 kernelanswer=$(sed '3q;d' install_vars)
@@ -31,6 +32,7 @@ part_3=$(sed '7q;d' install_vars)
 part_1=$(sed '8q;d' install_vars)
 part_2=$(sed '9q;d' install_vars)
 part_4=$(sed '10q;d' install_vars)
+nw_interface=$(sed '11q;d' install_vars)
 dev_sd=("/dev/$disk")
 mount $part_2 /boot
 jobs=("-j${cpus}")
@@ -114,10 +116,22 @@ else
 	printf "Kernel installed\n"
 fi
 
+cd /etc/init.d
 #enables DHCP
 sed -i -e "s/localhost/$hostname/g" /etc/conf.d/hostname
 emerge --noreplace net-misc/netifrc
-printf "config_enp0s3=\"dhcp\"\n" >> /etc/conf.d/net
+nw_config_str=("config_${nw_interface}")
+printf "$nw_config_str=\"dhcp\"\n" >> /etc/conf.d/net
+if [ $install_vars_count -gt 11 ]; then
+    nw_interface2=$(sed '12q;d' install_vars)
+    nw_config_str3=("config_${nw_interface2}")
+    printf "$nw_config_str3=\"dhcp\"\n" >> /etc/conf.d/net
+    net_config_str4=("net.${nw_interface2}")
+    ln -s net.lo $net_config_str4
+    rc-update add $net_config_str4 default
+else
+    printf "only 1 network device found\n"
+fi
 UUID2=$(blkid -s UUID -o value $part_2)
 UUID2=("UUID=${UUID2}")
 UUID3=$(blkid -s UUID -o value $part_3)
@@ -130,9 +144,9 @@ if [[ "$part_3" == *"$SUB_STR"* ]]; then
     printf "%s\t\tnone\t swap\t\tsw\t\t0 0\n" $UUID3 >> /etc/fstab
 fi
 printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $UUID4 >> /etc/fstab
-cd /etc/init.d
-ln -s net.lo net.enp0s3
-rc-update add net.enp0s3 default
+net_config_str2=("net.${nw_interface}")
+ln -s net.lo $net_config_str2
+rc-update add $net_config_str2 default
 #printf "dhcp enabled\n"
 emerge app-admin/sysklogd
 emerge app-admin/sudo
