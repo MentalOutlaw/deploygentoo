@@ -126,12 +126,12 @@ cd /etc/init.d
 #enables DHCP
 sed -i -e "s/localhost/$hostname/g" /etc/conf.d/hostname
 emerge --noreplace net-misc/netifrc
-nw_config_str=("config_${nw_interface}")
-printf "$nw_config_str=\"dhcp\"\n" >> /etc/conf.d/net
+nw_config_str=("config_${nw_interface}=\"dhcp\"")
+printf "$nw_config_str\n" >> /etc/conf.d/net
 if [ $install_vars_count -gt 11 ]; then
     nw_interface2=$(sed '12q;d' install_vars)
-    nw_config_str3=("config_${nw_interface2}")
-    printf "$nw_config_str3=\"dhcp\"\n" >> /etc/conf.d/net
+    nw_config_str3=("config_${nw_interface2}=\"dhcp\"")
+    printf "$nw_config_str3\n" >> /etc/conf.d/net
     net_config_str4=("net.${nw_interface2}")
     ln -s net.lo $net_config_str4
     rc-update add $net_config_str4 default

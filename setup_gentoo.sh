@@ -196,15 +196,15 @@ case $ssl_choice in
     ;;
 esac
 cd /mnt/gentoo/
-printf "there are %s cpus\n" $cpus
-sed -i "s/MAKEOPTS=\"-j2\"/MAKEOPTS=\"-j$cpus\"/g" /etc/portage/make.conf
-printf "moved portage files into place\n"
 mkdir /mnt/gentoo/etc/portage/backup/
 mv /mnt/gentoo/etc/portage/make.conf /mnt/gentoo/etc/portage/backup/
 printf "moved old make.conf to /backup/\n"
 ##copies our pre-made make.conf over
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf /mnt/gentoo/etc/portage/
 printf "copied new make.conf to /etc/portage/\n"
+printf "there are %s cpus\n" $cpus
+sed -i "s/MAKEOPTS=\"-j3\"/MAKEOPTS=\"-j$cpus\"/g" /etc/portage/make.conf
+printf "moved portage files into place\n"
 
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/linux_drivers /mnt/gentoo/etc/portage/
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/nvidia_package.license /mnt/gentoo/etc/portage/
