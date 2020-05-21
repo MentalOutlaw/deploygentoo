@@ -203,7 +203,7 @@ printf "moved old make.conf to /backup/\n"
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf /mnt/gentoo/etc/portage/
 printf "copied new make.conf to /etc/portage/\n"
 printf "there are %s cpus\n" $cpus
-sed -i "s/MAKEOPTS=\"-j3\"/MAKEOPTS=\"-j$cpus\"/g" /etc/portage/make.conf
+sed -i "s/MAKEOPTS=\"-j3\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/etc/portage/make.conf
 printf "moved portage files into place\n"
 
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/linux_drivers /mnt/gentoo/etc/portage/

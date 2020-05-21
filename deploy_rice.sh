@@ -42,18 +42,37 @@ DEPLIST="`sed -e 's/#.*$//' -e '/^$/d' dependencies.txt | tr '\n' ' '`"
 #Installs and configures layman
 emerge app-portage/layman
 sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
-echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
-echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
+if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
+    printf "layman source already added to make.conf\n"
+else
+    echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
+fi
+if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
+    printf "PORTDIR_OVERLAY string already added to make.conf\n"
+else
+    #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
+    printf "nothing to do here\n"
+fi
 layman -a libressl
-yes | layman -a steam-overlay
+#yes | layman -a steam-overlay
 layman -S
 
 emerge $DEPLIST
 
 printf "installed dependencies\n"
-cd /usr/lib64/urxvt/perl
-git clone https://github.com/majutsushi/urxvt-font-size
-mv urxvt-font-size/font-size .
+check_dir_exists /usr/lib64/urxvt/perl/font-size
+if $exists; then
+	printf "urxvt font-size folder already exists\n"
+else
+    check_dir_exists /usr/lib64/urxvt
+    if $exists; then
+        cd /usr/lib64/urxvt/perl
+        git clone https://github.com/majutsushi/urxvt-font-size
+        mv urxvt-font-size/font-size .
+    else
+        printf "urxvt folder doesn't exist, urxvt was not emerged correctly\n"
+    fi
+fi
 BIN_DIR=${BIN_DIR:-/usr/local/bin/}
 
 check_dir_exists $HOME/.config
@@ -101,10 +120,34 @@ cp -f dots/.Xresources $userhome
 cp -f dots/init.vim $userhome
 
 cd $HOME/.config
-git clone https://github.com/MentalOutlaw/st
-git clone https://github.com/MentalOutlaw/slstatus
-git clone https://github.com/MentalOutlaw/dwm
-git clone https://github.com/MentalOutlaw/dmenu
+check_dir_exists $HOME/.config/st
+if $exists; then
+	printf "st folder exists already"
+else
+	echo "cloning st from github"
+    git clone https://github.com/MentalOutlaw/st
+fi
+check_dir_exists $HOME/.config/slstatus
+if $exists; then
+	printf "slstatus folder exists already"
+else
+	echo "cloning slstatus from github"
+    git clone https://github.com/MentalOutlaw/slstatus
+fi
+check_dir_exists $HOME/.config/dwm
+if $exists; then
+	printf "dwm folder exists already"
+else
+	echo "cloning dwm from github"
+    git clone https://github.com/MentalOutlaw/dwm
+fi
+check_dir_exists $HOME/.config/dmenu
+if $exists; then
+	printf "dmenu folder exists already"
+else
+	echo "cloning dmenu from github"
+    git clone https://github.com/MentalOutlaw/dmenu
+fi
 
 cd $HOME/.config/dwm
 make clean install
@@ -127,10 +170,14 @@ fc-cache -fv
 
 echo "Install finished. Add software to .xinitrc to launch the DE with startx,
 or copy the provided .xinitrc file to your home directory (backup the old one!)"
+if grep "1920x1080" /etc/X11/xorg.conf; then
+    printf "xorg.conf is already generated, check your config\n"
+else
+    X -configure
+    sed -ie "79i\ \t\tModes\t  \"1920x1080\"" /root/xorg.conf.new
+    rm -rf /etc/X11/xorg.conf
+    mv /root/xorg.conf.new /etc/X11/xorg.conf
+fi
 
 
-X -configure
-sed -ie "79i\ \t\tModes\t  \"1920x1080\"" /root/xorg.conf.new
-rm -rf /etc/X11/xorg.conf
-mv /root/xorg.conf.new /etc/X11/xorg.conf
 printf "your GUI should be set up now, use startx to launch it\n"
