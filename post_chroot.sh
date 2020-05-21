@@ -45,7 +45,7 @@ printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
 #printf "webrsync complete\n"
 emerge --sync --quiet
-emerge app-portage/mirrorselect
+emerge -q app-portage/mirrorselect
 printf "searching for fastest servers\n"
 mirrorselect -s5 -b10 -D
 printf "sync complete\n"
@@ -56,7 +56,7 @@ line=$(head -n 1 $filename)
 case $line in
   latest-stage3-amd64-hardened)
     #TODO put stuff specific to gcc hardened here
-    emerge --verbose --update --deep --newuse @world
+    emerge --verbose --update --deep --newuse --quiet @world
     printf "big emerge complete\n"
     ;;
   latest-stage3-amd64-musl-hardened)
@@ -79,7 +79,7 @@ esac
 printf "preparing to do big emerge\n"
 
 printf "America/New_York\n" > /etc/timezone
-emerge --config sys-libs/timezone-data
+emerge --config --quiet sys-libs/timezone-data
 printf "timezone data emerged\n"
 #en_US.UTF-8 UTF-8
 printf "en_US.UTF-8 UTF-8\n" >> /etc/locale.gen
@@ -93,13 +93,13 @@ env-update && source /etc/profile
 
 #Installs the kernel
 printf "preparing to emerge kernel sources\n"
-emerge sys-kernel/gentoo-sources
+emerge -q sys-kernel/gentoo-sources
 sleep 10
 ls -l /usr/src/linux
 cd /usr/src/linux
-emerge sys-apps/pciutils
-emerge app-arch/lzop
-emerge app-arch/lz4
+emerge -q sys-apps/pciutils
+emerge -q app-arch/lzop
+emerge -q app-arch/lz4
 if [ $kernelanswer = "no" ]; then
 	cp deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
 	mv gentoohardenedminimal .config
@@ -125,7 +125,7 @@ fi
 cd /etc/init.d
 #enables DHCP
 sed -i -e "s/localhost/$hostname/g" /etc/conf.d/hostname
-emerge --noreplace net-misc/netifrc
+emerge --noreplace --quiet net-misc/netifrc
 nw_config_str=("config_${nw_interface}=\"dhcp\"")
 printf "$nw_config_str\n" >> /etc/conf.d/net
 if [ $install_vars_count -gt 11 ]; then
@@ -154,19 +154,19 @@ net_config_str2=("net.${nw_interface}")
 ln -s net.lo $net_config_str2
 rc-update add $net_config_str2 default
 #printf "dhcp enabled\n"
-emerge app-admin/sysklogd
-emerge app-admin/sudo
+emerge -q app-admin/sysklogd
+emerge -q app-admin/sudo
 #printf "just emerged sudo\n"
 rm -rf /etc/sudoers
 cd $scriptdir
 cp sudoers /etc/
 printf "installed sudo and enabled it for wheel group\n"
 rc-update add sysklogd default
-emerge sys-apps/mlocate
-emerge net-misc/dhcpcd
+emerge -q sys-apps/mlocate
+emerge -q net-misc/dhcpcd
 
 #installs grub
-emerge --verbose sys-boot/grub:2
+emerge --verbose -q sys-boot/grub:2
 #grub-install /dev/sda
 #This is required for EFI BIOS
 #grub-install $dev_sd
@@ -182,7 +182,7 @@ mv deploygentoo-master.zip /home/$username
 stage3=$(ls stage3*)
 rm -rf $stage3
 if [ $sslanswer = "yes" ]; then
-	emerge gentoolkit
+	emerge -q gentoolkit
 	mkdir -p /etc/portage/profile
 	echo "-libressl" >> /etc/portage/profile/use.stable.mask
 	echo "dev-libs/openssl" >> /etc/portage/package.mask
