@@ -40,7 +40,7 @@ printf "Installing dependencies listed in dependencies.txt...\n"
 DEPLIST="`sed -e 's/#.*$//' -e '/^$/d' dependencies.txt | tr '\n' ' '`"
 
 #Installs and configures layman
-emerge app-portage/layman
+emerge -q app-portage/layman
 sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
 if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
     printf "layman source already added to make.conf\n"
@@ -57,7 +57,7 @@ layman -a libressl
 #yes | layman -a steam-overlay
 layman -S
 
-emerge $DEPLIST
+emerge -q $DEPLIST
 
 printf "installed dependencies\n"
 check_dir_exists /usr/lib64/urxvt/perl/font-size
