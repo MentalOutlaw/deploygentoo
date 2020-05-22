@@ -183,11 +183,12 @@ fi
 mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
 while true; do
     printf ${LIGHTGREEN}"enter the password for your root user\n>"
-    read -s $password
+    read -s password
     printf ${LIGHTGREEN}"re-enter the password for your root user\n>"
-    read -s $password_compare
+    read -s password_compare
     if [ "$password" = "$password_compare" ]; then
-        echo "$password" | passwd --stdin root 
+	echo "root:$password"
+	echo "root:$password" | chpasswd
         break
     else
         printf ${LIGHTRED}"passwords do not match, re enter them\n"
@@ -198,11 +199,11 @@ while true; do
 done
 while true; do
     printf ${LIGHTGREEN}"enter the password for your user %s\n>" $username
-    read -s $password
-    printf ${LIGHTGREEN}"re-enter the password for %s\n>" $username
-    read -s $password_compare
+    read -s password
+    printf ${LIGHTGREEN}"re-enter the password for %s\n>" "$username"
+    read -s password_compare
     if [ "$password" = "$password_compare" ]; then
-        echo "$password" | passwd --stdin $username
+	echo "$username:$password" | chpasswd
         break
     else
         printf ${LIGHTRED}"passwords do not match, re enter them\n"
