@@ -4,22 +4,6 @@ scriptdir=$(pwd)
 cd ..
 LIGHTGREEN='\033[1;32m'
 LIGHTBLUE='\033[1;34m'
-##printf ${LIGHTBLUE}"Enter the disk name you want to install gentoo on (ex, sda)\n>"
-##read disk
-#disk="${disk,,}"
-#printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
-##There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
-#read username
-#username="${username,,}"
-#printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
-#read kernelanswer
-#kernelanswer="${kernelanswer,,}"
-#printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
-#read hostname
-#printf ${LIGHTBLUE}"Do you want to replace LibreSSL with OpenSSL in your system?(yes or no)\n>"
-#read sslanswer
-#sslanswer="${sslanswer,,}"
-#mount /dev/sda1 /boot
 sed '/^$/d' /mnt/gentoo/install_vars >> /mnt/gentoo/temp_f
 rm -rf /mnt/gentoo/install_vars
 cat /mnt/gentoo/temp_f >> /mnt/gentoo/install_vars
@@ -176,7 +160,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 useradd -m -G users,wheel,audio -s /bin/bash $username
 #printf "just tried to add our user\n"
 cd ..
-#printf "cleaning up\n"
+printf "cleaning up\n"
 mv deploygentoo-master.zip /home/$username
 #rm -rf /deploygentoo-master
 stage3=$(ls stage3*)
@@ -196,33 +180,14 @@ else
 	printf "nothing to do here\n"
 fi
 
-printf "preparing to exit the system, run the following commands and then reboot without the CD\n"
-printf "you should now have a working Gentoo installation, dont forget to set your root and user passwords!\n"
-#if [ $(id -u) -eq 0 ]; then
-#	read -s -p "Enter your users password : " password
-#    read -s -p "Enter your root password : " rootpassword
-#	egrep "^$username" /etc/passwd >/dev/null
-#	if [ $? -eq 0 ]; then
-#		echo "$username exists!"
-#		exit 1
-#	else
-#		pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-#        echo $password | passwd --stdin $username
-#        echo $rootpassword | passwd --stdin root
-#		[ $? -eq 0 ] && echo "User password has been updated" || echo "Failed to add a user!"
-#	fi
-#else
-#	echo "Only root may add a user to the system"
-#	exit 2
-#fi
 mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
 while true; do
     printf ${LIGHTGREEN}"enter the password for your root user\n>"
-    read $password
+    read -s $password
     printf ${LIGHTGREEN}"re-enter the password for your root user\n>"
-    read $password_compare
+    read -s $password_compare
     if [ "$password" = "$password_compare" ]; then
-        echo "$password" | passwd root --stdin
+        echo "$password" | passwd --stdin root 
         break
     else
         printf ${LIGHTRED}"passwords do not match, re enter them\n"
@@ -233,11 +198,11 @@ while true; do
 done
 while true; do
     printf ${LIGHTGREEN}"enter the password for your user %s\n>" $username
-    read $password
+    read -s $password
     printf ${LIGHTGREEN}"re-enter the password for %s\n>" $username
-    read $password_compare
+    read -s $password_compare
     if [ "$password" = "$password_compare" ]; then
-        echo "$password" | passwd "$username" --stdin
+        echo "$password" | passwd --stdin $username
         break
     else
         printf ${LIGHTRED}"passwords do not match, re enter them\n"
@@ -246,14 +211,6 @@ while true; do
         clear
     fi
 done
-#printf ${LIGHTGREEN}"chroot /mnt/gentoo\n ONLY IF PASSWD %s doesn't work!!\n" $username
-#printf ${LIGHTGREEN}"passwd\n"
-#printf ${LIGHTGREEN}"passwd %s\n" $username
-#printf ${LIGHTGREEN}"exit\n"
-#printf ${LIGHTGREEN}"cd\n"
-#printf ${LIGHTGREEN}"umount -l /mnt/gentoo/dev{/shm,/pts,}\n"
-#printf ${LIGHTGREEN}"umount -R /mnt/gentoo\n"
 printf ${LIGHTGREEN}"You now have a completed gentoo installation system, reboot and remove the installation media to load it\n"
 printf ${LIGHTGREEN}"reboot\n"
 rm -rf /post_chroot.sh
-#exit

@@ -47,6 +47,7 @@ while true; do
             mkswap $part_3
             swapon $part_3
             rm -rf devices
+	    clear
             sleep 2
             break
         elif [ "$auto_prov_ans" = "n" ]; then
