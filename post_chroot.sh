@@ -187,7 +187,6 @@ while true; do
     printf ${LIGHTGREEN}"re-enter the password for your root user\n>"
     read -s password_compare
     if [ "$password" = "$password_compare" ]; then
-	echo "root:$password"
 	echo "root:$password" | chpasswd
         break
     else
