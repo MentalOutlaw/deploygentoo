@@ -86,14 +86,15 @@ emerge -q app-arch/lzop
 emerge -q app-arch/lz4
 if [ $kernelanswer = "no" ]; then
 	rm -rf /usr/src/linux/.config
+    make mrproper
 	cp deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux/.config
 	make olddefconfig
 	make $jobs && make modules_install
 	make install
 	printf "Kernel installed\n"
 elif [ $kernelanswer = "edit" ]; then
-	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux
-	mv gentoohardenedminimal .config
+    make mrproper
+	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux/.config
 	make menuconfig
 	make $jobs && make modules_install
 	make install
@@ -138,14 +139,12 @@ net_config_str2=("net.${nw_interface}")
 ln -s net.lo $net_config_str2
 rc-update add $net_config_str2 default
 #printf "dhcp enabled\n"
-emerge -q app-admin/sysklogd
 emerge -q app-admin/sudo
 #printf "just emerged sudo\n"
 rm -rf /etc/sudoers
 cd $scriptdir
 cp sudoers /etc/
 printf "installed sudo and enabled it for wheel group\n"
-rc-update add sysklogd default
 emerge -q sys-apps/mlocate
 emerge -q net-misc/dhcpcd
 
