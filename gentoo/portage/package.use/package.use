@@ -35,7 +35,7 @@
 # required by media-gfx/gimp-2.10.8-r1::gentoo
 # required by media-gfx/gimp (argument)
 ###This section was copied from other files end
-x11-base/xorg-server -suid -minimal
+x11-base/xorg-server -suid minimal
 x11-terms/rxvt-unicode perl xft
 app-editors/vim X
 # required by net-misc/networkmanager-1.18.2::gentoo[wifi]
