@@ -86,8 +86,8 @@ emerge -q app-arch/lzop
 emerge -q app-arch/lz4
 if [ $kernelanswer = "no" ]; then
 	rm -rf /usr/src/linux/.config
-    make mrproper
-	cp deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux/.config
+	make mrproper
+	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux/.config
 	make olddefconfig
 	make $jobs && make modules_install
 	make install
