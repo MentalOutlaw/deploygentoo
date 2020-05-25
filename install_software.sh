@@ -33,16 +33,20 @@ printf "This script is designed for gentoo linux and it will not work in any oth
 printf "Installing dependencies listed in dependencies.txt...\n"
 
 SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
+##TODO remove this comment and uncomment the 4 lines below it
 emaint -a sync
-
+#
 cd /etc/layman
-layman -a steam-overlay
+yes | layman -a steam-overlay
 git clone https://github.com/gentoo/libressl
-cd libressl/net-libs/nodejs
-ebuild nodejs-13.9.0.ebuild manifest
-#USE="bundled-ssl" emerge net-libs/nodejs
+##TODO remove this comment, and uncomment the 3 lines below
+USE="-system-ssl" emerge net-libs/nodejs
+cd libressl/dev-qt/qtnetwork
+ebuild qtnetwork-5.14.2.ebuild manifest
+emerge dev-qt/qtnetwork
+
+#emerge games-util/steam-launcher games-util/steam-meta
 emerge --autounmask-write $SOFTWARE
-emerge games-util/steam-launcher games-util/steam-meta
 
 #installs software from pentoo overlay
 #this part doesn't work for some reason, maybe because of the new kernel?

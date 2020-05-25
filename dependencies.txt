@@ -18,6 +18,7 @@ x11-terms/rxvt-unicode
 dev-vcs/git
 #app-editors/neovim
 app-editors/vim
+sys-process/htop
 media-sound/alsa-utils
 
 #fonts
