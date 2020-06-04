@@ -1,6 +1,4 @@
 # Gentoo Script
-[YouTube channel](https://www.youtube.com/user/MentalOutlawStudios) 
-
 This is a gentoo deployment script created by Mental Outlaw.
 
 ## Installation process
@@ -15,3 +13,6 @@ When this finishes you'll have a working Gentoo installation with my minimal ker
 From here you could go on and customize Gentoo to your liking, or deploy my included "rice" (GUI configuration and dotfiles) with`sudo deploy_rice.sh` I currently  use dwm, pcmanfm, zsh, bash, and vim.
 
 You can also run `install_software.sh` to install a list of software that I use on Gentoo.
+
+## About
+[YouTube channel](https://www.youtube.com/user/MentalOutlawStudios) 
