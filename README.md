@@ -1,5 +1,5 @@
 # Gentoo Script
-This is a gentoo deployment script created by Mental Outlaw.
+This is a Gentoo deployment script created by Mental Outlaw.
 
 ## Installation process
 - Run `setup_gentoo.sh`.
