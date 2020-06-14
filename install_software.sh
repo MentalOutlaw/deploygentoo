@@ -39,10 +39,8 @@ emaint -a sync
 cd /etc/layman
 yes | layman -a steam-overlay
 git clone https://github.com/gentoo/libressl
-##TODO remove this comment, and uncomment the 3 lines below
-USE="-system-ssl" emerge net-libs/nodejs
 cd libressl/dev-qt/qtnetwork
-ebuild qtnetwork-5.14.2.ebuild manifest
+ebuild qtnetwork-5.15.0.ebuild manifest
 emerge dev-qt/qtnetwork
 
 #emerge games-util/steam-launcher games-util/steam-meta
