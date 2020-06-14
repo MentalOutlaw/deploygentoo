@@ -1,5 +1,5 @@
 #required for a newer kernel
-sys-kernel/gentoo-sources ~amd64
+=sys-kernel/gentoo-sources-5.6.7 ~amd64
 # required by app-editors/neovim (argument)
 =app-editors/neovim-0.4.2 ~amd64
 # required by app-editors/neovim-0.4.2::gentoo[tui]
