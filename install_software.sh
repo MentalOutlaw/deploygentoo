@@ -36,9 +36,11 @@ SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
 ##TODO remove this comment and uncomment the 4 lines below it
 emaint -a sync
 #
-cd /etc/layman
+#This is unnecessary?
+#cd /etc/layman
+#git clone https://github.com/gentoo/libressl
+cd /var/lib/layman
 yes | layman -a steam-overlay
-git clone https://github.com/gentoo/libressl
 cd libressl/dev-qt/qtnetwork
 ebuild qtnetwork-5.15.0.ebuild manifest
 emerge dev-qt/qtnetwork

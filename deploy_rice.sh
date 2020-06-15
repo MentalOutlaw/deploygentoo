@@ -53,9 +53,15 @@ else
     #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
     printf "nothing to do here\n"
 fi
-layman -a libressl
+emerge -q dev-vcs/git
+check_dir_exists /var/lib/layman/libressl
+if $exists; then
+    printf "libressl has already been added"
+else
+    layman -a libressl
+    layman -S
+fi
 #yes | layman -a steam-overlay
-layman -S
 
 emerge -q $DEPLIST
 
