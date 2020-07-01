@@ -71,3 +71,4 @@ media-gfx/gimp
 app-arch/dpkg
 net-libs/glib-networking
 x11-apps/mesa-progs
+app-office/calcurse

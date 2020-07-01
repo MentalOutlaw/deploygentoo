@@ -74,10 +74,7 @@ dev-libs/libxml2 python
 # required by media-video/obs-studio-24.0.5::gentoo
 # required by media-video/obs-studio (argument)
 >=media-video/ffmpeg-4.1.3 x264
-net-libs/nodejs -system-ssl
-# required by media-libs/mesa-19.3.5::gentoo[libglvnd]
-# required by www-client/firefox-68.6.0-r4::gentoo
-# required by @selected
+net-libs/nodejs -system-ssl -npm -ssl
 ##EVERYTHING BELOW THIS POINT WAS REQUIRED TO BUILD STEAM (GAMING)
 # required by @world (argument)
 >=media-libs/libglvnd-1.3.1 X
@@ -191,3 +188,49 @@ net-libs/nodejs -system-ssl
 >=app-arch/bzip2-1.0.6-r11 abi_x86_32
 x11-libs/libfm gtk
 x11-libs/cairo X
+# required by gimp
+>=app-text/poppler-0.88.0-r1 cairo
+>=media-libs/libpng-1.6.37 apng
+>=media-libs/libvpx-1.8.2 postproc
+>=dev-lang/python-2.7.18:2.7 sqlite
+# required by keepassxc
+>=dev-libs/libpcre2-10.34 pcre16
+>=dev-lang/python-3.8.2-r2 sqlite
+# package.use# required by net-wireless/aircrack-ng-1.5.2::gentoo[airdrop-ng]
+# required by net-wireless/aircrack-ng (argument)
+>=net-wireless/lorcon-0.0_p20150109 python
+# required by x11-misc/xdg-utils-1.1.3-r1::gentoo
+# required by net-analyzer/wireshark-3.0.4::gentoo[qt5]
+# required by wireshark (argument)
+>=app-text/xmlto-0.0.28-r1 text
+# required by virtual/opencl-2::gentoo
+# required by app-crypt/hashcat-5.1.0::gentoo
+# required by hashcat (argument)
+>=media-libs/mesa-19.1.7 opencl
+# required by dev-qt/qtcore-5.14.2::gentoo
+# required by dev-qt/qtconcurrent-5.14.2::gentoo
+# required by app-admin/keepassxc-2.5.3::gentoo
+# required by app-admin/keepassxc (argument)
+>=dev-libs/libpcre2-10.34 pcre16
+# required by www-client/firefox-77.0.1::gentoo
+# required by www-client/firefox (argument)
+>=dev-lang/python-3.8.2-r2 sqlite
+#required by media-libs/mesa-20.0.8::gentoo[zstd]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by x11-apps/mesa-progs-8.4.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=app-arch/zstd-1.4.4-r4 abi_x86_32
+# required by media-libs/mesa-20.0.8::gentoo[opencl,gallium]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by x11-apps/mesa-progs-8.4.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=virtual/opencl-3-r1 abi_x86_32
+# required by media-sound/pulseaudio-13.0::gentoo[alsa-plugin,alsa]
+# required by www-client/firefox-bin-77.0.1::gentoo[pulseaudio]
+# required by www-client/firefox-bin (argument)
+>=media-plugins/alsa-plugins-1.2.2 pulseaudio
+# required by media-fonts/noto-emoji-20200311::gentoo
+# required by media-fonts/noto-emoji (argument)
+>=media-gfx/imagemagick-7.0.10.9 png

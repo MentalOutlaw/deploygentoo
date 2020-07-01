@@ -23,3 +23,5 @@ media-sound/alsa-utils
 
 #fonts
 media-fonts/fontawesome
+media-fonts/libertine
+x11-apps/xbacklight

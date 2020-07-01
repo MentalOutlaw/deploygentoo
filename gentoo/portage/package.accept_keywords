@@ -1,5 +1,5 @@
 #required for a newer kernel
-=sys-kernel/gentoo-sources-5.6.7 ~amd64
+sys-kernel/gentoo-sources ~amd64
 # required by app-editors/neovim (argument)
 =app-editors/neovim-0.4.2 ~amd64
 # required by app-editors/neovim-0.4.2::gentoo[tui]
@@ -357,9 +357,10 @@ dev-python/wsproto ~amd64
 dev-python/h11 ~amd64
 dev-libs/libressl ~amd64
 net-libs/nodejs ~amd64
-=dev-qt/qtcore-5.14.1::gentoo ~amd64
+dev-qt/qtcore ~amd64
 =dev-qt/qtnetwork-5.15.0::libressl ~amd64
 #required for the latest firefox
+#=www-client/firefox-76.0.1 ~amd64
 www-client/firefox ~amd64
 media-libs/libv ~amd64
 media-libs/libvpx ~amd64
@@ -382,3 +383,4 @@ games-util/steam-meta ~amd64
 dev-libs/libressl
 x11-base/xorg-server ~amd64
 app-emulation/virtualbox-guest-additions ~amd64
+dev-libs/libressl
