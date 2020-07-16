@@ -21,6 +21,7 @@ part_1=$(sed '8q;d' install_vars)
 part_2=$(sed '9q;d' install_vars)
 part_4=$(sed '10q;d' install_vars)
 nw_interface=$(sed '11q;d' install_vars)
+performance_opts=$(sed '12q;d' install_vars)
 dev_sd=("/dev/$disk")
 mount $part_2 /boot
 jobs=("-j${cpus}")
@@ -178,6 +179,10 @@ if [ $sslanswer = "yes" ]; then
 else
 	printf "nothing to do here\n"
 fi
+
+#if [ $performance_opts = "yes" ]; then
+#steps for LTO should be done after post chroot because it requires layman
+#consider adding layman with libressl steps into this script
 
 mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
 while true; do

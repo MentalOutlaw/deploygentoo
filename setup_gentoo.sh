@@ -127,6 +127,9 @@ read hostname
 printf ${LIGHTBLUE}"Do you want to replace OpenSSL with LibreSSL in your system?(yes or no)\n>"
 read sslanswer
 sslanswer="${sslanswer,,}"
+printf ${LIGHTBLUE}"Do you want to do performance optimizations. LTO -O3 and Graphite?(yes or no)\n>"
+read performance_opts
+performance_opts="${performance_opts,,}"
 printf ${LIGHTGREEN}"Beginning installation, this will take several minutes\n"
 install_vars=/mnt/gentoo/deploygentoo-master/install_vars
 cpus=$(grep -c ^processor /proc/cpuinfo)
@@ -141,6 +144,7 @@ echo "$part_1" >> "$install_vars"
 echo "$part_2" >> "$install_vars"
 echo "$part_4" >> "$install_vars"
 cat /root/network_devices >> "$install_vars"
+echo "$performance_opts" >> "$install_vars"
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened
