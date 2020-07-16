@@ -234,3 +234,114 @@ x11-libs/cairo X
 # required by media-fonts/noto-emoji-20200311::gentoo
 # required by media-fonts/noto-emoji (argument)
 >=media-gfx/imagemagick-7.0.10.9 png
+###ALL THESE BELOW CHANGES ARE FOR KDE START
+## required by kde-apps/kdenlive-20.04.2::gentoo
+## required by kde-apps/kdenlive (argument)
+#>=media-libs/mlt-6.20.0 xml kdenlive melt frei0r ffmpeg qt5 sdl
+## required by kde-apps/kdenlive-20.04.2::gentoo
+## required by kde-apps/kdenlive (argument)
+#>=media-video/ffmpeg-4.2.3 X sdl
+## required by x11-base/xorg-server-1.20.8-r1::gentoo[elogind]
+## required by x11-drivers/xf86-input-libinput-0.30.0::gentoo
+## required by x11-base/xorg-drivers-1.20-r2::gentoo[input_devices_libinput]
+#sys-auth/polkit elogind
+######x11-libs/libXinerama X
+#>=sys-auth/pambase-20190402 elogind
+## required by sys-auth/polkit-0.116-r1::gentoo[consolekit]
+## required by sys-auth/polkit (argument)
+#>=sys-auth/consolekit-1.2.1 policykit
+## required by sys-auth/consolekit-1.2.1::gentoo
+## required by sys-auth/polkit-0.116-r1::gentoo[consolekit]
+## required by sys-auth/polkit (argument)
+#>=dev-libs/glib-2.62.6 dbus
+## required by media-libs/mlt-6.20.0::gentoo[sdl]
+## required by kde-apps/kdenlive-20.04.3::gentoo
+## required by kde-apps/kdenlive (argument)
+#>=media-libs/libsdl2-2.0.10-r1 opengl X
+## required by kde-frameworks/kcoreaddons-5.70.0::gentoo
+## required by kde-frameworks/kbookmarks-5.70.0::gentoo
+## required by kde-frameworks/kio-5.70.1-r1::gentoo
+## required by kde-frameworks/kdeclarative-5.70.0::gentoo
+## required by kde-apps/kdenlive-20.04.3::gentoo
+## required by kde-apps/kdenlive (argument)
+#>=dev-qt/qtcore-5.15.0 icu
+## required by kde-frameworks/kglobalaccel-5.70.0::gentoo
+## required by kde-frameworks/kdeclarative-5.70.0::gentoo
+## required by kde-apps/kdenlive-20.04.3::gentoo
+## required by kde-apps/kdenlive (argument)
+#>=kde-frameworks/kwindowsystem-5.70.0 X
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/numpy-1.18.5 python_targets_python3_6
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/requests-2.23.0 python_targets_python3_6
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/certifi-2020.4.5.1 python_targets_python3_6
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/chardet-3.0.4 python_targets_python3_6
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/idna-2.9 python_targets_python3_6
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/urllib3-1.25.8 python_targets_python3_6
+# required by dev-python/pyopenssl-19.1.0::gentoo
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/cryptography-2.9 python_targets_python3_6
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/pyopenssl-19.1.0 python_targets_python3_6
+# required by dev-python/cryptography-2.9::gentoo
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/setuptools-46.4.0-r1 python_targets_python3_6
+# required by dev-python/pyopenssl-19.1.0::gentoo
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/six-1.14.0 python_targets_python3_6
+# required by dev-python/cryptography-2.9::gentoo[python_targets_python2_7,-python_targets_python3_8,python_targets_python3_7,python_targets_python3_6]
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/cffi-1.14.0-r2 python_targets_python3_6
+# required by dev-python/cffi-1.14.0-r2::gentoo
+# required by dev-python/cryptography-2.9::gentoo[python_targets_python2_7,-python_targets_python3_8,python_targets_python3_7,python_targets_python3_6]
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/pycparser-2.20 python_targets_python3_6
+# required by dev-python/pycparser-2.20::gentoo
+# required by dev-python/cffi-1.14.0-r2::gentoo
+# required by dev-python/cryptography-2.9::gentoo[python_targets_python2_7,-python_targets_python3_8,python_targets_python3_7,python_targets_python3_6]
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/ply-3.11 python_targets_python3_6
+# required by dev-python/urllib3-1.25.8::gentoo
+# required by dev-python/requests-2.23.0::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/PySocks-1.7.1 python_targets_python3_6
+# required by dev-python/numpy-1.18.5::gentoo
+# required by media-gfx/blender-2.79b-r2::gentoo[python_single_target_python3_6]
+# required by media-gfx/blender (argument)
+>=dev-python/cython-0.29.20-r2 python_targets_python3_6
