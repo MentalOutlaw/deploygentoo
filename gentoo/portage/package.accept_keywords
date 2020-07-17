@@ -357,7 +357,6 @@ dev-python/wsproto ~amd64
 dev-python/h11 ~amd64
 dev-libs/libressl ~amd64
 net-libs/nodejs ~amd64
-dev-qt/qtcore ~amd64
 =dev-qt/qtnetwork-5.15.0::libressl ~amd64
 #required for the latest firefox
 #=www-client/firefox-76.0.1 ~amd64
@@ -370,6 +369,7 @@ dev-libs/libuv ~amd64
 net-libs/nghttp2 ~amd64
 dev-libs/icu ~amd64
 #Required by OBS
+#=media-video/obs-studio-24.0.5 ~amd64
 media-video/obs-studio ~amd64
 #Required by steam
 =games-util/steam-launcher-1.0.0.62::steam-overlay ~amd64
@@ -380,3 +380,53 @@ media-video/obs-studio ~amd64
 games-util/steam-meta ~amd64
 x11-base/xorg-server ~amd64
 app-emulation/virtualbox-guest-additions ~amd64
+#kde-apps/kdenlive ~amd64
+#kde-frameworks/kirigami ~amd64
+#kde-frameworks/knewstuff ~amd64
+#kde-frameworks/attica ~amd64
+#kde-frameworks/karchive ~amd64
+#kde-frameworks/kcompletion ~amd64
+#kde-frameworks/kconfig ~amd64
+#kde-frameworks/kcoreaddons ~amd64
+#kde-frameworks/ki18n ~amd64
+#kde-frameworks/kiconthemes ~amd64
+#kde-frameworks/kio ~amd64
+#kde-frameworks/kitemviews ~amd64
+#kde-frameworks/kpackage ~amd64
+#kde-frameworks/kservice ~amd64
+#kde-frameworks/kcrash ~amd64
+#kde-frameworks/kdbusaddons ~amd64
+#kde-frameworks/kdoctools ~amd64
+#kde-frameworks/extra-cmake-modules ~amd64
+#kde-frameworks/ktextwidgets ~amd64
+#kde-frameworks/kconfigwidgets ~amd64
+#kde-frameworks/kwidgetsaddons ~amd64
+#kde-frameworks/sonnet ~amd64
+#kde-frameworks/kxmlgui ~amd64
+#kde-frameworks/kglobalaccel ~amd64
+#kde-frameworks/kwindowsystem ~amd64
+#kde-frameworks/kauth ~amd64
+#kde-frameworks/kbookmarks ~amd64
+#kde-frameworks/kcodecs ~amd64
+#kde-frameworks/kjobwidgets ~amd64
+#kde-frameworks/knotifications ~amd64
+#kde-frameworks/solid ~amd64
+#kde-frameworks/kwallet ~amd64
+#kde-frameworks/kded ~amd64
+#kde-frameworks/kinit ~amd64
+#kde-frameworks/kguiaddons ~amd64
+dev-qt/qttest ~amd64
+dev-qt/qtxml ~amd64
+dev-qt/qtquickcontrols ~amd64
+dev-qt/qtdeclarative ~amd64
+dev-qt/qtgraphicaleffects ~amd64
+dev-qt/qtgui ~amd64
+dev-qt/qtwidgets ~amd64
+dev-qt/qtchooser ~amd64
+dev-qt/qtcore ~amd64
+dev-qt/linguist-tools ~amd64
+#Required by LTO Overlay
+sys-config/ltoize ~amd64
+app-portage/portage-bashrc-mv ~amd64
+app-shells/runtitle ~amd64
+sys-devel/gcc ~amd64
