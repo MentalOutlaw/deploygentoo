@@ -39,28 +39,30 @@ printf "Installing dependencies listed in dependencies.txt...\n"
 
 DEPLIST="`sed -e 's/#.*$//' -e '/^$/d' dependencies.txt | tr '\n' ' '`"
 
+#TODO
+#Remove these commented lines if build during install is successful
 #Installs and configures layman
-emerge -q app-portage/layman
-sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
-if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
-    printf "layman source already added to make.conf\n"
-else
-    echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
-fi
-if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
-    printf "PORTDIR_OVERLAY string already added to make.conf\n"
-else
-    #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
-    printf "nothing to do here\n"
-fi
-emerge -q dev-vcs/git
-check_dir_exists /var/lib/layman/libressl
-if $exists; then
-    printf "libressl has already been added"
-else
-    layman -a libressl
-    layman -S
-fi
+#emerge -q app-portage/layman
+#sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
+#if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
+#    printf "layman source already added to make.conf\n"
+#else
+#    echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
+#fi
+#if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
+#    printf "PORTDIR_OVERLAY string already added to make.conf\n"
+#else
+#    #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
+#    printf "nothing to do here\n"
+#fi
+#emerge -q dev-vcs/git
+#check_dir_exists /var/lib/layman/libressl
+#if $exists; then
+#    printf "libressl has already been added"
+#else
+#    layman -a libressl
+#    layman -S
+#fi
 #yes | layman -a steam-overlay
 
 emerge -q $DEPLIST

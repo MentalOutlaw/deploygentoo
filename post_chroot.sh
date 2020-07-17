@@ -149,16 +149,18 @@ printf "installed sudo and enabled it for wheel group\n"
 emerge -q sys-apps/mlocate
 emerge -q net-misc/dhcpcd
 
-#installs grub
+#installs grub, git, and layman
 emerge --verbose -q sys-boot/grub:2
+emerge -q app-portage/layman
+emerge -q dev-vcs/git
 #grub-install /dev/sda
 #This is required for EFI BIOS
 #grub-install $dev_sd
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
-#printf "updated grub\n"
+printf "updated grub\n"
 useradd -m -G users,wheel,audio -s /bin/bash $username
-#printf "just tried to add our user\n"
+printf "added user\n"
 cd ..
 printf "cleaning up\n"
 mv deploygentoo-master.zip /home/$username
@@ -175,14 +177,40 @@ if [ $sslanswer = "yes" ]; then
 	emerge -C openssl
 	emerge -1q libressl
 	emerge -1q openssh wget python:2.7 python:3.6 iputils
+    #TODO
+    #check to see if we can get away with a preserved-rebuild instead of a world emerge for lto
+    #if yes then place the ssl build below lto
 	emerge -q @preserved-rebuild
+    layman -a libressl
+    layman -S
 else
-	printf "nothing to do here\n"
+	printf "not useing LibreSSL\n"
 fi
 
 #if [ $performance_opts = "yes" ]; then
-#steps for LTO should be done after post chroot because it requires layman
-#consider adding layman with libressl steps into this script
+
+###layman add and overlay add (libressl and gentoo LTO)
+sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
+if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
+    printf "layman source already added to make.conf\n"
+else
+    echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
+fi
+if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
+    printf "PORTDIR_OVERLAY string already added to make.conf\n"
+else
+    #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
+    printf "nothing to do here\n"
+fi
+
+if [ $performance_opts = "yes" ]; then
+    layman -a mv
+    layman -a lto-overlay
+    emerge -q sys-config/ltoize
+    emerge -e @world
+elif [ $performance_opts = "no" ]; then
+    printf "performance optimization not selected\n"
+fi
 
 mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
 while true; do
