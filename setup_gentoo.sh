@@ -12,7 +12,8 @@ rm -rf nw_devices
 sed -e "s/lo//g" -i network_devices
 sed -e "s/Iface//g" -i network_devices
 sed '/^$/d' network_devices
-
+sed '#Disk /dev/ram#,+5 d' /root/devices
+sed '#Disk /dev/loop#,+5 d' /root/devices
 cat /root/devices
 while true; do
     printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
