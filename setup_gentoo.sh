@@ -1,10 +1,11 @@
 #this puts some things in place like your make.conf, aswell as package.use
 LIGHTGREEN='\033[1;32m'
-LIGHTBLUE='\033[1;94m'
 LIGHTRED='\033[1;91m'
 WHITE='\033[1;97m'
+MAGENTA='\033[1;35m'
+CYAN='\033[1;96m'
 cd ..
-printf "MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n"
+printf ${MAGENTA}"MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n\n"
 fdisk -l >> devices
 ifconfig -s >> nw_devices
 cut -d ' ' -f1 nw_devices >> network_devices
@@ -16,7 +17,7 @@ sed -e '\#Disk /dev/ram#,+5d' -i /root/devices
 sed -e '\#Disk /dev/loop#,+5d' -i /root/devices
 cat /root/devices
 while true; do
-    printf ${LIGHTBLUE}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
+    printf ${CYAN}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
     read disk
     disk="${disk,,}"
     partition_count="$(grep -o $disk devices | wc -l)"
@@ -51,7 +52,7 @@ while true; do
             sleep 2
             break
         elif [ "$auto_prov_ans" = "n" ]; then
-            printf ${LIGHTBLUE}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
+            printf ${CYAN}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
             read num
             rootpart="$disk$num"
             if grep "$rootpart" /root/devices; then
@@ -116,19 +117,19 @@ read stage3select
 printf "enter a number for the SSL Library you want to use\n"
 printf "0 = OpenSSL default\n1 = LibreSSL (recommended)\n>"
 read ssl_choice
-printf ${LIGHTBLUE}"Enter the username for your NON ROOT user\n>"
+printf ${CYAN}"Enter the username for your NON ROOT user\n>"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
 read username
 username="${username,,}"
-printf ${LIGHTBLUE}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
+printf ${CYAN}"Enter Yes to make a kernel from scratch, edit to edit the hardened config, or No to use the default hardened config\n>"
 read kernelanswer
 kernelanswer="${kernelanswer,,}"
-printf ${LIGHTBLUE}"Enter the Hostname you want to use\n>"
+printf ${CYAN}"Enter the Hostname you want to use\n>"
 read hostname
-printf ${LIGHTBLUE}"Do you want to replace OpenSSL with LibreSSL in your system?(yes or no)\n>"
+printf ${CYAN}"Do you want to replace OpenSSL with LibreSSL in your system?(yes or no)\n>"
 read sslanswer
 sslanswer="${sslanswer,,}"
-printf ${LIGHTBLUE}"Do you want to do performance optimizations. LTO -O3 and Graphite?(yes or no)\n>"
+printf ${CYAN}"Do you want to do performance optimizations. LTO -O3 and Graphite?(yes or no)\n>"
 read performance_opts
 performance_opts="${performance_opts,,}"
 printf ${LIGHTGREEN}"Beginning installation, this will take several minutes\n"
