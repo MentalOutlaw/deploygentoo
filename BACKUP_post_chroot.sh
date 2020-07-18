@@ -151,99 +151,98 @@ emerge -q net-misc/dhcpcd
 
 #installs grub, git, and layman
 emerge --verbose -q sys-boot/grub:2
-printf "run commands manually from here on to see what breaks\n"
-#emerge -q app-portage/layman
-#emerge -q dev-vcs/git
-##grub-install /dev/sda
-##This is required for EFI BIOS
-##grub-install $dev_sd
-#grub-install --target=x86_64-efi --efi-directory=/boot
-#grub-mkconfig -o /boot/grub/grub.cfg
-#printf "updated grub\n"
-#useradd -m -G users,wheel,audio -s /bin/bash $username
-#printf "added user\n"
-#cd ..
-#printf "cleaning up\n"
-#mv deploygentoo-master.zip /home/$username
-##rm -rf /deploygentoo-master
-#stage3=$(ls stage3*)
-#rm -rf $stage3
-#if [ $sslanswer = "yes" ]; then
-#	emerge -q gentoolkit
-#	mkdir -p /etc/portage/profile
-#	echo "-libressl" >> /etc/portage/profile/use.stable.mask
-#	echo "dev-libs/openssl" >> /etc/portage/package.mask
-#	echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
-#	emerge -f libressl
-#	emerge -C openssl
-#	emerge -1q libressl
-#	emerge -1q openssh wget python:2.7 python:3.6 iputils
-#    #TODO
-#    #check to see if we can get away with a preserved-rebuild instead of a world emerge for lto
-#    #if yes then place the ssl build below lto
-#	emerge -q @preserved-rebuild
-#    layman -a libressl
-#    layman -S
-#else
-#	printf "not useing LibreSSL\n"
-#fi
-#
-##if [ $performance_opts = "yes" ]; then
-#
-####layman add and overlay add (libressl and gentoo LTO)
-#sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
-#if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
-#    printf "layman source already added to make.conf\n"
-#else
-#    echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
-#fi
-#if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
-#    printf "PORTDIR_OVERLAY string already added to make.conf\n"
-#else
-#    #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
-#    printf "nothing to do here\n"
-#fi
-#
+emerge -q app-portage/layman
+emerge -q dev-vcs/git
+#grub-install /dev/sda
+#This is required for EFI BIOS
+#grub-install $dev_sd
+grub-install --target=x86_64-efi --efi-directory=/boot
+grub-mkconfig -o /boot/grub/grub.cfg
+printf "updated grub\n"
+useradd -m -G users,wheel,audio -s /bin/bash $username
+printf "added user\n"
+cd ..
+printf "cleaning up\n"
+mv deploygentoo-master.zip /home/$username
+#rm -rf /deploygentoo-master
+stage3=$(ls stage3*)
+rm -rf $stage3
+if [ $sslanswer = "yes" ]; then
+	emerge -q gentoolkit
+	mkdir -p /etc/portage/profile
+	echo "-libressl" >> /etc/portage/profile/use.stable.mask
+	echo "dev-libs/openssl" >> /etc/portage/package.mask
+	echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
+	emerge -f libressl
+	emerge -C openssl
+	emerge -1q libressl
+	emerge -1q openssh wget python:2.7 python:3.6 iputils
+    #TODO
+    #check to see if we can get away with a preserved-rebuild instead of a world emerge for lto
+    #if yes then place the ssl build below lto
+	emerge -q @preserved-rebuild
+    layman -a libressl
+    layman -S
+else
+	printf "not useing LibreSSL\n"
+fi
+
 #if [ $performance_opts = "yes" ]; then
-#    layman -a mv
-#    layman -a lto-overlay
-#    emerge -q sys-config/ltoize
-#    emerge -e @world
-#elif [ $performance_opts = "no" ]; then
-#    printf "performance optimization not selected\n"
-#fi
-#
-#mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
-#while true; do
-#    printf ${LIGHTGREEN}"enter the password for your root user\n>"
-#    read -s password
-#    printf ${LIGHTGREEN}"re-enter the password for your root user\n>"
-#    read -s password_compare
-#    if [ "$password" = "$password_compare" ]; then
-#	echo "root:$password" | chpasswd
-#        break
-#    else
-#        printf ${LIGHTRED}"passwords do not match, re enter them\n"
-#        printf ${WHITE}".\n"
-#        sleep 5
-#        clear
-#    fi
-#done
-#while true; do
-#    printf ${LIGHTGREEN}"enter the password for your user %s\n>" $username
-#    read -s password
-#    printf ${LIGHTGREEN}"re-enter the password for %s\n>" "$username"
-#    read -s password_compare
-#    if [ "$password" = "$password_compare" ]; then
-#	echo "$username:$password" | chpasswd
-#        break
-#    else
-#        printf ${LIGHTRED}"passwords do not match, re enter them\n"
-#        printf ${WHITE}".\n"
-#        sleep 5
-#        clear
-#    fi
-#done
-#printf ${LIGHTGREEN}"You now have a completed gentoo installation system, reboot and remove the installation media to load it\n"
-#printf ${LIGHTGREEN}"reboot\n"
-#rm -rf /post_chroot.sh
+
+###layman add and overlay add (libressl and gentoo LTO)
+sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
+if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
+    printf "layman source already added to make.conf\n"
+else
+    echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
+fi
+if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
+    printf "PORTDIR_OVERLAY string already added to make.conf\n"
+else
+    #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
+    printf "nothing to do here\n"
+fi
+
+if [ $performance_opts = "yes" ]; then
+    layman -a mv
+    layman -a lto-overlay
+    emerge -q sys-config/ltoize
+    emerge -e @world
+elif [ $performance_opts = "no" ]; then
+    printf "performance optimization not selected\n"
+fi
+
+mv /mnt/gentoo/deploygentoo-master.zip /home/kenny/
+while true; do
+    printf ${LIGHTGREEN}"enter the password for your root user\n>"
+    read -s password
+    printf ${LIGHTGREEN}"re-enter the password for your root user\n>"
+    read -s password_compare
+    if [ "$password" = "$password_compare" ]; then
+	echo "root:$password" | chpasswd
+        break
+    else
+        printf ${LIGHTRED}"passwords do not match, re enter them\n"
+        printf ${WHITE}".\n"
+        sleep 5
+        clear
+    fi
+done
+while true; do
+    printf ${LIGHTGREEN}"enter the password for your user %s\n>" $username
+    read -s password
+    printf ${LIGHTGREEN}"re-enter the password for %s\n>" "$username"
+    read -s password_compare
+    if [ "$password" = "$password_compare" ]; then
+	echo "$username:$password" | chpasswd
+        break
+    else
+        printf ${LIGHTRED}"passwords do not match, re enter them\n"
+        printf ${WHITE}".\n"
+        sleep 5
+        clear
+    fi
+done
+printf ${LIGHTGREEN}"You now have a completed gentoo installation system, reboot and remove the installation media to load it\n"
+printf ${LIGHTGREEN}"reboot\n"
+rm -rf /post_chroot.sh
