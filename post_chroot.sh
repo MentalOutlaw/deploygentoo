@@ -147,7 +147,8 @@ cd $scriptdir
 cp sudoers /etc/
 printf "installed sudo and enabled it for wheel group\n"
 emerge -q sys-apps/mlocate
-emerge -q net-misc/dhcpcd
+#emerge -q net-misc/dhcpcd
+emerge net-misc/dhcpcd
 
 #installs grub, git, and layman
 emerge --verbose -q sys-boot/grub:2
