@@ -239,4 +239,6 @@ mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo/
+printf "chroot /mnt/gentoo\n"
+printf "./post_chroot.sh\n"
 chroot /mnt/gentoo ./post_chroot.sh
