@@ -15,6 +15,7 @@ sed -e "s/Iface//g" -i network_devices
 sed '/^$/d' network_devices
 sed -e '\#Disk /dev/ram#,+5d' -i /root/devices
 sed -e '\#Disk /dev/loop#,+5d' -i /root/devices
+
 cat /root/devices
 while true; do
     printf ${CYAN}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
@@ -48,7 +49,7 @@ while true; do
             mkswap $part_3
             swapon $part_3
             rm -rf devices
-	    clear
+            clear
             sleep 2
             break
         elif [ "$auto_prov_ans" = "n" ]; then
@@ -225,6 +226,4 @@ mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 
 cd /mnt/gentoo/
-printf "chroot /mnt/gentoo\n"
-printf "./post_chroot.sh\n"
 chroot /mnt/gentoo ./post_chroot.sh

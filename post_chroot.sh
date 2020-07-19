@@ -1,10 +1,15 @@
+LIGHTRED='\033[1;91m'
+LIGHTGREEN='\033[1;32m'
 source /etc/profile
 cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
-LIGHTRED='\033[1;91m'
-LIGHTGREEN='\033[1;32m'
+sed '/^$/d' /mnt/gentoo/install_vars >> /mnt/gentoo/temp_f
+rm -rf /mnt/gentoo/install_vars
+cat /mnt/gentoo/temp_f >> /mnt/gentoo/install_vars
+rm -rf /mnt/gentoo/temp_f
 install_vars=/mnt/gentoo/install_vars
+
 install_vars_count="$(wc -w /mnt/gentoo/install_vars)"
 disk=$(sed '1q;d' install_vars)
 username=$(sed '2q;d' install_vars)
