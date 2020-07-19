@@ -10,7 +10,7 @@ cat /temp_f >> /install_vars
 rm -rf /temp_f
 install_vars=/install_vars
 
-install_vars_count="$(wc -w /mnt/gentoo/install_vars)"
+install_vars_count="$(wc -w /install_vars)"
 disk=$(sed '1q;d' install_vars)
 username=$(sed '2q;d' install_vars)
 kernelanswer=$(sed '3q;d' install_vars)
