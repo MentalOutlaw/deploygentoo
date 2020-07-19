@@ -114,9 +114,6 @@ cd /mnt/gentoo/deploygentoo-master
 printf "enter a number for the stage 3 you want to use\n"
 printf "0 = regular hardened\n1 = hardened musl\n2 = vanilla musl\n>"
 read stage3select
-printf "enter a number for the SSL Library you want to use\n"
-printf "0 = OpenSSL default\n1 = LibreSSL (recommended)\n>"
-read ssl_choice
 printf ${CYAN}"Enter the username for your NON ROOT user\n>"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
 read username
@@ -126,7 +123,7 @@ read kernelanswer
 kernelanswer="${kernelanswer,,}"
 printf ${CYAN}"Enter the Hostname you want to use\n>"
 read hostname
-printf ${CYAN}"Do you want to replace OpenSSL with LibreSSL in your system?(yes or no)\n>"
+printf ${CYAN}"Do you want to replace OpenSSL with LibreSSL (recommended) in your system?(yes or no)\n>"
 read sslanswer
 sslanswer="${sslanswer,,}"
 printf ${CYAN}"Do you want to do performance optimizations. LTO -O3 and Graphite?(yes or no)\n>"
@@ -190,17 +187,6 @@ printf "unpacked stage 3\n"
 #rm -rf /mnt/gentoo/etc/portage
 cd /mnt/gentoo/deploygentoo-master/gentoo/
 cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
-#TODO test if this works when setting up gentoo in chroot
-case $ssl_choice in
-  0)
-    #Nothing to do here for default SSL
-    emerge app-portage/layman
-    ;;
-  1)
-    echo "dev-vcs/git -gpg" >> /etc/portage/package.use/package.use
-    emerge app-portage/layman dev-vcs/git
-    ;;
-esac
 cd /mnt/gentoo/
 mkdir /mnt/gentoo/etc/portage/backup/
 mv /mnt/gentoo/etc/portage/make.conf /mnt/gentoo/etc/portage/backup/
