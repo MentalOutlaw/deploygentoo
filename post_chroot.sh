@@ -4,11 +4,11 @@ source /etc/profile
 cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
-sed '/^$/d' /mnt/gentoo/install_vars >> /mnt/gentoo/temp_f
-rm -rf /mnt/gentoo/install_vars
-cat /mnt/gentoo/temp_f >> /mnt/gentoo/install_vars
-rm -rf /mnt/gentoo/temp_f
-install_vars=/mnt/gentoo/install_vars
+sed '/^$/d' /install_vars >> /temp_f
+rm -rf /install_vars
+cat /temp_f >> /install_vars
+rm -rf /temp_f
+install_vars=/install_vars
 
 install_vars_count="$(wc -w /mnt/gentoo/install_vars)"
 disk=$(sed '1q;d' install_vars)
