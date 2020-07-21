@@ -4,11 +4,11 @@ source /etc/profile
 cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
-sed '/^$/d' /install_vars >> /temp_f
-rm -rf /install_vars
-cat /temp_f >> /install_vars
-rm -rf /temp_f
-install_vars=/install_vars
+sed '/^$/d' /mnt/gentoo/install_vars >> /temp_f
+rm -rf /mnt/gentoo/install_vars
+cat /temp_f >> /mnt/gentoo/install_vars
+rm -rf /mnt/gentoo/temp_f
+install_vars=/mnt/gentoo/install_vars
 
 install_vars_count="$(wc -w /install_vars)"
 disk=$(sed '1q;d' install_vars)
@@ -21,8 +21,8 @@ part_3=$(sed '7q;d' install_vars)
 part_1=$(sed '8q;d' install_vars)
 part_2=$(sed '9q;d' install_vars)
 part_4=$(sed '10q;d' install_vars)
-nw_interface=$(sed '11q;d' install_vars)
-performance_opts=$(sed '12q;d' install_vars)
+performance_opts=$(sed '11q;d' install_vars)
+nw_interface=$(sed '12q;d' install_vars)
 dev_sd=("/dev/$disk")
 mount $part_2 /boot
 jobs=("-j${cpus}")
@@ -111,8 +111,8 @@ sed -i -e "s/localhost/$hostname/g" /etc/conf.d/hostname
 emerge --noreplace --quiet net-misc/netifrc
 nw_config_str=("config_${nw_interface}=\"dhcp\"")
 printf "$nw_config_str\n" >> /etc/conf.d/net
-if [ $install_vars_count -gt 11 ]; then
-    nw_interface2=$(sed '12q;d' install_vars)
+if [ $install_vars_count -gt 12 ]; then
+    nw_interface2=$(sed '13q;d' install_vars)
     nw_config_str3=("config_${nw_interface2}=\"dhcp\"")
     printf "$nw_config_str3\n" >> /etc/conf.d/net
     net_config_str4=("net.${nw_interface2}")
@@ -147,12 +147,11 @@ emerge -q net-misc/dhcpcd
 
 #installs grub, and layman
 emerge --verbose -q sys-boot/grub:2
-printf "run commands manually from here on to see what breaks\n"
-emerge -q app-portage/layman
-##use this for MBR# grub-install $dev_sd
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
 printf "updated grub\n"
+printf "run commands manually from here on to see what breaks\n"
+##use this for MBR# grub-install $dev_sd
 useradd -m -G users,wheel,audio -s /bin/bash $username
 printf "added user\n"
 cd ..
@@ -174,6 +173,7 @@ if [ $sslanswer = "yes" ]; then
 #    #check to see if we can get away with a preserved-rebuild instead of a world emerge for lto
 #    #if yes then place the ssl build below lto
 	emerge -q @preserved-rebuild
+    emerge -q app-portage/layman
     sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
     if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
         printf "layman source already added to make.conf\n"
@@ -238,7 +238,7 @@ while true; do
 done
 printf "cleaning up\n"
 rm -rf /gentootype.txt
-rm -rf /install_vars
+#rm -rf /install_vars
 rm -rf /deploygentoo-master
 printf ${LIGHTGREEN}"You now have a completed gentoo installation system, reboot and remove the installation media to load it\n"
 printf ${LIGHTGREEN}"reboot\n"

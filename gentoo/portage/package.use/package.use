@@ -351,3 +351,4 @@ sys-auth/polkit elogind
 # required by www-client/firefox-68.10.0::gentoo[system-sqlite]
 # required by www-client/firefox (argument)
 >=dev-db/sqlite-3.31.1 secure-delete
+dev-vcs/git -gpg

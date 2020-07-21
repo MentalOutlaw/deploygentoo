@@ -143,8 +143,8 @@ echo "$part_3" >> "$install_vars"
 echo "$part_1" >> "$install_vars"
 echo "$part_2" >> "$install_vars"
 echo "$part_4" >> "$install_vars"
-cat /root/network_devices >> "$install_vars"
 echo "$performance_opts" >> "$install_vars"
+cat /root/network_devices >> "$install_vars"
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened
