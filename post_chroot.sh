@@ -199,9 +199,9 @@ if [ $performance_opts = "yes" ]; then
     yes | layman -a lto-overlay
     #this command doesn't work to emerge ltoize
     #TODO figure out how to fix it
-    #emerge -q sys-config/ltoize
-    echo "NTHREADS=\"${cpus}\"" /etc/portage/make.conf
-#    emerge -e @world
+    emerge -q sys-config/ltoize
+    echo "NTHREADS=\"${cpus}\"" >> /etc/portage/make.conf
+    emerge -e @world
     printf "performance enhancements setup, you'll have to emerge sys-config/ltoize to complete\n"
 elif [ $performance_opts = "no" ]; then
     printf "performance optimization not selected\n"
