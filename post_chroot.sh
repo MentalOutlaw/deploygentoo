@@ -4,11 +4,11 @@ source /etc/profile
 cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
-sed '/^$/d' /mnt/gentoo/install_vars >> /temp_f
-rm -rf /mnt/gentoo/install_vars
-cat /temp_f >> /mnt/gentoo/install_vars
-rm -rf /mnt/gentoo/temp_f
-install_vars=/mnt/gentoo/install_vars
+sed -i '/^$/d' install_vars
+#rm -rf /mnt/gentoo/install_vars
+#cat /temp_f >> /mnt/gentoo/install_vars
+#rm -rf /mnt/gentoo/temp_f
+install_vars=install_vars
 
 install_vars_count="$(wc -w /install_vars)"
 disk=$(sed '1q;d' install_vars)
@@ -22,6 +22,7 @@ part_1=$(sed '8q;d' install_vars)
 part_2=$(sed '9q;d' install_vars)
 part_4=$(sed '10q;d' install_vars)
 performance_opts=$(sed '11q;d' install_vars)
+#This line is getting written to line 13 for some reason
 nw_interface=$(sed '12q;d' install_vars)
 dev_sd=("/dev/$disk")
 mount $part_2 /boot
