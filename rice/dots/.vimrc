@@ -15,6 +15,18 @@ set expandtab
 set autoindent
 set fileformat=unix
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'mattn/emmet-vim'
+call plug#end()
+
+
 " Some basics:
 	nnoremap c "_c
 	set nocompatible
@@ -35,6 +47,9 @@ set fileformat=unix
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
+" Emmet Shortcuts
+let g:user_emmet_mode='n'   "Only enable normal mode functions.
+let g:user_emmet_leader_key=','
 
 " Replace all is aliased to S.
 	nnoremap S :%s//g<Left><Left>
