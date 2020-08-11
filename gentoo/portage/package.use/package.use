@@ -73,7 +73,7 @@ media-video/mpv cli libmpv
 dev-libs/libxml2 python
 # required by media-video/obs-studio-24.0.5::gentoo
 # required by media-video/obs-studio (argument)
->=net-libs/mbedtls libressl
+net-libs/mbedtls libressl
 >=media-video/ffmpeg-4.1.3 x264
 net-libs/nodejs -system-ssl -npm -ssl
 ##EVERYTHING BELOW THIS POINT WAS REQUIRED TO BUILD STEAM (GAMING)
