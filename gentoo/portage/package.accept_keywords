@@ -1,4 +1,8 @@
 #required for a newer kernel
+#9999 packages required when LTOizing
+media-video/obs-studio ~amd64
+=app-editors/neovim-9999 **
+=media-libs/x264-9999 **
 sys-kernel/gentoo-sources ~amd64
 # required by app-editors/neovim (argument)
 =app-editors/neovim-0.4.2 ~amd64
@@ -415,6 +419,7 @@ app-emulation/virtualbox-guest-additions ~amd64
 #kde-frameworks/kded ~amd64
 #kde-frameworks/kinit ~amd64
 #kde-frameworks/kguiaddons ~amd64
+#=net-misc/curl-7.71.0
 dev-qt/qttest ~amd64
 dev-qt/qtxml ~amd64
 dev-qt/qtquickcontrols ~amd64
@@ -430,3 +435,5 @@ sys-config/ltoize ~amd64
 app-portage/portage-bashrc-mv ~amd64
 app-shells/runtitle ~amd64
 sys-devel/gcc ~amd64
+=dev-libs/isl-0.14
+=dev-libs/cloog-0.18.3

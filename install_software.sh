@@ -40,17 +40,20 @@ emaint -a sync
 #cd /etc/layman
 #git clone https://github.com/gentoo/libressl
 cd /var/lib/layman
+layman -S
 yes | layman -a steam-overlay
 cd libressl/dev-qt/qtnetwork
 ebuild qtnetwork-5.15.0.ebuild manifest
 emerge dev-qt/qtnetwork
 
-#emerge games-util/steam-launcher games-util/steam-meta
+emerge games-util/steam-launcher games-util/steam-meta
 emerge --autounmask-write $SOFTWARE
 
+#layman -a pentoo
 #installs software from pentoo overlay
 #this part doesn't work for some reason, maybe because of the new kernel?
 #TODO fix it!!!
+#A potential fix is to just intall from the pentoo overlay, but this requires testing.
 #cd $script_home
 #check_dir_exists /usr/local/portage/net-analyzer/responder
 #if $exists; then

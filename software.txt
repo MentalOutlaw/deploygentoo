@@ -40,7 +40,7 @@ net-analyzer/yersinia
 net-analyzer/masscan
 net-analyzer/arp-scan
 net-analyzer/hping
-#net-proxy/mitmproxy Requires OpenSSL
+net-proxy/mitmproxy
 net-vpn/httptunnel
 net-dns/dnshijacker
 net-dns/dnswalk
@@ -51,7 +51,7 @@ net-analyzer/dnsenum
 www-client/httrack
 app-crypt/hashcat
 app-crypt/mhash
-app-crypt/openvpn-blacklist
+#app-crypt/openvpn-blacklist
 net-wireless/aircrack-ng
 net-misc/socat
 media-libs/exiftool
@@ -63,8 +63,10 @@ app-text/zathura
 media-sound/alsa-utils
 app-admin/keepassxc
 app-editors/vim
-net-im/signal-desktop-bin
-www-client/firefox
+##Trouble building with LTO
+#net-im/signal-desktop-bin
+##Trouble building with LTO & Libressl
+#www-client/firefox
 net-misc/youtube-dl
 media-video/mpv
 media-gfx/gimp
