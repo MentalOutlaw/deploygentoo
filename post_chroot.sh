@@ -160,7 +160,11 @@ mv deploygentoo-master.zip /home/$username
 ##rm -rf /deploygentoo-master
 stage3=$(ls stage3*)
 rm -rf $stage3
+#libressl selection stage
 if [ $sslanswer = "yes" ]; then
+    sed -i 's/-ios/-ios libressl/g' /etc/portage/make.conf
+    sed -i -e '$aCURL_SSL="libressl"' /etc/portage/make.conf
+    cp -r /deploygentoo-master/gentoo/portage/profile /etc/portage/
 	emerge -q gentoolkit
 	mkdir -p /etc/portage/profile
 	echo "-libressl" >> /etc/portage/profile/use.stable.mask
@@ -205,6 +209,14 @@ if [ $performance_opts = "yes" ]; then
     #this command doesn't work to emerge ltoize
     #TODO figure out how to fix it
     #TODO create a more sophisticated way to figure out the latest version of these ebuilds
+    emerge --autounmask-continue app-text/textlive
+    emerge dev-libs/isl
+    git clone https://github.com/periscop/cloog
+    cd cloog
+    ./get_submodules.sh
+    ./autogen.sh
+    ./configure
+    make && make install
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
     #This should go after LTO is applied to make.conf
@@ -217,8 +229,9 @@ if [ $performance_opts = "yes" ]; then
     sed -i '5s/^/NTHREADS=\"${cpus}\"\n\n/' /etc/portage/make.conf
     sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
     sed -i '11s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
-    sed -i 's/-motif/-motif lto/g' /etc/portage/make.conf
-    sed -i 's/-policykit/-policykit graphite/g'
+    sed -i 's/-dbus/-dbus lto/g' /etc/portage/make.conf
+    sed -i 's/-policykit/-policykit graphite/g' /etc/portage/make.conf
+    emerge gcc
     emerge -e @world
     printf "performance enhancements setup, you'll have to emerge sys-config/ltoize to complete\n"
 elif [ $performance_opts = "no" ]; then

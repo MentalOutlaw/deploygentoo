@@ -1,5 +1,6 @@
 #X Server configuration
 x11-libs/libX11
+x11-base/xorg-drivers
 x11-base/xorg-server
 x11-libs/libXrandr
 x11-libs/libXinerama
@@ -13,10 +14,11 @@ x11-misc/unclutter
 x11-misc/xclip
 x11-misc/pcmanfm
 x11-terms/rxvt-unicode
+x11-apps/xbacklight
 
 #misc
 dev-vcs/git
-#app-editors/neovim
+app-editors/neovim
 app-editors/vim
 sys-process/htop
 media-sound/alsa-utils
@@ -24,4 +26,3 @@ media-sound/alsa-utils
 #fonts
 media-fonts/fontawesome
 media-fonts/libertine
-x11-apps/xbacklight
