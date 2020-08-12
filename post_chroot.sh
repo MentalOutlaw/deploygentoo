@@ -218,9 +218,9 @@ if [ $performance_opts = "yes" ]; then
     ./configure
     make && make install
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
-    ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
+    #ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
     #This should go after LTO is applied to make.conf
-    emerge -q dev-lang/python
+    #emerge -q dev-lang/python
     emerge -q sys-config/ltoize
     #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
     sed -i 's/CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
