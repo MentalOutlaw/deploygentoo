@@ -271,6 +271,9 @@ done
 printf "cleaning up\n"
 rm -rf /gentootype.txt
 #rm -rf /install_vars
+cp -r /deploygentoo-master/gentoo/portage/savedconfig /etc/portage/
+cp -r /deploygentoo-master/gentoo/portage/env /etc/portage/
+cp /deploygentoo-master/gentoo/portage/package.env /etc/portage/
 rm -rf /deploygentoo-master
 printf ${LIGHTGREEN}"You now have a completed gentoo installation system, reboot and remove the installation media to load it\n"
 printf ${LIGHTGREEN}"reboot\n"

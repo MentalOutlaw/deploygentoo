@@ -204,9 +204,6 @@ cp /mnt/gentoo/deploygentoo-master/gentoo/portage/nvidia_package.license /mnt/ge
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.license /mnt/gentoo/etc/portage
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.accept_keywords /mnt/gentoo/etc/portage/
 cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage/profile /mnt/gentoo/etc/portage/
-cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage/savedconfig /mnt/gentoo/etc/portage/
-cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage/env /mnt/gentoo/etc/portage/
-cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.env /mnt/gentoo/etc/portage/
 
 mkdir --parents /mnt/gentoo/etc/portage/repos.conf
 cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
