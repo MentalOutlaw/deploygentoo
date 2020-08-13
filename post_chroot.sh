@@ -213,11 +213,12 @@ if [ $performance_opts = "yes" ]; then
     emerge --autounmask-continue app-text/texlive
     git clone https://github.com/periscop/cloog
     cd cloog
-    ./get_submodules.sh
-    ./autogen.sh
-    ./configure
+    /bin/bash get_submodules.sh
+    /bin/bash autogen.sh
+    /bin/bash configure
     make && make install
-    emerge dev-libs/isl
+    emerge -q dev-libs/isl
+    emerge -q dev-libs/cloog
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
     #ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
     #This should go after LTO is applied to make.conf
