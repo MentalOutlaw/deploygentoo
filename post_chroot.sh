@@ -32,6 +32,7 @@ printf "%s jobs equals \n" % $jobs
 printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
 emerge --sync --quiet
+#TODO This emerge fails for some reason
 emerge -q app-portage/mirrorselect
 printf "searching for fastest servers\n"
 mirrorselect -s5 -b10 -D
@@ -208,16 +209,16 @@ if [ $performance_opts = "yes" ]; then
     yes | layman -a lto-overlay
     layman -S
     emerge --autounmask-continue app-text/texlive
+    emerge -q dev-libs/isl
     git clone https://github.com/periscop/cloog
     cd cloog
     GET_SUBMODULES="/cloog/get_submodules.sh"
     . "$GET_SUBMODULES"
-    AUTOGEN="/cloog/get_submodules.sh"
+    AUTOGEN="/cloog/autogen.sh"
     . "$AUTOGEN"
-    CONFIGURE="/cloog/configure"
-    . "$CONFIGURE"
+    CONFIG="/cloog/configure"
+    bash "$CONFIG"
     make && make install
-    emerge -q dev-libs/isl
     emerge -q dev-libs/cloog
     #TODO create a more sophisticated way to figure out the latest version of these ebuilds
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
