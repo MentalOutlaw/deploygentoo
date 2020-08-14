@@ -1,3 +1,4 @@
+#!/bin/bash
 #this puts some things in place like your make.conf, aswell as package.use
 LIGHTGREEN='\033[1;32m'
 LIGHTRED='\033[1;91m'
