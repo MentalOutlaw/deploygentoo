@@ -210,33 +210,45 @@ if [ $performance_opts = "yes" ]; then
     layman -S
     emerge --autounmask-continue app-text/texlive
     emerge -q dev-libs/isl
-#    git clone https://github.com/periscop/cloog
-#    cd cloog
-#    GET_SUBMODULES="/cloog/get_submodules.sh"
-#    . "$GET_SUBMODULES"
-#    AUTOGEN="/cloog/autogen.sh"
-#    . "$AUTOGEN"
-#    CONFIG="/cloog/configure"
-#    bash "$CONFIG"
-#    make && make install
-#    emerge -q dev-libs/cloog
-#    #TODO create a more sophisticated way to figure out the latest version of these ebuilds
-#    ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
-#    #ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
-#    #This should go after LTO is applied to make.conf
-#    #emerge -q dev-lang/python
-#    emerge -q sys-config/ltoize
-#    #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
-#    sed -i 's/CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
-#    sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
-#    #echo "NTHREADS=\"${cpus}\"" >> /etc/portage/make.conf
-#    sed -i "5s/^/NTHREADS=\"$cpus\"\n\n/" /etc/portage/make.conf
-#    sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
-#    sed -i '11s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
-#    sed -i 's/-quicktime/-quicktime lto/g' /etc/portage/make.conf
-#    sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
-#    emerge gcc
-#    emerge -e @world
+    git clone https://github.com/periscop/cloog
+    cd cloog
+    GET_SUBMODULES="/cloog/get_submodules.sh"
+    . "$GET_SUBMODULES"
+    AUTOGEN="/cloog/autogen.sh"
+    . "$AUTOGEN"
+    CONFIG="/cloog/configure"
+    bash "$CONFIG"
+    make && make install
+    if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
+        printf "layman source already added to make.conf\n"
+    else
+        echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
+    fi
+    if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
+        printf "PORTDIR_OVERLAY string already added to make.conf\n"
+    else
+        #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
+        printf "nothing to do here\n"
+    fi
+    #TODO create a more sophisticated way to figure out the latest version of these ebuilds
+    ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
+    ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild.0.9.8.ebuild
+    ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
+    #This should go after LTO is applied to make.conf
+    emerge -q sys-config/ltoize
+    emerge -q app-portage/lto-rebuild
+    emerge -q dev-lang/python
+    #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
+    sed -i 's/CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
+    sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
+    #echo "NTHREADS=\"${cpus}\"" >> /etc/portage/make.conf
+    sed -i "5s/^/NTHREADS=\"$cpus\"\n\n/" /etc/portage/make.conf
+    sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
+    sed -i '11s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
+    sed -i 's/-quicktime/-quicktime lto/g' /etc/portage/make.conf
+    sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
+    emerge gcc
+    emerge -e @world
     printf "performance enhancements setup, you'll have to emerge sys-config/ltoize to complete\n"
 elif [ $performance_opts = "no" ]; then
     printf "performance optimization not selected\n"

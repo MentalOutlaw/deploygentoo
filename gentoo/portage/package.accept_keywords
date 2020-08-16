@@ -4,6 +4,7 @@ media-video/obs-studio ~amd64
 =app-editors/neovim-9999 **
 =media-libs/x264-9999 **
 sys-kernel/gentoo-sources ~amd64
+app-portage/lto-rebuild ~amd64
 # required by app-editors/neovim (argument)
 =app-editors/neovim-0.4.2 ~amd64
 # required by app-editors/neovim-0.4.2::gentoo[tui]
