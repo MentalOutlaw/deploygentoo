@@ -232,7 +232,7 @@ if [ $performance_opts = "yes" ]; then
     fi
     #TODO create a more sophisticated way to figure out the latest version of these ebuilds
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
-    ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild.0.9.8.ebuild
+    ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild.0.9.8.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
     #This should go after LTO is applied to make.conf
     emerge -q sys-config/ltoize
