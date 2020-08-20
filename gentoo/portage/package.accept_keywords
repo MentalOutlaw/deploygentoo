@@ -3,8 +3,25 @@
 media-video/obs-studio ~amd64
 =app-editors/neovim-9999 **
 =media-libs/x264-9999 **
+#required for emerge @world after LTO
 sys-kernel/gentoo-sources ~amd64
 app-portage/lto-rebuild ~amd64
+dev-lang/python::lto-overlay ~amd64
+dev-util/pkgconf ~amd64
+sys-config/ltoize ~amd64
+app-portage/portage-bashrc-mv ~amd64
+app-shells/runtitle ~amd64
+sys-devel/gcc ~amd64
+=dev-libs/isl-0.14
+=dev-libs/cloog-0.18.3
+virtual/freedesktop-icon-theme::mv ~amd64
+x11-libs/gtk+::mv ~amd64
+virtual/man::mv ~amd64
+sys-apps/less:mv ~amd64
+app-text/lesspipe:mv ~amd64
+app-shells/quoter:mv ~amd64
+app-shells/push:mv ~amd64
+app-portage/eix:mv ~amd64
 # required by app-editors/neovim (argument)
 =app-editors/neovim-0.4.2 ~amd64
 # required by app-editors/neovim-0.4.2::gentoo[tui]
@@ -431,10 +448,3 @@ dev-qt/qtwidgets ~amd64
 dev-qt/qtchooser ~amd64
 dev-qt/qtcore ~amd64
 dev-qt/linguist-tools ~amd64
-#Required by LTO Overlay
-sys-config/ltoize ~amd64
-app-portage/portage-bashrc-mv ~amd64
-app-shells/runtitle ~amd64
-sys-devel/gcc ~amd64
-=dev-libs/isl-0.14
-=dev-libs/cloog-0.18.3

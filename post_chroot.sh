@@ -231,20 +231,32 @@ if [ $performance_opts = "yes" ]; then
         printf "nothing to do here\n"
     fi
     #TODO create a more sophisticated way to figure out the latest version of these ebuilds
+    #Adding dev-lang/python::lto-overlay ~amd64 automatically emerges the latest python ebuild, delete above TODO if this build works
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild.0.9.8.ebuild manifest
-    ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
-    #This should go after LTO is applied to make.conf
-    emerge -q sys-config/ltoize
-    emerge -q app-portage/lto-rebuild
-    emerge -q dev-lang/python
+    ebuild /var/lib/layman/lto-overlay/dev-lang/python-3.9.0_beta5.ebuild manifest
+    ebuild /var/lib/layman/lto-overlay/dev-lang/python-2.7.18-r100.ebuild manifest
+    ebuild /var/lib/layman/mv/app-portage/eix/eix-0.34.4.ebuild manifest
+    ebuild /var/lib/layman/mv/app-shells/push/push-3.3.ebuild manifest
+    ebuild /var/lib/layman/mv/app-shells/quoter/quoter-4.2.ebuild manifest
+    ebuild /var/lib/layman/mv/app-text/lesspipe/lesspipe-1.85_alpha20200517.ebuild manifest
+    ebuild /var/lib/layman/mv/sys-apps/less/less-563.ebuild manifest
+    ebuild /var/lib/layman/mv/virtual/man/man-0-r3.ebuild manifest
+    emerge =dev-lang/python-3.9.0_beta5::lto-overlay
+    emerge =dev-lang/python-2.7.18-r100::lto-overlay
+    emerge =app-portage/eix-0.34.4::mv
+    emerge =app-shells/push-3.3::mv
+    emerge =app-shells/quoter-4.2::mv
+    emerge =app-text/lesspipe-1.85_alpha20200517::mv
+    emerge =sys-apps/less-563::mv
+    emerge =virtual/man-0-r3::mv
     #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
     sed -i 's/CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
     sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
-    #echo "NTHREADS=\"${cpus}\"" >> /etc/portage/make.conf
     sed -i "5s/^/NTHREADS=\"$cpus\"\n\n/" /etc/portage/make.conf
     sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
     sed -i '11s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
+    sed -i '16s/^/ACCEPT_KEYWORDS=\"~amd64\"\n/' /etc/portage/make.conf
     sed -i 's/-quicktime/-quicktime lto/g' /etc/portage/make.conf
     sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
     emerge gcc
