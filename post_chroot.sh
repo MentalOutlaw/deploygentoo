@@ -187,11 +187,10 @@ if [ $sslanswer = "yes" ]; then
     else
         echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
     fi
-    if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
-        printf "PORTDIR_OVERLAY string already added to make.conf\n"
+    if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
+        printf "layman source already added to make.conf\n"
     else
-        #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
-        printf "nothing to do here\n"
+        echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
     fi
     layman -f
     layman -a libressl
@@ -201,7 +200,6 @@ else
 fi
 
 if [ $performance_opts = "yes" ]; then
-    #TODO it might be best to have gcc upgrade be the first thing we emerge so all packages are compiled against it
     emerge --oneshot --quiet sys-devel/gcc
     gcc-config 2
     emerge --oneshot --usepkg=n --quiet sys-devel/libtool
@@ -219,19 +217,7 @@ if [ $performance_opts = "yes" ]; then
     CONFIG="/cloog/configure"
     bash "$CONFIG"
     make && make install
-    if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
-        printf "layman source already added to make.conf\n"
-    else
-        echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
-    fi
-    if grep "PORTDIR_OVERLAY" /etc/portage/make.conf; then
-        printf "PORTDIR_OVERLAY string already added to make.conf\n"
-    else
-        #echo "PORTDIR_OVERLAY=\"${PORTDIR_OVERLAY} /usr/local/portage/\"" >> /etc/portage/make.conf
-        printf "nothing to do here\n"
-    fi
     #TODO create a more sophisticated way to figure out the latest version of these ebuilds
-    #Adding dev-lang/python::lto-overlay ~amd64 automatically emerges the latest python ebuild, delete above TODO if this build works
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild.0.9.8.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/dev-lang/python-3.9.0_beta5.ebuild manifest
@@ -253,10 +239,11 @@ if [ $performance_opts = "yes" ]; then
     #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
     sed -i 's/CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
     sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
-    sed -i "5s/^/NTHREADS=\"$cpus\"\n\n/" /etc/portage/make.conf
-    sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
-    sed -i '11s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
-    sed -i '16s/^/ACCEPT_KEYWORDS=\"~amd64\"\n/' /etc/portage/make.conf
+    sed -i '12s/^/LDFLAGS=\"${CFLAGS} -fuse-linker-plugin\"\n/' /etc/portage/make.conf
+    sed -i '5s/^/NTHREADS=\"$cpus\"\n/' /etc/portage/make.conf
+    sed -i '6s/^/source make.conf.lto\n/' /etc/portage/make.conf
+    sed -i '13s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
+    sed -i '17s/^/ACCEPT_KEYWORDS=\"~amd64\"\n\n/' /etc/portage/make.conf
     sed -i 's/-quicktime/-quicktime lto/g' /etc/portage/make.conf
     sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
     emerge gcc
@@ -298,7 +285,7 @@ while true; do
 done
 printf "cleaning up\n"
 rm -rf /gentootype.txt
-#rm -rf /install_vars
+rm -rf /install_vars
 cp -r /deploygentoo-master/gentoo/portage/savedconfig /etc/portage/
 cp -r /deploygentoo-master/gentoo/portage/env /etc/portage/
 cp /deploygentoo-master/gentoo/portage/package.env /etc/portage/

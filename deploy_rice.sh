@@ -65,7 +65,7 @@ DEPLIST="`sed -e 's/#.*$//' -e '/^$/d' dependencies.txt | tr '\n' ' '`"
 #fi
 #yes | layman -a steam-overlay
 
-emerge -q $DEPLIST
+emerge --autounmask-continue -q $DEPLIST
 
 printf "installed dependencies\n"
 check_dir_exists /usr/lib64/urxvt/perl/font-size
