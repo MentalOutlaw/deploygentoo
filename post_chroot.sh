@@ -228,6 +228,7 @@ if [ $performance_opts = "yes" ]; then
     ebuild /var/lib/layman/mv/app-text/lesspipe/lesspipe-1.85_alpha20200517.ebuild manifest
     ebuild /var/lib/layman/mv/sys-apps/less/less-563.ebuild manifest
     ebuild /var/lib/layman/mv/virtual/man/man-0-r3.ebuild manifest
+    emerge sys-config/ltoize
     emerge =dev-lang/python-3.9.0_beta5::lto-overlay
     emerge =dev-lang/python-2.7.18-r100::lto-overlay
     emerge =app-portage/eix-0.34.4::mv
@@ -237,13 +238,13 @@ if [ $performance_opts = "yes" ]; then
     emerge =sys-apps/less-563::mv
     emerge =virtual/man-0-r3::mv
     #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
-    sed -i 's/CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
+    sed -i 's/^CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
     sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
-    sed -i '12s/^/LDFLAGS=\"${CFLAGS} -fuse-linker-plugin\"\n/' /etc/portage/make.conf
     sed -i '5s/^/NTHREADS=\"$cpus\"\n/' /etc/portage/make.conf
-    sed -i '6s/^/source make.conf.lto\n/' /etc/portage/make.conf
-    sed -i '13s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
-    sed -i '17s/^/ACCEPT_KEYWORDS=\"~amd64\"\n\n/' /etc/portage/make.conf
+    sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
+    sed -i '11s/^/LDFLAGS=\"${CFLAGS} -fuse-linker-plugin\"\n/' /etc/portage/make.conf
+    sed -i '12s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
+    sed -i '15s/^/ACCEPT_KEYWORDS=\"~amd64\"\n/' /etc/portage/make.conf
     sed -i 's/-quicktime/-quicktime lto/g' /etc/portage/make.conf
     sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
     emerge gcc
