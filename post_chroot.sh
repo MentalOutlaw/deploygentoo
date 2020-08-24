@@ -187,11 +187,6 @@ if [ $sslanswer = "yes" ]; then
     else
         echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
     fi
-    if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
-        printf "layman source already added to make.conf\n"
-    else
-        echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
-    fi
     layman -f
     layman -a libressl
     layman -S
@@ -228,15 +223,16 @@ if [ $performance_opts = "yes" ]; then
     ebuild /var/lib/layman/mv/app-text/lesspipe/lesspipe-1.85_alpha20200517.ebuild manifest
     ebuild /var/lib/layman/mv/sys-apps/less/less-563.ebuild manifest
     ebuild /var/lib/layman/mv/virtual/man/man-0-r3.ebuild manifest
-    emerge sys-config/ltoize
-    emerge =dev-lang/python-3.9.0_beta5::lto-overlay
-    emerge =dev-lang/python-2.7.18-r100::lto-overlay
-    emerge =app-portage/eix-0.34.4::mv
-    emerge =app-shells/push-3.3::mv
-    emerge =app-shells/quoter-4.2::mv
-    emerge =app-text/lesspipe-1.85_alpha20200517::mv
-    emerge =sys-apps/less-563::mv
-    emerge =virtual/man-0-r3::mv
+    emerge -q app-portage/lto-rebuild
+    emerge -q sys-config/ltoize
+    emerge -q =dev-lang/python-3.9.0_beta5-r1::lto-overlay
+    emerge -q =dev-lang/python-2.7.18-r100::lto-overlay
+    emerge -q =app-portage/eix-0.34.4::mv
+    emerge -q =app-shells/push-3.3::mv
+    emerge -q =app-shells/quoter-4.2::mv
+    emerge -q =app-text/lesspipe-1.85_alpha20200517::mv
+    emerge -q =sys-apps/less-563::mv
+    emerge -q =virtual/man-0-r3::mv
     #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
     sed -i 's/^CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
     sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
