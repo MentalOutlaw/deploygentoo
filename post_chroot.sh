@@ -203,17 +203,16 @@ if [ $performance_opts = "yes" ]; then
     layman -S
     emerge --autounmask-continue app-text/texlive
     emerge -q dev-libs/isl
+    cd /bin
     git clone https://github.com/periscop/cloog
     cd cloog
-    GET_SUBMODULES="/cloog/get_submodules.sh"
+    GET_SUBMODULES="/bin/cloog/get_submodules.sh"
     . "$GET_SUBMODULES"
-    AUTOGEN="/cloog/autogen.sh"
+    AUTOGEN="/bin/cloog/autogen.sh"
     . "$AUTOGEN"
-    CONFIG="/cloog/configure"
+    CONFIG="/bin/cloog/configure"
     bash "$CONFIG"
     make && make install
-    #TODO create a more sophisticated way to figure out the latest version of these ebuilds
-    #Insert TExt Here Start
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild-0.9.8.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
@@ -245,7 +244,7 @@ if [ $performance_opts = "yes" ]; then
     #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
     sed -i 's/^CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
     sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
-    sed -i "5s/^/NTHREADS=\"$cpus\"\n" /etc/portage/make.conf
+    sed -i "5s/^/NTHREADS=\"$cpus\"\n/" /etc/portage/make.conf
     sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
     sed -i '11s/^/LDFLAGS=\"${CFLAGS} -fuse-linker-plugin\"\n/' /etc/portage/make.conf
     sed -i '12s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
@@ -254,7 +253,6 @@ if [ $performance_opts = "yes" ]; then
     sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
     emerge gcc
     emerge -e @world
-    #Insert TExt Here END
     printf "performance enhancements setup, you'll have to emerge sys-config/ltoize to complete\n"
 elif [ $performance_opts = "no" ]; then
     printf "performance optimization not selected\n"
