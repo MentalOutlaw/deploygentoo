@@ -163,23 +163,40 @@ mv deploygentoo-master.zip /home/$username
 stage3=$(ls stage3*)
 rm -rf $stage3
 #libressl selection stage
-if [ $sslanswer = "yes" ]; then
-    sed -i 's/-ios/-ios libressl/g' /etc/portage/make.conf
-    sed -i -e '$aCURL_SSL="libressl"' /etc/portage/make.conf
-    cp -r /deploygentoo-master/gentoo/portage/profile /etc/portage/
-	emerge -q gentoolkit
-	mkdir -p /etc/portage/profile
-	echo "-libressl" >> /etc/portage/profile/use.stable.mask
-	echo "dev-libs/openssl" >> /etc/portage/package.mask
-	echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
-	emerge -f libressl
-	emerge -C openssl
-	emerge -1q libressl
-	emerge -1q openssh wget python:2.7 python:3.6 iputils
-#    #TODO
-#    #check to see if we can get away with a preserved-rebuild instead of a world emerge for lto
-#    #if yes then place the ssl build below lto
-	emerge -q @preserved-rebuild
+#if [ $sslanswer = "yes" ]; then
+#    sed -i 's/-ios/-ios libressl/g' /etc/portage/make.conf
+#    sed -i -e '$aCURL_SSL="libressl"' /etc/portage/make.conf
+#    cp -r /deploygentoo-master/gentoo/portage/profile /etc/portage/
+#    emerge -q gentoolkit
+#    mkdir -p /etc/portage/profile
+#    echo "-libressl" >> /etc/portage/profile/use.stable.mask
+#    echo "dev-libs/openssl" >> /etc/portage/package.mask
+#    echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
+#    emerge -f libressl
+#    emerge -C openssl
+#    emerge -1q libressl
+#    emerge -1q openssh wget python:2.7 python:3.6 iputils
+##    #TODO
+##    #check to see if we can get away with a preserved-rebuild instead of a world emerge for lto
+##    #if yes then place the ssl build below lto
+#    emerge -q @preserved-rebuild
+#delete here Start
+#    emerge -q app-portage/layman
+#    sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
+#    if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
+#        printf "layman source already added to make.conf\n"
+#    else
+#        echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
+#    fi
+#Delete here end
+#    layman -f
+#    layman -a libressl
+#    layman -S
+#else
+#    printf "not useing LibreSSL\n"
+#fi
+
+if [ $performance_opts = "yes" ]; then
     emerge -q app-portage/layman
     sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
     if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
@@ -187,14 +204,6 @@ if [ $sslanswer = "yes" ]; then
     else
         echo "source /var/lib/layman/make.conf" >> /etc/portage/make.conf
     fi
-    layman -f
-    layman -a libressl
-    layman -S
-else
-	printf "not useing LibreSSL\n"
-fi
-
-if [ $performance_opts = "yes" ]; then
     emerge --oneshot --quiet sys-devel/gcc
     gcc-config 2
     emerge --oneshot --usepkg=n --quiet sys-devel/libtool
@@ -252,11 +261,34 @@ if [ $performance_opts = "yes" ]; then
     sed -i 's/-quicktime/-quicktime lto/g' /etc/portage/make.conf
     sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
     emerge gcc
-    emerge -e @world
+    emerge dev-util/pkgconf
+    emerge -eq @world
     printf "performance enhancements setup, you'll have to emerge sys-config/ltoize to complete\n"
 elif [ $performance_opts = "no" ]; then
     printf "performance optimization not selected\n"
 fi
+#libressl selection stage
+if [ $sslanswer = "yes" ]; then
+    sed -i 's/-ios/-ios libressl/g' /etc/portage/make.conf
+    sed -i -e '$aCURL_SSL="libressl"' /etc/portage/make.conf
+    cp -r /deploygentoo-master/gentoo/portage/profile /etc/portage/
+    emerge -q gentoolkit
+    mkdir -p /etc/portage/profile
+    echo "-libressl" >> /etc/portage/profile/use.stable.mask
+    echo "dev-libs/openssl" >> /etc/portage/package.mask
+    echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
+    emerge -f libressl
+    emerge -C openssl
+    emerge -1q libressl
+    emerge -1q openssh wget python:2.7 python:3.6 iputils
+    emerge -q @preserved-rebuild
+    layman -f
+    layman -a libressl
+    layman -S
+else
+    printf "not useing LibreSSL\n"
+fi
+
 
 while true; do
     printf ${LIGHTGREEN}"enter the password for your root user\n>"
