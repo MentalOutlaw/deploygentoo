@@ -121,6 +121,7 @@ if [ $install_vars_count -gt 12 ]; then
     net_config_str4=("net.${nw_interface2}")
     ln -s net.lo $net_config_str4
     rc-update add $net_config_str4 default
+    rc-update add elogind boot
 else
     printf "only 1 network device found\n"
 fi
