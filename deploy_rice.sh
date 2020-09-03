@@ -93,11 +93,13 @@ fi
 check_dir_exists $userhome/.config
 if $exists; then
 	printf "your users .config directory already exists"
+	cp -f $scriptdir/dots/aliasrc $userhome/.config/aliasrc
+	cp -f $scriptdir/dots/htoprc $userhome/.config/htop
 else
 	echo "creating rice directory for user"
 	mkdir -p .config/htop
-	cp -f dots/aliasrc .config/
-	cp -f dots/htoprc .config/htop
+	cp -f $scriptdir/dots/aliasrc $userhome/.config/aliasrc
+	cp -f $scriptdir/dots/htoprc $userhome/.config/htop
 fi
 cd $scriptdir
 
@@ -114,18 +116,18 @@ echo "Checking directories"
 checkinstdir $BIN_DIR
 #check_file_exists $HOME/.bashrc
 echo "Adding Dots to root home"
-cp -f dots/.rootbashrc /$HOME/.bashrc
-cp -f dots/.vimrc $HOME
-cp -f dots/.xinitrc $HOME
-cp -f dots/.Xresources $HOME
-cp -f dots/init.vim $HOME
+cp -f $scriptdir/dots/.rootbashrc /$HOME/.bashrc
+cp -f $scriptdir/dots/.vimrc $HOME
+cp -f $scriptdir/dots/.xinitrc $HOME
+cp -f $scriptdir/dots/.Xresources $HOME
+cp -f $scriptdir/dots/init.vim $HOME
 
 echo "Adding Dots to user home"
-cp -f dots/.bashrc $userhome
-cp -f dots/.vimrc $userhome
-cp -f dots/.xinitrc $userhome
-cp -f dots/.Xresources $userhome
-cp -f dots/init.vim $userhome
+cp -f $scriptdir/dots/.bashrc $userhome
+cp -f $scriptdir/dots/.vimrc $userhome
+cp -f $scriptdir/dots/.xinitrc $userhome
+cp -f $scriptdir/dots/.Xresources $userhome
+cp -f $scriptdir/dots/init.vim $userhome
 
 cd $HOME/.config
 check_dir_exists $HOME/.config/st
@@ -172,7 +174,8 @@ echo "installed st"
 
 modprobe snd-intel8x0
 #This lets us have a non-root Xorg
-chmod 4711 /usr/bin/Xorg
+#TODO Test if this chmod is still needed
+#chmod 4711 /usr/bin/Xorg
 
 fc-cache -fv
 

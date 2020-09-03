@@ -17,7 +17,6 @@ x11-terms/rxvt-unicode
 x11-apps/xbacklight
 
 #misc
-dev-vcs/git
 app-editors/neovim
 app-editors/vim
 sys-process/htop
