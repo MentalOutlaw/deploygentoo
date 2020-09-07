@@ -271,6 +271,8 @@ fi
 #libressl selection stage
 if [ $sslanswer = "yes" ]; then
     sed -i 's/-ios/-ios libressl/g' /etc/portage/make.conf
+    sed -i 's/mbedtls/mbedtls libressl/g' /etc/portage/package.use/package.use
+    sed -i 's/nodejs/nodejs -system-ssl/g' /etc/portage/package.use/package.use
     sed -i -e '$aCURL_SSL="libressl"' /etc/portage/make.conf
     cp -r /deploygentoo-master/gentoo/portage/profile /etc/portage/
     emerge -q gentoolkit
