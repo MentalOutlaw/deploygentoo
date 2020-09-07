@@ -47,6 +47,7 @@ ebuild qtnetwork-5.15.0.ebuild manifest
 emerge dev-qt/qtnetwork
 
 emerge games-util/steam-launcher games-util/steam-meta
+rm -rf /var/lib/layman/lto-overlay/sys-config/ltoize/files/patches/media-libs/x264/*
 emerge --autounmask-write $SOFTWARE
 
 #layman -a pentoo

@@ -97,7 +97,9 @@ if $exists; then
 	cp -f $scriptdir/dots/htoprc $userhome/.config/htop
 else
 	echo "creating rice directory for user"
-	mkdir -p .config/htop
+	mkdir -p $userhome/.config/htop
+    mkdir -p $userhome/.config/nvim
+    mkdir -p $HOME/.config/nvim
 	cp -f $scriptdir/dots/aliasrc $userhome/.config/aliasrc
 	cp -f $scriptdir/dots/htoprc $userhome/.config/htop
 fi
@@ -120,14 +122,14 @@ cp -f $scriptdir/dots/.rootbashrc /$HOME/.bashrc
 cp -f $scriptdir/dots/.vimrc $HOME
 cp -f $scriptdir/dots/.xinitrc $HOME
 cp -f $scriptdir/dots/.Xresources $HOME
-cp -f $scriptdir/dots/init.vim $HOME
+cp -f $scriptdir/dots/init.vim $HOME/.config/nvim
 
 echo "Adding Dots to user home"
 cp -f $scriptdir/dots/.bashrc $userhome
 cp -f $scriptdir/dots/.vimrc $userhome
 cp -f $scriptdir/dots/.xinitrc $userhome
 cp -f $scriptdir/dots/.Xresources $userhome
-cp -f $scriptdir/dots/init.vim $userhome
+cp -f $scriptdir/dots/init.vim $userhome/.config/nvim
 
 cd $HOME/.config
 check_dir_exists $HOME/.config/st

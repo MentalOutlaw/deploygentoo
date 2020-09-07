@@ -25,3 +25,7 @@ media-sound/alsa-utils
 #fonts
 media-fonts/fontawesome
 media-fonts/libertine
+
+#libs
+dev-libs/libltdl
+media-libs/libv4l
