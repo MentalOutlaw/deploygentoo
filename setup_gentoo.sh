@@ -6,6 +6,7 @@ WHITE='\033[1;97m'
 MAGENTA='\033[1;35m'
 CYAN='\033[1;96m'
 cd ..
+start_dir=$(pwd)
 printf ${MAGENTA}"MAKE SURE YOUR ROOT PARTITION IS THE 2ND ONE ON THE DEVICE YOU'LL BE INSTALLING TO\n\n"
 fdisk -l >> devices
 ifconfig -s >> nw_devices
@@ -14,17 +15,17 @@ rm -rf nw_devices
 sed -e "s/lo//g" -i network_devices
 sed -e "s/Iface//g" -i network_devices
 sed '/^$/d' network_devices
-sed -e '\#Disk /dev/ram#,+5d' -i /root/devices
-sed -e '\#Disk /dev/loop#,+5d' -i /root/devices
+sed -e '\#Disk /dev/ram#,+5d' -i devices
+sed -e '\#Disk /dev/loop#,+5d' -i devices
 
-cat /root/devices
+cat devices
 while true; do
     printf ${CYAN}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
     read disk
     disk="${disk,,}"
     partition_count="$(grep -o $disk devices | wc -l)"
     disk_chk=("/dev/${disk}")
-    if grep "$disk_chk" /root/devices; then
+    if grep "$disk_chk" devices; then
         printf "Would you like to auto provision %s? \n This will create a GPT partition scheme where\n%s1 = 2 MB bios_partition\n%s2 = 128 MB boot partition\n%s3 = 4 GB swap_partition\n%s4 x GB root partition (the rest of the hard disk)\n\nEnter y to continue with auto provision or n to exit the script \n>" $disk_chk $disk_chk $disk_chk $disk_chk $disk_chk
         read auto_prov_ans
         if [ "$auto_prov_ans" = "y" ]; then
@@ -57,7 +58,7 @@ while true; do
             printf ${CYAN}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
             read num
             rootpart="$disk$num"
-            if grep "$rootpart" /root/devices; then
+            if grep "$rootpart" devices; then
                 #continue running the script
                 if [ $partition_count -gt 2 ]; then
                     printf "do you want to enable swap?\n>"
@@ -72,7 +73,7 @@ while true; do
                         printf "enter swap partition (ex, /dev/sda3)\n>"
                         read part_3
                         part_3="${part_3,,}"
-                        if grep "$part_3" /root/devices; then
+                        if grep "$part_3" devices; then
                             mkswap $part_3
                             swapon $part_3
                             break
@@ -81,7 +82,7 @@ while true; do
                             printf ${WHITE}".\n"
                             sleep 5
                             clear
-                            cat /root/devices
+                            cat devices
                         fi
                     done
                 fi
@@ -104,7 +105,7 @@ while true; do
         printf ${WHITE}".\n"
         sleep 5
         clear
-        cat /root/devices
+        cat devices
     fi
 done
 #copying files into place
@@ -145,7 +146,7 @@ echo "$part_1" >> "$install_vars"
 echo "$part_2" >> "$install_vars"
 echo "$part_4" >> "$install_vars"
 echo "$performance_opts" >> "$install_vars"
-cat /root/network_devices >> "$install_vars"
+cat network_devices >> "$install_vars"
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened
