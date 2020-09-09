@@ -10,6 +10,7 @@ x11-apps/xrdb
 x11-apps/mesa-progs
 x11-apps/xrandr
 x11-drivers/xf86-video-vboxvideo
+x11-drivers/nvidia-drivers
 x11-misc/unclutter
 x11-misc/xclip
 x11-misc/pcmanfm
@@ -21,6 +22,7 @@ app-editors/neovim
 app-editors/vim
 sys-process/htop
 media-sound/alsa-utils
+www-client/firefox-bin
 
 #fonts
 media-fonts/fontawesome
