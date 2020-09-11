@@ -135,6 +135,7 @@ performance_opts="${performance_opts,,}"
 printf ${LIGHTGREEN}"Beginning installation, this will take several minutes\n"
 install_vars=/mnt/gentoo/deploygentoo-master/install_vars
 cpus=$(grep -c ^processor /proc/cpuinfo)
+pluscpus=$((cpus+1))
 echo "$disk" >> "$install_vars"
 echo "$username" >> "$install_vars"
 echo "$kernelanswer" >> "$install_vars"
@@ -146,6 +147,7 @@ echo "$part_1" >> "$install_vars"
 echo "$part_2" >> "$install_vars"
 echo "$part_4" >> "$install_vars"
 echo "$performance_opts" >> "$install_vars"
+echo "$pluscpus" >> "$install_vars"
 cat network_devices >> "$install_vars"
 case $stage3select in
   0)
@@ -198,7 +200,8 @@ printf "moved old make.conf to /backup/\n"
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf /mnt/gentoo/etc/portage/
 printf "copied new make.conf to /etc/portage/\n"
 printf "there are %s cpus\n" $cpus
-sed -i "s/MAKEOPTS=\"-j3\"/MAKEOPTS=\"-j$cpus\"/g" /mnt/gentoo/etc/portage/make.conf
+sed -i "s/MAKEOPTS=\"-j3\"/MAKEOPTS=\"-j$pluscpus -l$cpus\"/g" /mnt/gentoo/etc/portage/make.conf
+sed -i "s/--jobs=3  --load-average=3/--jobs=$cpus  --load-average=$cpus/g" /mnt/gentoo/etc/portage/make.conf
 printf "moved portage files into place\n"
 
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/linux_drivers /mnt/gentoo/etc/portage/

@@ -28,12 +28,13 @@ nw_interface=$(sed '12q;d' install_vars)
 dev_sd=("/dev/$disk")
 mount $part_2 /boot
 jobs=("-j${cpus}")
-printf "%s jobs equals \n" % $jobs
+printf "jobs equals %s" % $jobs
 printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
 emerge --sync --quiet
 #TODO This emerge fails for some reason
 emerge -q app-portage/mirrorselect
+emerge -q gentoolkit
 printf "searching for fastest servers\n"
 mirrorselect -s5 -b10 -D
 printf "sync complete\n"
@@ -223,6 +224,33 @@ if [ $performance_opts = "yes" ]; then
     CONFIG="/bin/cloog/configure"
     bash "$CONFIG"
     make && make install
+    echo "#required for LTO System" >> /etc/portage/package.accept_keywords
+    echo "sys-kernel/gentoo-sources ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-portage/lto-rebuild ~amd64" >> /etc/portage/package.accept_keywords
+    echo "=dev-lang/python-3.8.5-r1::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
+    echo "=dev-lang/python-3.7.8-r3::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
+    echo "dev-lang/python::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
+    echo "dev-util/pkgconf ~amd64" >> /etc/portage/package.accept_keywords
+    echo "sys-config/ltoize ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-portage/portage-bashrc-mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-shells/runtitle ~amd64" >> /etc/portage/package.accept_keywords
+    echo "=sys-devel/gcc-10.2.0 ~amd64" >> /etc/portage/package.accept_keywords
+    echo "=dev-libs/isl-0.14" >> /etc/portage/package.accept_keywords
+    echo "=dev-libs/cloog-0.18.3" >> /etc/portage/package.accept_keywords
+    echo "virtual/freedesktop-icon-theme::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "dev-lang/python::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-portage/eix::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-shells/push::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-shells/quoter::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-text/lesspipe::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "sys-apps/less::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "x11-libs/gtk+::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "virtual/man::mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "sys-apps/less:mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-text/lesspipe:mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-shells/quoter:mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-shells/push:mv ~amd64" >> /etc/portage/package.accept_keywords
+    echo "app-portage/eix:mv ~amd64" >> /etc/portage/package.accept_keywords
     ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize-0.9.7.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild-0.9.8.ebuild manifest
     ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.8.5-r1.ebuild manifest
@@ -258,7 +286,6 @@ if [ $performance_opts = "yes" ]; then
     sed -i '6s/^/source make.conf.lto\n\n/' /etc/portage/make.conf
     sed -i '11s/^/LDFLAGS=\"${CFLAGS} -fuse-linker-plugin\"\n/' /etc/portage/make.conf
     sed -i '12s/^/CPU_FLAGS_X86=\"aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3\"\n/' /etc/portage/make.conf
-    sed -i '15s/^/ACCEPT_KEYWORDS=\"~amd64\"\n/' /etc/portage/make.conf
     sed -i 's/-quicktime/-quicktime lto/g' /etc/portage/make.conf
     sed -i 's/-clamav/-clamav graphite/g' /etc/portage/make.conf
     emerge gcc
@@ -275,11 +302,11 @@ if [ $sslanswer = "yes" ]; then
     sed -i 's/nodejs/nodejs -system-ssl/g' /etc/portage/package.use/package.use
     sed -i -e '$aCURL_SSL="libressl"' /etc/portage/make.conf
     cp -r /deploygentoo-master/gentoo/portage/profile /etc/portage/
-    emerge -q gentoolkit
     mkdir -p /etc/portage/profile
     echo "-libressl" >> /etc/portage/profile/use.stable.mask
     echo "dev-libs/openssl" >> /etc/portage/package.mask
-    echo "dev-libs/libressl" >> /etc/portage/package.accept_keywords
+    echo "dev-libs/libressl ~amd64" >> /etc/portage/package.accept_keywords
+    echo "=dev-qt/qtnetwork-5.15.0::libressl ~amd64" >> /etc/portage/package.accept_keywords
     emerge -f libressl
     emerge -C openssl
     emerge -1q libressl

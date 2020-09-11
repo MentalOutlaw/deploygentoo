@@ -3,33 +3,6 @@
 media-video/obs-studio ~amd64
 =app-editors/neovim-9999 **
 =media-libs/x264-9999 **
-#required for emerge @world after LTO
-sys-kernel/gentoo-sources ~amd64
-app-portage/lto-rebuild ~amd64
-=dev-lang/python-3.8.5-r1::lto-overlay ~amd64
-=dev-lang/python-3.7.8-r3::lto-overlay ~amd64
-dev-lang/python::lto-overlay ~amd64
-dev-util/pkgconf ~amd64
-sys-config/ltoize ~amd64
-app-portage/portage-bashrc-mv ~amd64
-app-shells/runtitle ~amd64
-=sys-devel/gcc-10.2.0 ~amd64
-=dev-libs/isl-0.14
-=dev-libs/cloog-0.18.3
-virtual/freedesktop-icon-theme::mv ~amd64
-dev-lang/python::lto-overlay ~amd64
-app-portage/eix::mv ~amd64
-app-shells/push::mv ~amd64
-app-shells/quoter::mv ~amd64
-app-text/lesspipe::mv ~amd64
-sys-apps/less::mv ~amd64
-x11-libs/gtk+::mv ~amd64
-virtual/man::mv ~amd64
-sys-apps/less:mv ~amd64
-app-text/lesspipe:mv ~amd64
-app-shells/quoter:mv ~amd64
-app-shells/push:mv ~amd64
-app-portage/eix:mv ~amd64
 # required by app-editors/neovim (argument)
 =app-editors/neovim-0.4.2 ~amd64
 # required by app-editors/neovim-0.4.2::gentoo[tui]
@@ -385,9 +358,7 @@ dev-python/ldap3 ~amd64
 dev-python/urwid ~amd64
 dev-python/wsproto ~amd64
 dev-python/h11 ~amd64
-dev-libs/libressl ~amd64
 net-libs/nodejs ~amd64
-=dev-qt/qtnetwork-5.15.0::libressl ~amd64
 #required for the latest firefox
 #=www-client/firefox-76.0.1 ~amd64
 www-client/firefox ~amd64
@@ -446,13 +417,13 @@ app-emulation/virtualbox-guest-additions ~amd64
 #kde-frameworks/kinit ~amd64
 #kde-frameworks/kguiaddons ~amd64
 #=net-misc/curl-7.71.0
-dev-qt/qttest ~amd64
-dev-qt/qtxml ~amd64
-dev-qt/qtquickcontrols ~amd64
-dev-qt/qtdeclarative ~amd64
-dev-qt/qtgraphicaleffects ~amd64
-dev-qt/qtgui ~amd64
-dev-qt/qtwidgets ~amd64
-dev-qt/qtchooser ~amd64
-dev-qt/qtcore ~amd64
-dev-qt/linguist-tools ~amd64
+#dev-qt/qttest ~amd64
+#dev-qt/qtxml ~amd64
+#dev-qt/qtquickcontrols ~amd64
+#dev-qt/qtdeclarative ~amd64
+#dev-qt/qtgraphicaleffects ~amd64
+#dev-qt/qtgui ~amd64
+#dev-qt/qtwidgets ~amd64
+#dev-qt/qtchooser ~amd64
+#dev-qt/qtcore ~amd64
+#dev-qt/linguist-tools ~amd64
