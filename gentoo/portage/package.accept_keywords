@@ -1,5 +1,15 @@
 #required for a newer kernel
 #9999 packages required when LTOizing
+#required for LTO System
+sys-kernel/gentoo-sources ~amd64
+app-portage/lto-rebuild ~amd64
+dev-util/pkgconf ~amd64
+sys-config/ltoize ~amd64
+app-portage/portage-bashrc-mv ~amd64
+app-shells/runtitle ~amd64
+=sys-devel/gcc-10.2.0 ~amd64
+=dev-libs/isl-0.14
+=dev-libs/cloog-0.18.3
 media-video/obs-studio ~amd64
 =app-editors/neovim-9999 **
 =media-libs/x264-9999 **

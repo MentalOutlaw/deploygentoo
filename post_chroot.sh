@@ -224,21 +224,11 @@ if [ $performance_opts = "yes" ]; then
     CONFIG="/bin/cloog/configure"
     bash "$CONFIG"
     make && make install
-    echo "#required for LTO System" >> /etc/portage/package.accept_keywords
-    echo "sys-kernel/gentoo-sources ~amd64" >> /etc/portage/package.accept_keywords
-    echo "app-portage/lto-rebuild ~amd64" >> /etc/portage/package.accept_keywords
+    echo "dev-lang/python::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
     echo "=dev-lang/python-3.8.5-r1::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
     echo "=dev-lang/python-3.7.8-r3::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
     echo "dev-lang/python::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
-    echo "dev-util/pkgconf ~amd64" >> /etc/portage/package.accept_keywords
-    echo "sys-config/ltoize ~amd64" >> /etc/portage/package.accept_keywords
-    echo "app-portage/portage-bashrc-mv ~amd64" >> /etc/portage/package.accept_keywords
-    echo "app-shells/runtitle ~amd64" >> /etc/portage/package.accept_keywords
-    echo "=sys-devel/gcc-10.2.0 ~amd64" >> /etc/portage/package.accept_keywords
-    echo "=dev-libs/isl-0.14" >> /etc/portage/package.accept_keywords
-    echo "=dev-libs/cloog-0.18.3" >> /etc/portage/package.accept_keywords
     echo "virtual/freedesktop-icon-theme::mv ~amd64" >> /etc/portage/package.accept_keywords
-    echo "dev-lang/python::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
     echo "app-portage/eix::mv ~amd64" >> /etc/portage/package.accept_keywords
     echo "app-shells/push::mv ~amd64" >> /etc/portage/package.accept_keywords
     echo "app-shells/quoter::mv ~amd64" >> /etc/portage/package.accept_keywords
