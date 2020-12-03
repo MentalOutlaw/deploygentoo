@@ -133,6 +133,7 @@ printf ${LIGHTGREEN}"Beginning installation, this will take several minutes\n"
 mount $part_4 /mnt/gentoo
 mv deploygentoo-master /mnt/gentoo
 mv deploygentoo-master.zip /mnt/gentoo/
+mv network_devices /mnt/gentoo/deploygentoo-master/
 cd /mnt/gentoo/deploygentoo-master
 
 install_vars=/mnt/gentoo/deploygentoo-master/install_vars
