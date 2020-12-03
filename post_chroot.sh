@@ -86,6 +86,7 @@ cd /usr/src/linux
 emerge -q sys-apps/pciutils
 emerge -q app-arch/lzop
 emerge -q app-arch/lz4
+emerge -q sys-kernel/genkernel
 if [ $kernelanswer = "no" ]; then
 	rm -rf /usr/src/linux/.config
 	make mrproper
@@ -108,6 +109,7 @@ else
 	make install
 	printf "Kernel installed\n"
 fi
+genkernel --install --kernel-config=/usr/src/linux/.config initramfs
 
 cd /etc/init.d
 #enables DHCP
