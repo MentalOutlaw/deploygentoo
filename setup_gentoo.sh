@@ -108,11 +108,6 @@ while true; do
         cat devices
     fi
 done
-#copying files into place
-mount $part_4 /mnt/gentoo
-mv deploygentoo-master /mnt/gentoo
-mv deploygentoo-master.zip /mnt/gentoo/
-cd /mnt/gentoo/deploygentoo-master
 
 printf "enter a number for the stage 3 you want to use\n"
 printf "0 = regular hardened\n1 = hardened musl\n2 = vanilla musl\n>"
@@ -148,6 +143,13 @@ echo "$part_2" >> "$install_vars"
 echo "$part_4" >> "$install_vars"
 echo "$performance_opts" >> "$install_vars"
 cat network_devices >> "$install_vars"
+
+#copying files into place
+mount $part_4 /mnt/gentoo
+mv deploygentoo-master /mnt/gentoo
+mv deploygentoo-master.zip /mnt/gentoo/
+cd /mnt/gentoo/deploygentoo-master
+
 case $stage3select in
   0)
     GENTOO_TYPE=latest-stage3-amd64-hardened
