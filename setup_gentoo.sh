@@ -128,6 +128,13 @@ printf ${CYAN}"Do you want to do performance optimizations. LTO -O3 and Graphite
 read performance_opts
 performance_opts="${performance_opts,,}"
 printf ${LIGHTGREEN}"Beginning installation, this will take several minutes\n"
+
+#copying files into place
+mount $part_4 /mnt/gentoo
+mv deploygentoo-master /mnt/gentoo
+mv deploygentoo-master.zip /mnt/gentoo/
+cd /mnt/gentoo/deploygentoo-master
+
 install_vars=/mnt/gentoo/deploygentoo-master/install_vars
 cpus=$(grep -c ^processor /proc/cpuinfo)
 pluscpus=$((cpus+1))
@@ -144,12 +151,6 @@ echo "$part_4" >> "$install_vars"
 echo "$performance_opts" >> "$install_vars"
 cat network_devices >> "$install_vars"
 rm -f network_devices
-
-#copying files into place
-mount $part_4 /mnt/gentoo
-mv deploygentoo-master /mnt/gentoo
-mv deploygentoo-master.zip /mnt/gentoo/
-cd /mnt/gentoo/deploygentoo-master
 
 case $stage3select in
   0)
