@@ -143,6 +143,7 @@ echo "$part_2" >> "$install_vars"
 echo "$part_4" >> "$install_vars"
 echo "$performance_opts" >> "$install_vars"
 cat network_devices >> "$install_vars"
+rm -f network_devices
 
 #copying files into place
 mount $part_4 /mnt/gentoo
