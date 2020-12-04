@@ -110,7 +110,7 @@ while true; do
 done
 
 printf "enter a number for the stage 3 you want to use\n"
-printf "0 = minimal\n1 = regular hardened\n2 = hardened musl\n3 = vanilla musl\n>"
+printf "0 = regular\n1 = regular hardened\n2 = hardened musl\n3 = vanilla musl\n>"
 read stage3select
 printf ${CYAN}"Enter the username for your NON ROOT user\n>"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
@@ -155,7 +155,7 @@ rm -f network_devices
 
 case $stage3select in
   0)
-    GENTOO_TYPE=latest-install-amd64-minimal
+    GENTOO_TYPE=latest-stage3-amd64
     ;;
   1)
     GENTOO_TYPE=latest-stage3-amd64-hardened
