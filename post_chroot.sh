@@ -90,14 +90,14 @@ emerge -q sys-kernel/genkernel
 if [ $kernelanswer = "no" ]; then
 	rm -rf /usr/src/linux/.config
 	make mrproper
-	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux/.config
-	make olddefconfig
-	make $jobs && make modules_install
-	make install
+	cp /deploygentoo-master/gentoo/kernel/gentoominimal /root/kernel.config
+    genkernel --kernel-config=/root/kernel.config all
+	#make $jobs && make modules_install
+	#make install
 	printf "Kernel installed\n"
 elif [ $kernelanswer = "edit" ]; then
     make mrproper
-	cp /deploygentoo-master/gentoo/kernel/gentoohardenedminimal /usr/src/linux/.config
+	cp /deploygentoo-master/gentoo/kernel/gentoominimal /usr/src/linux/.config
 	make menuconfig
 	make $jobs && make modules_install
 	make install
