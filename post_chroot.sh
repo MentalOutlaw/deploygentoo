@@ -201,6 +201,9 @@ rm -rf $stage3
 #fi
 
 if [ $performance_opts = "yes" ]; then
+#ADDED TODAY START
+    emerge --autounmask-continue -UD @world --backtrack=50
+#ADDED TODAY END
     emerge -q app-portage/layman
     sed -i "s/conf_type : repos.conf/conf_type : make.conf/g" /etc/layman/layman.cfg
     if grep "source /var/lib/layman/make.conf" /etc/portage/make.conf; then
@@ -214,6 +217,8 @@ if [ $performance_opts = "yes" ]; then
     yes | layman -a mv
     yes | layman -a lto-overlay
     layman -S
+    cp /var/lib/layman/lto-overlay/sys-config/ltoize/files/make.conf.lto /etc/portage/
+    cp /var/lib/layman/lto-overlay/sys-config/ltoize/files/make.conf.lto.defines /etc/portage/
     emerge --autounmask-continue app-text/texlive
     emerge -q dev-libs/isl
     cd /bin
@@ -227,8 +232,8 @@ if [ $performance_opts = "yes" ]; then
     bash "$CONFIG"
     make && make install
     echo "dev-lang/python::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
-    echo "=dev-lang/python-3.8.5-r1::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
-    echo "=dev-lang/python-3.7.8-r3::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
+    #echo "=dev-lang/python-3.8.5-r1::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
+    #echo "=dev-lang/python-3.7.8-r3::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
     echo "dev-lang/python::lto-overlay ~amd64" >> /etc/portage/package.accept_keywords
     echo "virtual/freedesktop-icon-theme::mv ~amd64" >> /etc/portage/package.accept_keywords
     echo "app-portage/eix::mv ~amd64" >> /etc/portage/package.accept_keywords
@@ -257,20 +262,35 @@ if [ $performance_opts = "yes" ]; then
     ebuild /var/lib/layman/mv/sys-apps/less/less-563.ebuild manifest
     ebuild /var/lib/layman/mv/virtual/man/man-0-r3.ebuild manifest
     ebuild /var/lib/layman/mv/virtual/freedesktop-icon-theme/freedesktop-icon-theme-0-r3.ebuild manifest
+
+    ebuild /var/lib/layman/lto-overlay/sys-config/ltoize/ltoize*.ebuild manifest
+    ebuild /var/lib/layman/lto-overlay/app-portage/lto-rebuild/lto-rebuild*.ebuild manifest
+    ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-3.*.ebuild manifest
+    ebuild /var/lib/layman/lto-overlay/dev-lang/python/python-2.*.ebuild manifest
+    ebuild /var/lib/layman/mv/app-portage/eix/eix*.ebuild manifest
+    ebuild /var/lib/layman/mv/app-portage/portage-bashrc-mv/portage-bashrc*.ebuild manifest
+    ebuild /var/lib/layman/mv/app-shells/push/push*.ebuild manifest
+    ebuild /var/lib/layman/mv/app-shells/runtitle/runtitle*.ebuild manifest
+    ebuild /var/lib/layman/mv/app-shells/quoter/quoter*.ebuild manifest
+    ebuild /var/lib/layman/mv/app-text/lesspipe/lesspipe*.ebuild manifest
+    ebuild /var/lib/layman/mv/sys-apps/less/less*.ebuild manifest
+    ebuild /var/lib/layman/mv/virtual/man/man*.ebuild manifest
+    ebuild /var/lib/layman/mv/virtual/freedesktop-icon-theme/freedesktop-icon-theme*.ebuild manifest
+
     emerge -q sys-config/ltoize
-    emerge -q =app-portage/portage-bashrc-mv-20.1::mv
-    emerge -q =app-portage/eix-0.34.4::mv
-    emerge -q =app-portage/lto-rebuild.0.9.8::lto-overlay
-    emerge -q =app-shells/runtitle-2.11::mv
-    emerge -q =app-shells/push-3.3::mv
-    emerge -q =app-shells/quoter-4.2::mv
-    emerge -q =app-text/lesspipe-1.85_alpha20200517::mv
-    emerge -q =sys-apps/less-563::mv
-    emerge -q =virtual/freedesktop-icon-theme-0-r3::mv
-    emerge -q =virtual/man-0-r3::mv
-    emerge -q =dev-lang/python-3.8.5-r1::lto-overlay
-    emerge -q =dev-lang/python-3.7.8-r3::lto-overlay
-    emerge -q =dev-lang/python-2.7.18-r100::lto-overlay
+    emerge -q =app-portage/portage-bashrc::mv
+    emerge -q =app-portage/eix::mv
+    emerge -q =app-portage/lto-rebuild::lto-overlay
+    emerge -q =app-shells/runtitle::mv
+    emerge -q =app-shells/push::mv
+    emerge -q =app-shells/quoter::mv
+    emerge -q =app-text/lesspipe::mv
+    emerge -q =sys-apps/less::mv
+    emerge -q =virtual/freedesktop-icon-theme::mv
+    emerge -q =virtual/man::mv
+    emerge -q =dev-lang/python::lto-overlay
+    emerge -q =dev-lang/python::lto-overlay
+    emerge -q =dev-lang/python::lto-overlay
     #TODO add option to append -falign-functions=32 to CFLAGS if user has an Intel Processor
     sed -i 's/^CFLAGS=\"${COMMON_FLAGS}\"/CFLAGS=\"-march=native ${CFLAGS} -pipe\"/g' /etc/portage/make.conf
     sed -i 's/CXXFLAGS=\"${COMMON_FLAGS}\"/CXXFLAGS=\"${CFLAGS}\"/g' /etc/portage/make.conf
