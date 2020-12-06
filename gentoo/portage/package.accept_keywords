@@ -11,8 +11,10 @@ app-shells/runtitle ~amd64
 =dev-libs/isl-0.14
 =dev-libs/cloog-0.18.3
 media-video/obs-studio ~amd64
-=app-editors/neovim-9999 **
-=media-libs/x264-9999 **
+app-editors/neovim ~amd64
+media-libs/x264 ~amd64
+#=app-editors/neovim-9999 **
+#=media-libs/x264-9999 **
 # required by app-editors/neovim (argument)
 =app-editors/neovim-0.4.2 ~amd64
 # required by app-editors/neovim-0.4.2::gentoo[tui]
