@@ -88,8 +88,6 @@ emerge -q app-arch/lzop
 emerge -q app-arch/lz4
 emerge --autounmask-continue -q sys-kernel/genkernel
 if [ $kernelanswer = "no" ]; then
-	rm -rf /usr/src/linux/.config
-	make mrproper
 	cp /deploygentoo-master/gentoo/kernel/gentoominimal /root/kernel.config
     genkernel --kernel-config=/root/kernel.config all
 	#make $jobs && make modules_install
@@ -203,7 +201,7 @@ rm -rf $stage3
 
 if [ $performance_opts = "yes" ]; then
 #ADDED TODAY START
-    emerge --autounmask-continue -UD @world --backtrack=50
+    emerge --autounmask-continue -UD @world
     emerge app-eselect/eselect-repository
     emerge dev-vcs/git
     eselect repository enable mv
