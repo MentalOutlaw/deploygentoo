@@ -136,9 +136,9 @@ UUID4=("UUID=${UUID4}")
 printf "%s\t\t/boot/efi\tvfat\t\tdefaults\t0 2\n" $UUID2 >> /etc/fstab
 SUB_STR='/dev/'
 if [[ "$part_3" == *"$SUB_STR"* ]]; then
-    printf "%s\t\tnone\t swap\t\tsw\t\t0 0\n" $UUID3 >> /etc/fstab
+    printf "%s\t\tnone\t\tswap\t\tsw\t\t0 0\n" $UUID3 >> /etc/fstab
 fi
-printf "%s\t\t/\t\text4\t\tnoatime\t0 1\n" $UUID4 >> /etc/fstab
+printf "%s\t\t/\t\text4\t\tnoatime\t\t0 1\n" $UUID4 >> /etc/fstab
 net_config_str2=("net.${nw_interface}")
 ln -s net.lo $net_config_str2
 rc-update add $net_config_str2 default
