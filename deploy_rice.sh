@@ -77,6 +77,7 @@ else
         cd /usr/lib64/urxvt/perl
         git clone https://github.com/majutsushi/urxvt-font-size
         mv urxvt-font-size/font-size .
+        cp $scriptdir/dots/pasta .
     else
         printf "urxvt folder doesn't exist, urxvt was not emerged correctly\n"
     fi
