@@ -20,7 +20,7 @@ sed -e '\#Disk /dev/loop#,+5d' -i devices
 
 cat devices
 while true; do
-    printf ${CYAN}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
+    printf ${CYAN}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda and nvme0n1 for /dev/nvme0n1)\n>"
     read disk
     disk="${disk,,}"
     
@@ -71,7 +71,7 @@ while true; do
             sleep 2
             break
         elif [ "$auto_prov_ans" = "n" ]; then
-            printf ${CYAN}"Enter the partition number for root (ex, 2 for /dev/sda2)\n>"
+            printf ${CYAN}"Enter the partition number for root (ex, 2 for /dev/sda2 or /dev/nvme0n1p2)\n>"
             read num
             rootpart="$disk$num"
             if grep "$rootpart" devices; then
@@ -86,7 +86,7 @@ while true; do
                     part_3="no"
                 else
                     while true; do
-                        printf "enter swap partition (ex, /dev/sda3)\n>"
+                        printf "enter swap partition (ex, /dev/sda3 or /dev/nvme0n1p3)\n>"
                         read part_3
                         part_3="${part_3,,}"
                         if grep "$part_3" devices; then
