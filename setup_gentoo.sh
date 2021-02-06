@@ -23,6 +23,15 @@ while true; do
     printf ${CYAN}"Enter the device name you want to install gentoo on (ex, sda for /dev/sda)\n>"
     read disk
     disk="${disk,,}"
+    
+    printf ${CYAN}"Does this script need to add a \"p\" character before the partition number\nFor example this is needed for NVMe drives (Wrong: /dev/nvme0n11) (Correct: /dev/nvme0n1p1)\n\nEnter y to add the character or n to not add it\n>"
+    read add_p
+    if [ "$add_p" != "y" ] && [ "$add_p" != "n" ]; then
+        printf ${LIGHTRED}"%s is an invalid answer, do it correctly" $auto_prov_ans
+        printf ${WHITE}".\n"
+        sleep 2
+	continue
+    fi
     partition_count="$(grep -o $disk devices | wc -l)"
     disk_chk=("/dev/${disk}")
     if grep "$disk_chk" devices; then
@@ -41,10 +50,17 @@ while true; do
             parted $disk_chk --script -- mkpart primary 4227MiB -1
             parted $disk_chk --script name 4 rootfs
             parted $disk_chk --script set 2 boot on
-            part_1=("${disk_chk}1")
-            part_2=("${disk_chk}2")
-            part_3=("${disk_chk}3")
-            part_4=("${disk_chk}4")
+            if [ "$add_p" = "y" ]; then
+                part_1=("${disk_chk}p1")
+                part_2=("${disk_chk}p2")
+                part_3=("${disk_chk}p3")
+                part_4=("${disk_chk}p4")
+            else
+                part_1=("${disk_chk}1")
+                part_2=("${disk_chk}2")
+                part_3=("${disk_chk}3")
+                part_4=("${disk_chk}4")
+            fi
             mkfs.fat -F 32 $part_2
             #mkfs.ext4 $part_2
             mkfs.ext4 $part_4
