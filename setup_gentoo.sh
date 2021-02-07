@@ -27,7 +27,7 @@ while true; do
     printf ${CYAN}"Does this script need to add a \"p\" character before the partition number\nFor example this is needed for NVMe drives (Wrong: /dev/nvme0n11) (Correct: /dev/nvme0n1p1)\n\nEnter y to add the character or n to not add it\n>"
     read add_p
     if [ "$add_p" != "y" ] && [ "$add_p" != "n" ]; then
-        printf ${LIGHTRED}"%s is an invalid answer, do it correctly" $auto_prov_ans
+        printf ${LIGHTRED}"%s is an invalid answer, do it correctly" $add_p
         printf ${WHITE}".\n"
         sleep 2
 	continue
