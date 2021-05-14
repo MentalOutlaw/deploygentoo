@@ -1,8 +1,8 @@
 # required by app-arch/unrar (argument)
 app-arch/unrar unRAR
-# required by app-arch/unrar (argument)
-#=app-arch/unrar-5.7.5 unRAR
 # required by net-dns/dnswalk (argument)
->=net-dns/dnswalk-2.0.2 freedist
+net-dns/dnswalk freedist
 # required by games-util/steam-launcher (argument)
->=games-util/steam-launcher-1.0.0.62 ValveSteamLicense
+games-util/steam-launcher ValveSteamLicense
+# required by x11-drivers/nvidia-drivers (argument)
+x11-drivers/nvidia-drivers NVIDIA-r2

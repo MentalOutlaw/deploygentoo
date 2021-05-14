@@ -51,15 +51,11 @@ case $line in
   latest-stage3-amd64-musl-hardened)
     eselect profile set --force 31
     echo "dev-vcs/git -gpg" >> /etc/portage/package.use
-    emerge app-portage/layman dev-vcs/git
-    layman -a musl
     emerge -uvNDq @world
     ;;
   latest-stage3-amd64-musl-vanilla)
     eselect profile set --force 30
     echo "dev-vcs/git -gpg" >> /etc/portage/package.use
-    emerge app-portage/layman dev-vcs/git
-    layman -a musl
     emerge -uvNDq @world
     ;;
 esac
@@ -151,7 +147,7 @@ printf "installed sudo and enabled it for wheel group\n"
 emerge -q sys-apps/mlocate
 emerge -q net-misc/dhcpcd
 
-#installs grub, and layman
+#installs grub 
 emerge --verbose -q sys-boot/grub:2
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg

@@ -30,7 +30,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 printf "This script is designed for gentoo linux and it will not work in any other OS\n"
-printf "Installing dependencies listed in dependencies.txt...\n"
+printf "Installing software listed in software.txt...\n"
 
 SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
 ##TODO remove this comment and uncomment the 4 lines below it

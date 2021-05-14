@@ -10,3 +10,4 @@ This script can be run from a live CD or a live OS, you can download this script
 TODOs
 continued testing for LTO & Graphite optimizations, this script pulls in the Gentoo LTO Overlay https://github.com/InBetweenNames/gentooLTO which itself is still in the works, things may or may not compile correctly as changes are added to that overlay
 Add a browser that supports LTO & LibreSSL, earlier builds of firefox worked with this setup, but it has not been supported for several versions now.
+Deprecate Libressl functionality (No further attempts are being made to integrate LibreSSL into Gentoo, and LibreSSL has been all but abandoned by distro devs in general)
