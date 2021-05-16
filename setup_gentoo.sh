@@ -200,9 +200,7 @@ printf "unpacked stage 3\n"
 cd /mnt/gentoo/deploygentoo-master/gentoo/
 cp -a /mnt/gentoo/deploygentoo-master/gentoo/portage/package.use/. /mnt/gentoo/etc/portage/package.use/
 cd /mnt/gentoo/
-mkdir /mnt/gentoo/etc/portage/backup/
-mv /mnt/gentoo/etc/portage/make.conf /mnt/gentoo/etc/portage/backup/
-printf "moved old make.conf to /backup/\n"
+rm -rf /mnt/gentoo/etc/portage/make.conf
 ##copies our pre-made make.conf over
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/make.conf /mnt/gentoo/etc/portage/
 printf "copied new make.conf to /etc/portage/\n"
@@ -212,7 +210,6 @@ sed -i "s/--jobs=3  --load-average=3/--jobs=$cpus  --load-average=$cpus/g" /mnt/
 printf "moved portage files into place\n"
 
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/linux_drivers /mnt/gentoo/etc/portage/
-cp /mnt/gentoo/deploygentoo-master/gentoo/portage/nvidia_package.license /mnt/gentoo/etc/portage/
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.license /mnt/gentoo/etc/portage
 cp /mnt/gentoo/deploygentoo-master/gentoo/portage/package.accept_keywords /mnt/gentoo/etc/portage/
 cp -r /mnt/gentoo/deploygentoo-master/gentoo/portage/profile /mnt/gentoo/etc/portage/

@@ -85,9 +85,10 @@ emerge -q app-arch/lz4
 emerge --autounmask-continue -q sys-kernel/genkernel
 if [ $kernelanswer = "no" ]; then
 	cp /deploygentoo-master/gentoo/kernel/gentoominimal /root/kernel.config
-    genkernel --kernel-config=/root/kernel.config all
-	#make $jobs && make modules_install
-	#make install
+	#genkernel --kernel-config=/root/kernel.config all
+	make $jobs && make modules_install
+	make install
+	mv /root/kernel.config /usr/src/linux/.config
 	printf "Kernel installed\n"
 elif [ $kernelanswer = "edit" ]; then
     make mrproper
