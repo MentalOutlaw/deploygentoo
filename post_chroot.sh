@@ -28,7 +28,7 @@ nw_interface=$(sed '12q;d' install_vars)
 dev_sd=("/dev/$disk")
 mount $part_2 /boot
 jobs=("-j${cpus}")
-printf "jobs equals %s" % $jobs
+#printf "jobs equals %s" % $jobs
 printf "mounted boot\n"
 #TODO everything below this point fails on musl, figure out why, error is Your current profile is invalid
 emerge --sync --quiet
