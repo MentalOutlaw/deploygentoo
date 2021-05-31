@@ -6,3 +6,5 @@ net-dns/dnswalk freedist
 games-util/steam-launcher ValveSteamLicense
 # required by x11-drivers/nvidia-drivers (argument)
 x11-drivers/nvidia-drivers NVIDIA-r2
+# required by sys-kernel/linux-firmware (argument)
+sys-kernel/linux-firmware linux-fw-redistributable no-source-code
