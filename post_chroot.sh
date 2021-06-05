@@ -58,6 +58,10 @@ case $line in
     echo "dev-vcs/git -gpg" >> /etc/portage/package.use
     emerge -uvNDq @world
     ;;
+  latest-stage3-amd64)
+    emerge -uvNDq @world
+    printf "big emerge complete\n"
+    ;;
 esac
 
 
@@ -84,11 +88,12 @@ emerge -q app-arch/lzop
 emerge -q app-arch/lz4
 emerge --autounmask-continue -q sys-kernel/genkernel
 if [ $kernelanswer = "no" ]; then
-	cp /deploygentoo-master/gentoo/kernel/gentoominimal /root/kernel.config
+	#cp /deploygentoo-master/gentoo/kernel/gentoominimal /root/kernel.config
 	#genkernel --kernel-config=/root/kernel.config all
+	cp /deploygentoo-master/gentoo/kernel/gentoominimal /usr/src/linux/.config
 	make $jobs && make modules_install
 	make install
-	mv /root/kernel.config /usr/src/linux/.config
+	#mv /root/kernel.config /usr/src/linux/.config
 	printf "Kernel installed\n"
 elif [ $kernelanswer = "edit" ]; then
     make mrproper
@@ -148,7 +153,7 @@ printf "installed sudo and enabled it for wheel group\n"
 emerge -q sys-apps/mlocate
 emerge -q net-misc/dhcpcd
 
-#installs grub 
+#installs grub
 emerge --verbose -q sys-boot/grub:2
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
