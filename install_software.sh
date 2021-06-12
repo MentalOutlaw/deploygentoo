@@ -33,21 +33,10 @@ printf "This script is designed for gentoo linux and it will not work in any oth
 printf "Installing software listed in software.txt...\n"
 
 SOFTWARE="`sed -e 's/#.*$//' -e '/^$/d' software.txt | tr '\n' ' '`"
-##TODO remove this comment and uncomment the 4 lines below it
 emaint -a sync
-#
-#This is unnecessary?
-#cd /etc/layman
-#git clone https://github.com/gentoo/libressl
-cd /var/lib/layman
-layman -S
-yes | layman -a steam-overlay
-cd libressl/dev-qt/qtnetwork
-ebuild qtnetwork-5.15.0.ebuild manifest
-emerge dev-qt/qtnetwork
 
-emerge games-util/steam-launcher games-util/steam-meta
-rm -rf /var/lib/layman/lto-overlay/sys-config/ltoize/files/patches/media-libs/x264/*
+eselect repository enable steam-overlay
+emerge --autounmask-continue games-util/steam-launcher games-util/steam-meta
 emerge --autounmask-continue -q $SOFTWARE
 
 #layman -a pentoo

@@ -27,6 +27,7 @@ www-client/firefox-bin
 #fonts
 media-fonts/fontawesome
 media-fonts/libertine
+media-fonts/inconsolata
 
 #libs
 dev-libs/libltdl
