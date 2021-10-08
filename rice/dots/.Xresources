@@ -63,6 +63,6 @@ URxvt.perl-ext-common: font-size,selection-to-clipboard,pasta
 URxvt.keysym.Shift-Control-C:    perl:keyboard-select:activate
 URxvt.keysym.Shift-Control-V:    perl:pasta:paste
 ! Comment this if you don't want copy when text is selected
-#URxvt.clipboard.autocopy: true
+! URxvt.clipboard.autocopy: true
 URxvt.keysym.C-j:       perl:font-size:increase
 URxvt.keysym.C-k:       perl:font-size:decrease
