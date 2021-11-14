@@ -155,7 +155,7 @@ rm -f network_devices
 
 case $stage3select in
   0)
-    GENTOO_TYPE=latest-stage3-amd64
+    GENTOO_TYPE=latest-stage3-amd64-openrc
     ;;
   1)
     GENTOO_TYPE=latest-stage3-amd64-hardened
