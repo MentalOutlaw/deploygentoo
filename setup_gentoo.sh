@@ -110,7 +110,7 @@ while true; do
 done
 
 printf "enter a number for the stage 3 you want to use\n"
-printf "0 = regular\n1 = regular hardened\n2 = hardened musl\n3 = vanilla musl\n>"
+printf "0 = regular\n1 = regular hardened\n2 = hardened musl\n>"
 read stage3select
 printf ${CYAN}"Enter the username for your NON ROOT user\n>"
 #There is a possibility this won't work since the handbook creates a user after rebooting and logging as root
@@ -162,9 +162,6 @@ case $stage3select in
     ;;
   2)
     GENTOO_TYPE=latest-stage3-amd64-musl-hardened
-    ;;
-  3)
-    GENTOO_TYPE=latest-stage3-amd64-musl-vanilla
     ;;
 esac
 
