@@ -6,9 +6,6 @@ cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
 sed -i '/^$/d' install_vars
-#rm -rf /mnt/gentoo/install_vars
-#cat /temp_f >> /mnt/gentoo/install_vars
-#rm -rf /mnt/gentoo/temp_f
 install_vars=install_vars
 
 install_vars_count="$(wc -w /install_vars)"
