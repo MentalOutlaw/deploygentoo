@@ -46,7 +46,6 @@ while true; do
             part_3=("${disk_chk}3")
             part_4=("${disk_chk}4")
             mkfs.fat -F 32 $part_2
-            #mkfs.ext4 $part_2
             mkfs.ext4 $part_4
             mkswap $part_3
             swapon $part_3
