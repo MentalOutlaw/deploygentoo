@@ -155,10 +155,10 @@ rm -f network_devices
 
 case $stage3select in
   0)
-    GENTOO_TYPE=latest-stage3-amd64
+    GENTOO_TYPE=latest-stage3-amd64-openrc
     ;;
   1)
-    GENTOO_TYPE=latest-stage3-amd64-hardened
+    GENTOO_TYPE=latest-stage3-amd64-hardened-openrc
     ;;
   2)
     GENTOO_TYPE=latest-stage3-amd64-musl-hardened
@@ -167,7 +167,6 @@ case $stage3select in
     GENTOO_TYPE=latest-stage3-amd64-musl-vanilla
     ;;
 esac
-
 STAGE3_PATH_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$GENTOO_TYPE.txt
 STAGE3_PATH=$(curl -s $STAGE3_PATH_URL | grep -v "^#" | cut -d" " -f1)
 STAGE3_URL=http://distfiles.gentoo.org/releases/amd64/autobuilds/$STAGE3_PATH
