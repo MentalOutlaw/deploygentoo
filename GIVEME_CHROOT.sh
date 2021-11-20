@@ -1,6 +1,7 @@
 #!/bin/bash
 VERSION="0.0.1"
 SCRIPT_DESCRIPTION="claims to give you chroot in a gentoo installation env."
+SCRIPT_URL='https://raw.githubusercontent.com/muiraie/deploygentoo/master/GIVEME_CHROOT.sh'
 
 # github link: https://github.com/muiraie/deploygentoo/
 # This program is free software: you can redistribute it and/or modify
