@@ -6,9 +6,6 @@ cd deploygentoo-master
 scriptdir=$(pwd)
 cd ..
 sed -i '/^$/d' install_vars
-#rm -rf /mnt/gentoo/install_vars
-#cat /temp_f >> /mnt/gentoo/install_vars
-#rm -rf /mnt/gentoo/temp_f
 install_vars=install_vars
 
 install_vars_count="$(wc -w /install_vars)"
@@ -53,12 +50,7 @@ case $line in
     echo "dev-vcs/git -gpg" >> /etc/portage/package.use
     emerge -uvNDq @world
     ;;
-  latest-stage3-amd64-musl-vanilla)
-    eselect profile set --force 30
-    echo "dev-vcs/git -gpg" >> /etc/portage/package.use
-    emerge -uvNDq @world
-    ;;
-  latest-stage3-amd64)
+  latest-stage3-amd64-openrc)
     emerge -uvNDq @world
     printf "big emerge complete\n"
     ;;
